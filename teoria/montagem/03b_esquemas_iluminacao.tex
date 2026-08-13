@@ -1,0 +1,171 @@
+%=====================================================================
+% ESQUEMAS REVISADOS - ILUMINACAO E COMANDOS
+%=====================================================================
+\section{Esquemas de ligação — iluminação e comandos}
+
+\definecolor{LigF}{RGB}{35,35,35}
+\definecolor{LigN}{RGB}{0,95,175}
+\definecolor{LigPE}{RGB}{35,145,65}
+\definecolor{LigR}{RGB}{190,45,45}
+\definecolor{LigVum}{RGB}{222,138,28}
+\definecolor{LigVdois}{RGB}{112,70,155}
+\tikzset{
+  schbox/.style={draw=corPrim,fill=corDef!5,rounded corners=1.5pt,minimum width=2cm,minimum height=.8cm,align=center,font=\scriptsize},
+  schsw/.style={draw=corNorma,fill=corNorma!5,rounded corners=1.5pt,minimum width=2cm,minimum height=1.2cm,align=center,font=\scriptsize},
+  schload/.style={draw=corAccent!85!black,fill=corAccent!7,circle,minimum size=.9cm,align=center,font=\scriptsize},
+  schterm/.style={circle,draw=corPrim,fill=white,inner sep=0pt,minimum size=4.8pt},
+  schwire/.style={line width=1.05pt}
+}
+
+\begin{frame}{Padrão gráfico — o esquema precisa mostrar função e borne}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.56\textwidth}
+\begin{tikzpicture}[scale=.8,every node/.style={font=\scriptsize}]
+\node[schbox](q)at(-3.7,1.1){QD / proteção};
+\node[schbox](cx)at(0,1.1){caixa / passagem};
+\node[schsw](s)at(0,-1.2){dispositivo\\bornes};
+\node[schload](l)at(3.7,1.1){carga};
+\draw[LigF,schwire](q.east)--(cx.west)node[midway,above]{F};
+\draw[LigF,schwire](cx.south)--(s.north)node[midway,right]{F};
+\draw[LigR,schwire](s.east)--(2.0,-1.2)--(2.0,1.1)--(l.west)node[pos=.45,right]{R};
+\draw[LigN,schwire](-4.7,2.35)--(3.7,2.35)--(l.north)node[pos=.15,above]{N};
+\draw[LigPE,schwire](-4.7,-2.25)--(4.15,-2.25)--(4.15,1.1)--(l.east)node[pos=.15,below]{PE};
+\end{tikzpicture}
+\column{.42\textwidth}
+\begin{caixaProjeto}[title=Um bom desenho responde]
+\begin{itemize}
+\item origem e proteção;
+\item borne de entrada e saída;
+\item condutor permanente/comandado;
+\item destino de N e PE;
+\item trecho físico de cada fio.
+\end{itemize}
+\end{caixaProjeto}
+\end{columns}
+\begin{caixaAt}
+As cores são somente didáticas. Qualquer atividade em instalação real exige desenergização, bloqueio, documentação e procedimento de segurança aplicável.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Interruptor simples — contato e bornes explícitos}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.47\textwidth}
+\centering\textbf{Funcional}\par\vspace{1mm}
+\begin{circuitikz}[scale=.78,transform shape]
+\draw (0,3) node[left]{F} to[spst,l=$S_1$] (2.8,3) to[lamp,l=$L_1$] (2.8,0) -- (0,0) node[left]{N};
+\end{circuitikz}
+\column{.51\textwidth}
+\centering\textbf{Bornes do mecanismo}\par\vspace{1mm}
+\begin{tikzpicture}[scale=.78,every node/.style={font=\scriptsize}]
+\draw[corNorma,fill=corNorma!5,rounded corners](-2,-1.15)rectangle(2,1.15);
+\node at(0,.78){S1 simples};
+\node[schterm](c)at(-1.35,-.15){};\node[anchor=north]at(-1.35,-.32){L/C};
+\node[schterm](o)at(1.35,-.15){};\node[anchor=north]at(1.35,-.32){1};
+\draw[thick](-1.22,-.10)--(1.05,.48);
+\draw[LigF,schwire](-3.4,-.15)--(c)node[midway,above]{F};
+\draw[LigR,schwire](o)--(3.4,-.15)node[midway,above]{R};
+\end{tikzpicture}
+\end{columns}
+\begin{caixaObs}
+O desenho separa o contato interno do percurso dos fios: fase permanente entra em L/C e o borne 1 fornece o retorno para a luminária.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Ponto simples — fios por trecho físico}
+\centering
+\begin{tikzpicture}[scale=.81,every node/.style={font=\scriptsize}]
+\node[schbox](qd)at(-5.1,1.35){QD\\C1};
+\node[schbox,minimum width=2.25cm,minimum height=1cm](ct)at(-1.0,1.35){caixa de teto\\emendas};
+\node[schsw](s)at(1.8,-1.4){S1\\L/C \quad 1};
+\node[schload](l)at(4.9,1.35){L1};
+\draw[very thick,corPrim!20](qd)--(ct);\draw[very thick,corPrim!20](ct)--(s);\draw[very thick,corPrim!20](ct)--(l);
+\draw[LigF,schwire]($(qd.east)+(0,.22)$)--($(ct.west)+(0,.22)$);
+\draw[LigN,schwire](qd.east)--(ct.west);
+\draw[LigPE,schwire]($(qd.east)+(0,-.22)$)--($(ct.west)+(0,-.22)$);
+\node[fill=white]at(-3.05,1.88){F + N + PE};
+\draw[LigF,schwire](ct.south west)--(-1.0,-1.4)--(s.west)node[pos=.62,below]{F};
+\draw[LigR,schwire](s.east)--(3.0,-1.4)--(3.0,.88)--(ct.east)node[pos=.45,right]{R};
+\node[fill=white]at(.15,-.83){F + R};
+\draw[LigR,schwire](ct.east)--(l.west);
+\draw[LigN,schwire](ct.north)--(-1.0,2.5)--(4.9,2.5)--(l.north);
+\draw[LigPE,schwire](ct.south east)--(-.15,.35)--(4.9,.35)--(l.south);
+\node[fill=white]at(2.35,2.08){R + N + PE};
+\end{tikzpicture}
+\begin{caixaProjeto}[title=Leitura correta]
+O eletroduto até S1 leva fase e retorno; neutro não termina no interruptor simples. O PE acompanha o circuito até as massas previstas, sem ser usado como condutor funcional.
+\end{caixaProjeto}
+\end{frame}
+
+\begin{frame}{Interruptor duplo — comum e dois retornos independentes}
+\centering
+\begin{tikzpicture}[scale=.84,every node/.style={font=\scriptsize}]
+\draw[corNorma,fill=corNorma!5,rounded corners](-2.2,-1.45)rectangle(2.2,1.45);
+\node at(0,1.06){S1 duplo};
+\node[schterm](c)at(-1.55,0){};\node[anchor=north]at(-1.55,-.18){L/C};
+\node[schterm](o1)at(1.55,.48){};\node[anchor=west]at(1.72,.48){1};
+\node[schterm](o2)at(1.55,-.48){};\node[anchor=west]at(1.72,-.48){2};
+\draw[thick](-1.42,.04)--(1.28,.50);\draw[thick](-1.42,-.04)--(1.28,-.50);
+\draw[LigF,schwire](-4,0)--(c)node[midway,above]{F};
+\draw[LigR,schwire](o1)--(4,.48)node[midway,above]{R1};
+\draw[LigVum,schwire](o2)--(4,-.48)node[midway,below]{R2};
+\node[schload](l1)at(5.2,1.8){L1};\node[schload](l2)at(5.2,-1.8){L2};
+\draw[LigR,schwire](4,.48)--(4,1.8)--(l1.west);
+\draw[LigVum,schwire](4,-.48)--(4,-1.8)--(l2.west);
+\draw[LigN,schwire](-4,2.85)--(5.2,2.85)--(l1.north);\draw[LigN,schwire](5.2,2.85)--(5.2,-1.34);
+\draw[LigPE,schwire](-4,-2.85)--(5.65,-2.85)--(5.65,-1.8);\draw[LigPE,schwire](5.65,-2.85)--(5.65,1.8);
+\end{tikzpicture}
+\begin{caixaAt}
+R1 e R2 são saídas diferentes. A ponte de fase entre teclas somente existe quando o conjunto não possui comum interno e a documentação do mecanismo admite essa conexão.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Interruptores paralelos — contatos SPDT desenhados}
+\centering
+\begin{tikzpicture}[scale=.79,every node/.style={font=\scriptsize}]
+\draw[corNorma,fill=corNorma!5,rounded corners](-5,-1.45)rectangle(-1.8,1.45);
+\node at(-3.4,1.08){S1 paralelo};
+\node[schterm](c1)at(-4.55,0){};\node[anchor=east]at(-4.75,0){C};
+\node[schterm](a1)at(-2.25,.55){};\node[schterm](b1)at(-2.25,-.55){};
+\node[anchor=west]at(-2.05,.55){1};\node[anchor=west]at(-2.05,-.55){2};
+\draw[thick](-4.42,.04)--(-2.55,.50);
+\draw[corNorma,fill=corNorma!5,rounded corners](1.2,-1.45)rectangle(4.4,1.45);
+\node at(2.8,1.08){S2 paralelo};
+\node[schterm](a2)at(1.65,.55){};\node[schterm](b2)at(1.65,-.55){};\node[schterm](c2)at(3.95,0){};
+\node[anchor=east]at(1.45,.55){1};\node[anchor=east]at(1.45,-.55){2};\node[anchor=west]at(4.15,0){C};
+\draw[thick](1.95,.50)--(3.82,.04);
+\draw[LigF,schwire](-6.8,0)--(c1)node[midway,above]{F};
+\draw[LigVum,schwire](a1)--(a2)node[midway,above]{V1};
+\draw[LigVdois,schwire](b1)--(b2)node[midway,below]{V2};
+\draw[LigR,schwire](c2)--(6.1,0)node[midway,above]{R};
+\node[schload](l)at(6.1,2.05){L1};\draw[LigR,schwire](6.1,0)--(l.south);
+\draw[LigN,schwire](-6.8,2.95)--(6.1,2.95)--(l.north);
+\end{tikzpicture}
+\begin{caixaProjeto}[title=O que o aluno precisa enxergar]
+F entra no comum de S1; 1 e 2 são os viajantes; o comum de S2 fornece o retorno. A posição da tecla muda qual viajante está ligado ao comum.
+\end{caixaProjeto}
+\end{frame}
+
+\begin{frame}{Interruptor intermediário — quatro bornes, sem comum}
+\centering
+\begin{tikzpicture}[scale=.78,every node/.style={font=\scriptsize}]
+\node[schsw,minimum width=2cm,minimum height=1.5cm](s1)at(-5,0){S1 paralelo\\C / 1 / 2};
+\draw[corNorma,fill=corNorma!5,rounded corners](-1.65,-1.55)rectangle(1.65,1.55);
+\node at(0,1.18){S2 intermediário};
+\node[schterm](ia1)at(-1.25,.55){};\node[schterm](ia2)at(-1.25,-.55){};\node[schterm](ib1)at(1.25,.55){};\node[schterm](ib2)at(1.25,-.55){};
+\node[anchor=east]at(-1.42,.55){1A};\node[anchor=east]at(-1.42,-.55){2A};\node[anchor=west]at(1.42,.55){1B};\node[anchor=west]at(1.42,-.55){2B};
+\draw[thick](-1.08,.55)--(1.08,-.55);\draw[thick](-1.08,-.55)--(1.08,.55);
+\node[schsw,minimum width=2cm,minimum height=1.5cm](s3)at(5,0){S3 paralelo\\1 / 2 / C};
+\draw[LigF,schwire](-6.8,0)--(s1.west)node[midway,above]{F};
+\draw[LigVum,schwire]($(s1.east)+(0,.28)$)--(ia1)node[midway,above]{V1A};
+\draw[LigVdois,schwire]($(s1.east)+(0,-.28)$)--(ia2)node[midway,below]{V2A};
+\draw[LigVum,schwire](ib1)--($(s3.west)+(0,.28)$)node[midway,above]{V1B};
+\draw[LigVdois,schwire](ib2)--($(s3.west)+(0,-.28)$)node[midway,below]{V2B};
+\draw[LigR,schwire](s3.east)--(6.8,0)node[midway,above]{R};
+\end{tikzpicture}
+\vspace{2mm}
+\begin{caixaObs}
+A posição mostrada é cruzada. Na outra posição, 1A liga a 1B e 2A a 2B. O intermediário apenas permuta os viajantes e fica entre dois interruptores paralelos.
+\end{caixaObs}
+\end{frame}
