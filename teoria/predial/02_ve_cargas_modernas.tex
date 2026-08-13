@@ -127,12 +127,12 @@ Geração distribuída não autoriza reduzir proteção, seção de condutor ou 
 \column{0.49\textwidth}
 \centering
 \begin{tikzpicture}[scale=0.78,every node/.style={font=\scriptsize}]
-\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.1cm,minimum height=0.62cm,align=center}}
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=1.85cm,minimum height=0.62cm,align=center}}
 \node[b] (r) at (0,2.6) {Rede};
 \node[b] (g) at (0,0.8) {Gerador};
-\node[b] (ats) at (3.2,1.7) {ATS};
-\node[b] (ups) at (6.0,1.7) {UPS};
-\node[b] (crit) at (8.8,1.7) {Cargas críticas};
+\node[b] (ats) at (2.2,1.7) {ATS};
+\node[b] (ups) at (4.4,1.7) {UPS};
+\node[b] (crit) at (6.6,1.7) {Cargas\\críticas};
 \draw[-{Stealth},thick,corPrim] (r)--(ats);\draw[-{Stealth},thick,corAccent] (g)--(ats);\draw[-{Stealth},thick,corPrim] (ats)--(ups)--(crit);
 \end{tikzpicture}
 \end{columns}

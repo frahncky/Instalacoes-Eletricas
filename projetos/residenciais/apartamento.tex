@@ -150,7 +150,7 @@ Centro de medição, demanda do conjunto, prumadas, queda, proteção geral e so
 \centering\begin{tikzpicture}[scale=0.90,every node/.style={font=\scriptsize}]
 \tikzset{b/.style={draw=corPrim,fill=corDef!8,rounded corners,minimum width=2cm,minimum height=0.56cm,align=center}}
 \node[b](cm)at(0,4.4){Centro de medição\\EMUC};\node[b](pr)at(0,3.5){Prumada 3F+N+PE};\node[b](qd)at(0,2.55){QD-A\\DG 3P 63 A + DPS};
-\node[b](l)at(-3.6,0.9){A1--A6\\luz/TUG + RCBO};\node[b](ch)at(-1.2,0.9){A7--A8\\chuveiros};\node[b](co)at(1.2,0.9){A9--A10\\forno/lavadora};\node[b](ac)at(3.6,0.9){A11--A13\\climatização};
+\node[b,font=\tiny](l)at(-3.9,0.9){A1--A6\\luz/TUG + RCBO};\node[b,font=\tiny](ch)at(-1.3,0.9){A7--A8\\chuveiros};\node[b,font=\tiny](co)at(1.3,0.9){A9--A10\\forno/lavadora};\node[b,font=\tiny](ac)at(3.9,0.9){A11--A13\\climatização};
 \node[b,draw=corNorma,fill=corNorma!7](bep)at(4.8,2.9){BEP do edifício\\PE/equipot.};
-\draw[-{Stealth},thick,corPrim](cm)--(pr)--(qd);\foreach \x in {l,ch,co,ac}{\draw[-{Stealth},thick](qd)--(\x);}\draw[corNorma,thick](pr)--(bep);\draw[corNorma,thick](qd)--(bep);\draw[corNorma,thick](bep.south)--(4.8,1.55)node[ground]{};
+\draw[-{Stealth},thick,corPrim](cm)--(pr)--(qd);\foreach \x in {l,ch,co,ac}{\draw[-{Stealth},thick](qd)--(\x);}\draw[corNorma,thick](pr)--(bep);\draw[corNorma,thick](qd)--(bep);\draw[corNorma,thick](bep.east)--(5.95,2.9)--(5.95,1.55)node[ground]{};
 \end{tikzpicture}\end{frame}

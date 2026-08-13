@@ -31,7 +31,11 @@ Analisador de energia & Validar modelo com medições reais em retrofit/operaç�
 \node[b,right=of g] (h) {Relatórios};
 \node[b,right=of h] (i) {Revisão do projeto};
 \foreach \u/\v in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i}{\draw[-{Stealth},thick,corPrim] (\u)--(\v);}
-\draw[-{Stealth},thick,corAccent] (i.east) to[out=0,in=-80] (a.south east);
+\coordinate (retornoDireita) at ([yshift=-0.45cm]i.south);
+\coordinate (retornoEsquerda) at ([xshift=-0.35cm,yshift=-0.45cm]g.south west);
+\draw[-{Stealth},thick,corAccent]
+  (i.south)--(retornoDireita)--(retornoEsquerda)--
+  ([xshift=-0.35cm]a.west)--(a.west);
 \end{tikzpicture}
 \vspace{2mm}
 \begin{caixaAt}
