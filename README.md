@@ -7,7 +7,7 @@ Coleção em LaTeX/Beamer 16:9 sobre instalações elétricas prediais e industr
 | Fonte | PDF gerado | Conteúdo |
 |---|---|---|
 | `materiais/instalacoes_prediais_projeto.tex` | `build/instalacoes_prediais_projeto.pdf` | Leitura, interpretação, projeto, cálculos e dimensionamento predial |
-| `materiais/instalacoes_prediais_montagem.tex` | `build/instalacoes_prediais_montagem.pdf` | Ligação, montagem, execução, ensaios e comissionamento predial |
+| `materiais/instalacoes_prediais_montagem.tex` | `build/instalacoes_prediais_montagem.pdf` | Ligação, montagem, execução, ensaios e comissionamento, com atlas de lâmpadas, comandos e tomadas |
 | `materiais/instalacoes_eletricas_industriais.tex` | `build/instalacoes_eletricas_industriais.pdf` | Distribuição e instalações industriais |
 | `materiais/caderno_projetos.tex` | `build/caderno_projetos.pdf` | Sete projetos completos |
 | `materiais/instalacoes_eletricas_completo.tex` | `build/instalacoes_eletricas_completo.pdf` | Panorama predial e industrial combinado |
@@ -22,6 +22,7 @@ Coleção em LaTeX/Beamer 16:9 sobre instalações elétricas prediais e industr
 | `teoria/predial/` | Conteúdo específico de instalações prediais |
 | `teoria/montagem/` | Ligação, montagem, quadros, ensaios e prática integrada |
 | `teoria/industrial/` | Conteúdo específico de instalações industriais |
+| `assets/imagens/montagem/` | Pranchas realistas para reconhecimento dos componentes de montagem |
 | `projetos/base/` | Simbologia, plantas, portas e vãos |
 | `projetos/residenciais/` | Casa térrea e apartamento |
 | `projetos/comerciais/` | Edifício corporativo, centro empresarial e loja de shopping |
