@@ -1,0 +1,475 @@
+%=====================================================================
+% PROJETO PREDIAL - PREVISAO DE CARGAS E DIMENSIONAMENTO APLICADO
+%=====================================================================
+
+\section{Previsão de cargas e dimensionamento aplicado}
+
+\begin{frame}{Cada ambiente precisa virar dados de projeto}
+\centering
+\begin{tikzpicture}[
+  node distance=0.55cm and 0.35cm,
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.15cm,minimum height=0.78cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](arq){Arquitetura\\área e perímetro};
+\node[b,right=of arq](uso){Uso real\\e equipamentos};
+\node[b,right=of uso](prev){Previsão\\luz, TUG e TUE};
+\node[b,below=of prev](circ){Circuitos\\e fases};
+\node[b,left=of circ](dim){Condutor\\e proteção};
+\node[b,left=of dim](doc){Planta, quadro\\e memorial};
+\draw[a](arq)--(uso);\draw[a](uso)--(prev);\draw[a](prev)--(circ);
+\draw[a](circ)--(dim);\draw[a](dim)--(doc);
+\end{tikzpicture}
+\vspace{4mm}
+\begin{caixaAt}
+Se um dado não aparece na planta, no quadro de cargas ou no memorial, ele não pode ser conferido na obra. Projeto completo transforma cada decisão em informação rastreável.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Levantamento: dados que não podem ser presumidos}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.6cm}X X}
+\toprule
+Grupo & Registrar & Impacto no projeto \\
+\midrule
+Arquitetura & área, perímetro, pé-direito, portas, janelas e mobiliário & pontos, comandos, rotas e comprimentos \\
+Uso & permanência, umidade, acesso, público e manutenção & proteção, IP, DR, setorização e emergência \\
+Equipamentos & potência, tensão, fases, $fp$, rendimento e regime & corrente, circuito, cabo e proteção \\
+Ambiente & temperatura, insolação e agrupamento de linhas & capacidade de condução e vida útil \\
+Conexão & tensão disponível, padrão, medição e limites da distribuidora & entrada, alimentador e documentação \\
+Expansão & cargas futuras e espaços de reserva & quadro, eletroduto e demanda futura \\
+\bottomrule
+\end{tabularx}
+\vspace{2mm}
+\begin{caixaObs}
+O levantamento termina com uma lista de premissas assinável: o que foi medido, informado pelo cliente, estimado ou deixado como reserva.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Iluminação: previsão mínima em VA}
+\small
+Para habitações, a previsão mínima de carga de iluminação por cômodo é:
+\[
+S_{\mathrm{luz}}=
+\begin{cases}
+\SI{100}{VA}, & A\leq \SI{6}{m^2}\\[1mm]
+\SI{100}{VA}+\SI{60}{VA}\left\lfloor\dfrac{A-6}{4}\right\rfloor,
+& A>\SI{6}{m^2}
+\end{cases}
+\]
+\begin{caixaEx}[title={Sala/jantar de 30,7 m²}]
+\[
+n=\left\lfloor\frac{30{,}7-6}{4}\right\rfloor=6
+\qquad\Rightarrow\qquad
+S_{\mathrm{luz}}=100+6\cdot60=\SI{460}{VA}
+\]
+\end{caixaEx}
+\begin{caixaAt}
+Os \SI{460}{VA} são previsão para dimensionamento. Não significam instalar luminárias que somem \SI{460}{W}.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Luminotécnica: transformar iluminância em luminárias}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+No método dos lúmens:
+\[
+\Phi_{\mathrm{req}}=\frac{E_m A}{UF\,MF}
+\]
+\begin{itemize}
+\item $E_m$: iluminância média de projeto;
+\item $UF$: fator de utilização;
+\item $MF$: fator de manutenção;
+\item $\Phi$: fluxo luminoso total.
+\end{itemize}
+\column{0.50\textwidth}
+\begin{caixaEx}[title=Critério declarado para a sala]
+Adotando $E_m=\SI{150}{lx}$, $UF=0{,}75$ e $MF=0{,}80$:
+\[
+\Phi_{\mathrm{req}}=\frac{150\cdot30{,}7}{0{,}75\cdot0{,}80}
+=\SI{7675}{lm}
+\]
+Seis luminárias de \SI{1300}{lm} fornecem \SI{7800}{lm}. A potência instalada vem do catálogo, não da previsão em VA.
+\end{caixaEx}
+\end{columns}
+\begin{caixaObs}
+Uniformidade, ofuscamento, reprodução de cor, temperatura de cor e cenas exigem verificação complementar ao método dos lúmens.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{TUG: quantidade e potência são cálculos diferentes}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Cozinhas e locais análogos]
+Nos critérios residenciais da NBR 5410, distribuir tomadas ao longo do perímetro e prever pelo menos uma a cada \SI{3.5}{m}, ou fração. A localização real deve atender bancadas e equipamentos.
+\end{caixaNorma}
+\[
+N_{\mathrm{TUG}}=\left\lceil\frac{18{,}8}{3{,}5}\right\rceil=6
+\]
+\column{0.49\textwidth}
+\begin{caixaEx}[title=Potência de previsão]
+Para seis TUG de cozinha:
+\[
+S_{\mathrm{TUG}}=3(600)+3(100)=\SI{2100}{VA}
+\]
+Os três primeiros pontos recebem \SI{600}{VA} cada; os demais, \SI{100}{VA} cada.
+\end{caixaEx}
+\end{columns}
+\begin{caixaAt}
+O mínimo normativo não substitui a planta de mobiliário. Geladeira, micro-ondas, coifa e bancada precisam de pontos em posições utilizáveis.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{TUE e cargas específicas: usar dados de placa}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.6cm}p{2.3cm}p{2.4cm}X}
+\toprule
+Carga & Dados mínimos & Circuito inicial & Verificações adicionais \\
+\midrule
+Chuveiro & $P$, $V$, comando & dedicado & DR, cabo, borne e queda \\
+Ar-condicionado & $P_{in}$, $V$, fases, corrente & dedicado & partida/inverter e fabricante \\
+Forno/cooktop & potência e simultaneidade & dedicado ou conforme fabricante & borne, ventilação e seccionamento \\
+Bomba & $P_{out}$, $fp$, $\eta$, partida & dedicado & sobrecarga, falta de fase e comando \\
+SAVE & potência, corrente e modo & dedicado & NBR 17019, DR compatível e gestão de carga \\
+Fotovoltaico & potência e inversor & circuito de conexão & proteção CA/CC e norma da distribuidora \\
+\bottomrule
+\end{tabularx}
+\vspace{2mm}
+\begin{caixaObs}
+Valores típicos servem apenas para anteprojeto. O executivo deve registrar fabricante, modelo e requisitos de instalação quando a carga já estiver definida.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}[shrink=5]{Quadro de cargas começa no levantamento}
+\scriptsize
+\begin{tabularx}{\textwidth}{c X c c c c c}
+\toprule
+Circuito & Uso & Pontos & $S/P$ & $V$ & $I_b$ & Observação \\
+\midrule
+C1 & iluminação social/cozinha/serviço & 7 & 1,06 kVA & 220 & 4,8 A & RCBO \\
+C2 & iluminação íntima/banhos/garagem & 6 & 1,40 kVA & 220 & 6,4 A & RCBO \\
+C3 & TUG sala e dormitórios & 17 & 1,70 kVA & 220 & 7,7 A & área seca \\
+C4 & TUG hall e garagem & 9 & 0,90 kVA & 220 & 4,1 A & uso geral \\
+C5 & TUG cozinha & 6 & 2,10 kVA & 220 & 9,5 A & bancada \\
+C6 & TUG serviço & 4 & 1,90 kVA & 220 & 8,6 A & área de serviço \\
+C7 & TUG varanda gourmet & 4 & 1,90 kVA & 220 & 8,6 A & área externa coberta \\
+C8 & TUG banheiros & 3 & 1,80 kVA & 220 & 8,2 A & DR obrigatório \\
+C9--C16 & chuveiros, forno, lavadora e climatização & 8 & dados de placa & 220 & calcular & dedicados \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\begin{caixaAt}
+O quadro precisa informar método de instalação, seção, proteção, fase, comprimento, queda e critério de DR. Sem isso, ele é apenas inventário de cargas.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Carga instalada, demanda e corrente não são sinônimos}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{align*}
+P_{\mathrm{inst}}&=\sum_i P_i\\
+P_{\mathrm{dem}}&=\sum_i f_{d,i}P_i\\
+I_{b,1\phi}&=\frac{P}{Vfp\eta}\\
+I_{b,3\phi}&=\frac{P}{\sqrt3V_{LL}fp\eta}
+\end{align*}
+\column{0.46\textwidth}
+\begin{caixaNorma}[title=Dois usos distintos]
+\begin{itemize}
+\item a instalação interna usa correntes de projeto e simultaneidades justificadas;
+\item a entrada segue o método e as faixas da distribuidora;
+\item fatores não devem ser escolhidos apenas para reduzir cabo ou disjuntor.
+\end{itemize}
+\end{caixaNorma}
+\end{columns}
+\begin{caixaObs}
+O projeto deve declarar qual potência alimenta cada equação: ativa de entrada, ativa de saída, aparente, instalada ou demandada.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Divisão de circuitos: segurança, uso e manutenção}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.0cm}X X}
+\toprule
+Decisão & Boa prática & Erro típico \\
+\midrule
+Iluminação e tomadas & separar funções e distribuir áreas & um único circuito para toda a residência \\
+Áreas molhadas & agrupar apenas quando uso e proteção forem compatíveis & misturar cozinha, banheiro e área seca sem critério \\
+Carga específica & circuito dedicado quando exigido ou tecnicamente necessário & ligar forno, chuveiro ou SAVE em TUG comum \\
+Continuidade & evitar que uma falha apague toda a edificação & concentrar todos os pontos críticos no mesmo DR \\
+Manutenção & identificar origem, destino e seccionamento & quadro sem legenda ou com circuitos genéricos \\
+Expansão & reservar módulos e capacidade verificável & deixar ``reserva'' sem cabo, rota ou potência definida \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}{Balancear fases reduz corrente no neutro e assimetria}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{caixaEx}[title=Distribuição revisada]
+\[
+\begin{aligned}
+S_A&=\SI{11.36}{kVA}\,,\\
+S_B&=\SI{11.30}{kVA}\,,\\
+S_C&=\SI{11.30}{kVA}\,.
+\end{aligned}
+\]
+Em \SI{220}{V} fase-neutro:
+\[
+\begin{aligned}
+I_A&=\SI{51.6}{A}\,,\\
+I_B=I_C&=\SI{51.4}{A}\,.
+\end{aligned}
+\]
+\end{caixaEx}
+\column{0.50\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+  ybar,bar width=13pt,width=6.0cm,height=4.2cm,
+  ymin=0,ymax=13,xtick=data,xticklabels={A,B,C},
+  ylabel={$S$ (kVA)},nodes near coords,
+  every node near coord/.append style={font=\tiny},
+  axis line style={corPrim},tick label style={font=\scriptsize}]
+\addplot[fill=corDef!65,draw=corPrim] coordinates {(1,11.36) (2,11.30) (3,11.30)};
+\end{axis}
+\end{tikzpicture}
+\end{columns}
+\begin{caixaAt}
+Balanceamento por potência é ponto de partida. Harmônicas triplas e cargas eletrônicas exigem análise adicional do neutro.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Corrente de projeto: três exemplos}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.5cm}X p{3.1cm}}
+\toprule
+Carga & Cálculo & Resultado \\
+\midrule
+Chuveiro resistivo & $I_b=5500/220$ & \SI{25.0}{A} \\
+Forno com $fp=0{,}98$ & $I_b=3500/(220\cdot0{,}98)$ & \SI{16.2}{A} \\
+Motor trifásico & $I_b=7500/(\sqrt3\cdot380\cdot0{,}86\cdot0{,}88)$ & \SI{15.1}{A} \\
+\bottomrule
+\end{tabularx}
+\vspace{3mm}
+\begin{caixaObs}
+O disjuntor não é escolhido diretamente pela potência. Primeiro calcula-se $I_b$; depois verificam-se cabo, correções, partida, curva, capacidade de interrupção e fabricante.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Capacidade de condução: corrigir antes de escolher a seção}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+Se a tabela fornece $I_{z,\mathrm{tab}}$, a capacidade corrigida é:
+\[
+I_z=I_{z,\mathrm{tab}}\,k_T\,k_G\,k_{outros}
+\]
+Ou, para consultar a tabela:
+\[
+I_{\mathrm{tab,req}}=\frac{I_n}{k_Tk_Gk_{outros}}
+\]
+\column{0.50\textwidth}
+\begin{caixaEx}[title=Três circuitos agrupados]
+Para $I_n=\SI{32}{A}$, $k_T=0{,}94$ e $k_G=0{,}70$:
+\[
+I_{\mathrm{tab,req}}=\frac{32}{0{,}94\cdot0{,}70}
+=\SI{48.6}{A}
+\]
+Seleciona-se na tabela do método real uma seção cuja capacidade seja pelo menos \SI{48.6}{A}.
+\end{caixaEx}
+\end{columns}
+\begin{caixaAt}
+Não copiar ampacidade de catálogo sem identificar isolação, número de condutores carregados, método, temperatura e agrupamento.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}[shrink=4]{Seções mínimas não encerram o dimensionamento}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.6cm}c X}
+\toprule
+Uso do circuito & Cu mínimo & Ainda verificar \\
+\midrule
+Iluminação fixa & \SI{1.5}{mm^2} & ampacidade, queda, curto e proteção \\
+Tomadas e força & \SI{2.5}{mm^2} & corrente, agrupamento e borne \\
+Sinalização e controle & conforme aplicação & resistência mecânica e norma específica \\
+Condutor de proteção & regra tabular ou adiabática & esquema, falta e desligamento \\
+Alimentador & resultado dos critérios simultâneos & demanda, neutro, PE e expansão \\
+\bottomrule
+\end{tabularx}
+\vspace{2mm}
+\begin{caixaNorma}
+Os valores acima são mínimos usuais da NBR 5410 para condutores de cobre em instalações fixas. A seção final é o maior resultado entre todos os critérios aplicáveis.
+\end{caixaNorma}
+\end{frame}
+
+\begin{frame}{Queda de tensão: calcular o trecho real}
+\small
+Para circuito monofásico resistivo simplificado:
+\[
+\Delta V\%=100\frac{2\rho L I}{SV}
+\]
+\begin{caixaEx}[title=Chuveiro a \SI{28}{m} do quadro]
+Com $\rho=\SI{0.0225}{\ohm.mm^2/m}$, $I=\SI{25}{A}$, $S=\SI{6}{mm^2}$ e $V=\SI{220}{V}$:
+\[
+\Delta V\%=100\frac{2(0{,}0225)(28)(25)}{6(220)}=2{,}39\%
+\]
+\[
+\Delta V=0{,}0239\cdot220=\SI{5.26}{V}
+\]
+\end{caixaEx}
+\begin{caixaAt}
+Somar os trechos desde a origem considerada. Para cargas com baixo $fp$, usar resistência e reatância na temperatura de serviço.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Curto-circuito: o cabo e o disjuntor precisam suportar a falta}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+Verificação térmica adiabática:
+\[
+S\geq\frac{I\sqrt{t}}{k}
+\]
+Corrente mínima de falta no fim do circuito:
+\[
+I_{k,\min}\approx\frac{U_0}{Z_{\text{fonte}}+Z_{\text{laço}}}
+\]
+\column{0.49\textwidth}
+\begin{caixaEx}[title=Exemplo térmico]
+Para $I=\SI{2}{kA}$, $t=\SI{0.10}{s}$ e $k=115$:
+\[
+S\geq\frac{2000\sqrt{0{,}10}}{115}=\SI{5.50}{mm^2}
+\]
+Adota-se \SI{6}{mm^2}, sujeito às demais verificações.
+\end{caixaEx}
+\end{columns}
+\begin{caixaAt}
+A capacidade de interrupção do disjuntor deve ser pelo menos igual à corrente de curto presumida no ponto de instalação.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Coordenação completa: $I_b$, $I_n$, $I_z$ e atuação}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\[
+I_b\leq I_n\leq I_z
+\qquad\text{e}\qquad
+I_2\leq1{,}45I_z
+\]
+\begin{itemize}
+\item $I_b$: corrente de projeto;
+\item $I_n$: nominal/ajuste da proteção;
+\item $I_z$: capacidade corrigida do cabo;
+\item $I_2$: corrente convencional de atuação.
+\end{itemize}
+\column{0.50\textwidth}
+\begin{caixaEx}[title=Circuito de chuveiro]
+\[
+I_b=25\,A,\quad I_n=32\,A,\quad I_z=41\,A
+\]
+\[
+25\leq32\leq41
+\]
+Depois verificar curva/tempo, curto-circuito, queda, DR, borne e instruções do fabricante.
+\end{caixaEx}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Neutro e PE também são dimensionados}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Regra tabular usual do PE]
+\begin{tabular}{cc}
+\toprule
+$S_f$ & $S_{PE}$ \\
+\midrule
+$S_f\leq16$ & $S_f$ \\
+$16<S_f\leq35$ & \SI{16}{mm^2} \\
+$S_f>35$ & $S_f/2$ \\
+\bottomrule
+\end{tabular}
+\end{caixaNorma}
+\column{0.49\textwidth}
+\begin{caixaAt}[title=Neutro]
+Não reduzir automaticamente quando houver:
+\begin{itemize}
+\item forte desequilíbrio monofásico;
+\item harmônicas de ordem tripla;
+\item cargas eletrônicas concentradas;
+\item exigência do esquema ou da proteção.
+\end{itemize}
+\end{caixaAt}
+\end{columns}
+\begin{caixaObs}
+O método adiabático do PE pode prevalecer. Verificar continuidade, impedância do laço e tempo de desligamento do esquema adotado.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Eletroduto: a ocupação precisa ser calculada}
+\small
+Para três ou mais condutores, adota-se ocupação máxima de 40\% da área interna:
+\[
+A_{\mathrm{elet,min}}=\frac{\sum A_{\mathrm{cabos}}}{0{,}40}
+\]
+\begin{caixaEx}[title=Cinco cabos com diâmetro externo de \SI{4.8}{mm}]
+\[
+\sum A=5\frac{\pi(4{,}8)^2}{4}=\SI{90.5}{mm^2}
+\]
+\[
+A_{\mathrm{elet,min}}=\frac{90{,}5}{0{,}40}=\SI{226.3}{mm^2}
+\quad\Rightarrow\quad
+D_{\mathrm{int,min}}=\sqrt{\frac{4A}{\pi}}=\SI{17.0}{mm}
+\]
+Escolher o diâmetro nominal usando o diâmetro interno real do fabricante e a facilidade de lançamento.
+\end{caixaEx}
+\end{frame}
+
+\begin{frame}{Rotas, caixas e segregação também fazem parte do cálculo}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{tikzpicture}[scale=0.82]
+\draw[corPrim,very thick] (0,0)--(2.2,0)--(2.2,2.0)--(5.2,2.0);
+\draw[corAccent,very thick,dashed] (0,-0.45)--(3.0,-0.45)--(3.0,1.55)--(5.2,1.55);
+\node[draw,fill=corDef!7,minimum size=0.65cm] at (0,0){QD};
+\node[draw,fill=white,minimum size=0.55cm] at (2.2,0){C1};
+\node[draw,fill=white,minimum size=0.55cm] at (2.2,2){C2};
+\node[draw,fill=corAccent!10,minimum size=0.55cm] at (3,-0.45){D};
+\node[anchor=west,font=\scriptsize] at (5.25,2){energia};
+\node[anchor=west,font=\scriptsize] at (5.25,1.55){dados};
+\node[font=\tiny,below] at (2.2,-0.4){caixa de passagem};
+\end{tikzpicture}
+\column{0.48\textwidth}
+\begin{itemize}
+\item limitar curvas e esforços de puxamento;
+\item prever caixas acessíveis nos pontos de mudança;
+\item separar energia, comunicação e sinais;
+\item coordenar com estrutura, hidráulica, gás e climatização;
+\item registrar comprimentos para queda e quantitativos.
+\end{itemize}
+\end{columns}
+\begin{caixaAt}
+Eletroduto é parte da linha elétrica. Uma rota impossível de executar invalida o dimensionamento que depende dela.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Portão de qualidade antes de emitir o projeto}
+\small
+\begin{enumerate}
+\item Todos os ambientes têm previsão de luz e TUG justificada?
+\item Todas as cargas específicas têm dados elétricos e circuito definido?
+\item O quadro fecha potência, corrente, fase, cabo, proteção e queda?
+\item $I_b\leq I_n\leq I_z$ foi verificado com fatores de correção?
+\item Curto-circuito, capacidade de interrupção e desligamento foram analisados?
+\item Neutro, PE, DR, DPS, BEP e esquema de aterramento são coerentes?
+\item Entrada, medição e documentação atendem à distribuidora vigente?
+\item Planta, unifilar, memorial e lista de materiais dizem a mesma coisa?
+\end{enumerate}
+\begin{caixaProjeto}
+Projeto pronto para obra é aquele que pode ser montado, inspecionado, ensaiado e mantido sem adivinhar decisões do projetista.
+\end{caixaProjeto}
+\end{frame}

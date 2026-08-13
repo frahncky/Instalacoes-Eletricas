@@ -1,0 +1,97 @@
+%=====================================================================
+% INSTALACOES ELETRICAS PREDIAIS - PROJETO E DIMENSIONAMENTO
+% Parte 1 de 2 do material predial
+% Atualizacao: agosto de 2026
+%=====================================================================
+\documentclass[11pt,aspectratio=169]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{siunitx}
+\usepackage{booktabs,array,tabularx,multirow}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[european,american currents]{circuitikz}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,shapes.geometric,patterns,decorations.pathmorphing,decorations.markings,matrix}
+\pgfplotsset{compat=1.18}
+\sisetup{locale=DE,per-mode=symbol,detect-all}
+
+\newcommand{\sen}{\operatorname{sen}}
+\newcommand{\tg}{\operatorname{tg}}
+\newcommand{\fase}[1]{\textcolor{corPrim}{\textbf{#1}}}
+\newcommand{\alerta}[1]{\textcolor{corAt}{\textbf{#1}}}
+\newcommand{\Disciplina}{}
+\newcommand{\TituloCurto}{Projeto}
+\input{estilo/beamer_estilo_casa.tex}
+\input{projetos/base/simbolos_eletricos_tikz.tex}
+
+\title{Instalações Elétricas Prediais}
+\subtitle{Parte 1 — Leitura, projeto, cálculo e dimensionamento}
+\author{Francisco}
+\institute{Do levantamento arquitetônico ao projeto executivo}
+\date{}
+
+\begin{document}
+
+{\setbeamercolor{background canvas}{bg=corPrim}\setbeamertemplate{footline}{}
+\begin{frame}[plain,noframenumbering]\titlepage\end{frame}}
+
+\begin{frame}{O que este Beamer entrega}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Projeto e cálculo]
+\begin{itemize}
+\item leitura da arquitetura e levantamento de cargas;
+\item iluminação, TUG, TUE e cargas modernas;
+\item demanda, circuitos e balanceamento de fases;
+\item condutores, eletrodutos e queda de tensão;
+\item curto-circuito, proteção, DR, DPS e aterramento.
+\end{itemize}
+\end{caixaProjeto}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Da entrada à entrega]
+\begin{itemize}
+\item padrão de entrada Equatorial Maranhão;
+\item documentação, unifilar, quadro de cargas e memorial;
+\item projetos residenciais e loja de shopping completos;
+\item exemplos resolvidos e exercícios graduados;
+\item critérios declarados, rastreáveis e verificáveis.
+\end{itemize}
+\end{caixaNorma}
+\end{columns}
+\end{frame}
+
+\input{teoria/comum/01_normas_escopo.tex}
+\input{teoria/predial/00_leitura_interpretacao.tex}
+\input{teoria/comum/02_fundamentos_potencia_demanda.tex}
+\input{teoria/predial/01_projeto_predial_bt.tex}
+\input{teoria/predial/07_dimensionamento_aplicado.tex}
+\input{teoria/comum/03_condutores_infraestrutura.tex}
+\input{teoria/comum/04_protecao_dr_dps_aterramento.tex}
+\input{teoria/predial/08_entrada_medicao_equatorial.tex}
+\input{teoria/comum/05_spda.tex}
+\input{teoria/predial/02_ve_cargas_modernas.tex}
+\input{teoria/comum/07_qualidade_energia_eficiencia.tex}
+\input{teoria/comum/08_cad_bim_documentacao.tex}
+
+% Bases gráficas para os projetos completos.
+\input{projetos/base/plantas_arquitetonicas.tex}
+\input{projetos/base/portas_e_vaos.tex}
+\input{teoria/predial/05_projeto_residencial_equatorial_ma.tex}
+\input{projetos/residenciais/apartamento.tex}
+\input{projetos/comerciais/loja_shopping.tex}
+
+\input{teoria/predial/03_exemplos_prediais.tex}
+\input{teoria/predial/04_exercicios_prediais.tex}
+\input{teoria/predial/06_referencias_prediais.tex}
+\input{teoria/comum/09_fechamento.tex}
+
+\end{document}

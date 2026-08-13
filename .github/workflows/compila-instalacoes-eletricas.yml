@@ -49,7 +49,8 @@ jobs:
           name: instalacoes-eletricas-pdfs
           path: |
             build/instalacoes_eletricas_completo.pdf
-            build/instalacoes_eletricas_prediais.pdf
+            build/instalacoes_prediais_projeto.pdf
+            build/instalacoes_prediais_montagem.pdf
             build/instalacoes_eletricas_industriais.pdf
             build/caderno_projetos.pdf
           if-no-files-found: error
