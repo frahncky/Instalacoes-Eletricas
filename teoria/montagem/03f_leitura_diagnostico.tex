@@ -1,0 +1,85 @@
+%=====================================================================
+% LEITURA E DIAGNOSTICO POR ESQUEMAS
+%=====================================================================
+\section{Leitura, identificação e diagnóstico}
+
+\begin{frame}{Da prancha à instalação — sequência única de leitura}
+\centering
+\begin{tikzpicture}[
+  etapa/.style={draw=corPrim,fill=corDef!5,rounded corners,minimum width=2.05cm,minimum height=.82cm,align=center,font=\scriptsize},
+  fluxo/.style={-{Stealth},thick,corPrim}]
+\node[etapa](p)at(-5.2,0){planta\\onde está};
+\node[etapa](q)at(-2.6,0){quadro\\de onde vem};
+\node[etapa](d)at(0,0){diagrama\\como funciona};
+\node[etapa](b)at(2.6,0){bornes\\como conecta};
+\node[etapa](e)at(5.2,0){ensaio\\como verifica};
+\draw[fluxo](p)--(q)--(d)--(b)--(e);
+\end{tikzpicture}
+\vspace{4mm}
+\begin{caixaProjeto}[title=Critério de interpretação]
+O aluno deve conseguir apontar a mesma função em todas as representações: ponto na planta, circuito no quadro, símbolo no diagrama, borne no componente e item do ensaio.
+\end{caixaProjeto}
+\end{frame}
+
+\begin{frame}{Numeração de fios e bornes — transformar desenho em conexão rastreável}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.56\textwidth}
+\centering
+\begin{tikzpicture}[scale=.82,every node/.style={font=\scriptsize}]
+\node[draw=corPrim,minimum width=1.8cm](x1)at(-3.1,1.5){X1:01};
+\node[draw=corNorma,minimum width=1.8cm](s1)at(0,1.5){S1:L};
+\node[draw=corNorma,minimum width=1.8cm](s2)at(0,-.2){S1:1};
+\node[draw=corPrim,minimum width=1.8cm](x2)at(3.1,-.2){X2:07};
+\draw[thick,corPrim,-{Stealth}](x1)--(s1)node[midway,above]{101};
+\draw[thick,corAccent,-{Stealth}](s2)--(x2)node[midway,above]{102};
+\draw[dashed,corPrim!60](s1)--(s2);
+\node[font=\tiny]at(.55,.65){contato};
+\end{tikzpicture}
+\column{.42\textwidth}
+\begin{itemize}
+\item X1/X2: régua ou caixa;
+\item 01/07: posição física;
+\item S1:L e S1:1: bornes do dispositivo;
+\item 101/102: identificação do condutor;
+\item a mesma referência deve aparecer na documentação de campo.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Como interpretar um esquema desconhecido}
+\small
+\begin{enumerate}
+\item localizar título, revisão e tensão indicada;
+\item marcar origem, proteção e referências de potencial;
+\item separar potência, comando, sinal e proteção;
+\item seguir um caminho por vez, sem saltar entre ramos;
+\item identificar dispositivos pelos seus bornes e contatos;
+\item registrar origem e destino de cada fio/cabo;
+\item comparar a representação com a marcação do componente;
+\item conferir se planta, quadro, diagrama e lista de cabos contam a mesma história.
+\end{enumerate}
+\begin{caixaAt}
+Se um condutor não tiver função e destino claros no desenho, o esquema ainda não está suficientemente compreendido para servir de guia de montagem.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Diagnóstico por nós — evitar tentativa e erro}
+\centering
+\begin{tikzpicture}[
+  n/.style={draw=corPrim,fill=corDef!5,rounded corners,minimum width=2.15cm,minimum height=.78cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[n](doc)at(-5.0,1.1){1. conferir\\documentação};
+\node[n](vis)at(-2.5,1.1){2. inspeção\\visual};
+\node[n](orig)at(0,1.1){3. verificar\\origem};
+\node[n](traj)at(2.5,1.1){4. rastrear\\trajeto};
+\node[n](carga)at(5.0,1.1){5. verificar\\destino};
+\draw[a](doc)--(vis)--(orig)--(traj)--(carga);
+\node[n,draw=corNorma,fill=corNorma!5,minimum width=3.3cm](reg)at(0,-1.15){registrar causa, correção\\e nova verificação};
+\draw[a](carga.south)--(5.0,-1.15)--(reg.east);
+\end{tikzpicture}
+\vspace{2mm}
+\begin{caixaObs}
+O diagrama deve permitir localizar a falha por etapas. Desenhos genéricos demais obrigam o aluno a adivinhar onde começa e termina cada função.
+\end{caixaObs}
+\end{frame}
