@@ -1,0 +1,87 @@
+%=====================================================================
+% LUMINARIAS E LED - REPRESENTACAO REVISADA
+%=====================================================================
+\section{Luminárias e sistemas LED}
+
+\begin{frame}{Soquete E27 — representar os dois contatos separadamente}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.55\textwidth}
+\centering
+\begin{tikzpicture}[scale=.88,every node/.style={font=\scriptsize}]
+\draw[very thick,rounded corners](-2.2,-2.1)rectangle(2.2,2.1);
+\draw[corPrim,thick](-1.2,-.6)arc[start angle=200,end angle=-20,radius=1.28];
+\draw[corPrim,thick](-1.0,-.1)--(1.0,-.1);
+\draw[corPrim,thick](-.82,.36)--(.82,.36);
+\draw[corPrim,thick](-.55,.82)--(.55,.82);
+\fill[corAccent](0,1.32)circle(.16);
+\node[align=center]at(0,1.78){contato\\central};
+\node[align=center]at(1.48,.46){contato\\da rosca};
+\draw[corAccent,thick](-3.3,1.32)--(-.16,1.32) node[pos=.15,above]{R};
+\draw[corDef,thick](3.3,.44)--(1.02,.44) node[pos=.85,above]{N};
+\end{tikzpicture}
+\column{.43\textwidth}
+\begin{caixaProjeto}[title=Por que este desenho é melhor]
+Ele mostra que o soquete não é uma carga abstrata com dois fios: existem dois contatos físicos diferentes e o esquema precisa distingui-los.
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Duas luminárias no mesmo comando — dois ramos paralelos}
+\centering
+\begin{tikzpicture}[scale=.82,every node/.style={font=\scriptsize}]
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2cm,minimum height=.9cm](s)at(-4.8,0){S1};
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2cm,minimum height=.9cm](cx)at(-1.5,0){derivação};
+\node[draw=corAccent!85!black,fill=corAccent!7,circle,minimum size=.9cm](l1)at(2.1,1.45){L1};
+\node[draw=corAccent!85!black,fill=corAccent!7,circle,minimum size=.9cm](l2)at(4.9,1.45){L2};
+\draw[corPrim,thick](-6.2,0)--(s.west);
+\draw[corAccent,thick](s.east)--(cx.west);
+\draw[corAccent,thick](cx.east)--(.9,0)--(.9,1.45)--(l1.west);
+\draw[corAccent,thick](.9,0)--(3.7,0)--(3.7,1.45)--(l2.west);
+\draw[corDef,thick](-6.2,-1.35)--(2.1,-1.35)--(l1.south);
+\draw[corDef,thick](2.1,-1.35)--(4.9,-1.35)--(l2.south);
+\end{tikzpicture}
+\begin{caixaObs}
+O desenho mostra uma derivação real em dois ramos. Isso é mais claro do que desenhar duas lâmpadas em sequência na mesma linha.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Fita LED — fonte, distribuição e trechos devem aparecer}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.60\textwidth}
+\centering
+\begin{tikzpicture}[scale=.76,every node/.style={font=\scriptsize}]
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=1.8cm,minimum height=.8cm](r)at(-4.8,1.0){rede};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.3cm,minimum height=1.0cm](f)at(-1.6,1.0){fonte / driver};
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2.0cm,minimum height=.9cm](d)at(1.3,1.0){distribuição};
+\node[draw=corAccent!85!black,fill=corAccent!7,rounded corners,minimum width=2.4cm,minimum height=.8cm](a)at(4.5,1.75){trecho A};
+\node[draw=corAccent!85!black,fill=corAccent!7,rounded corners,minimum width=2.4cm,minimum height=.8cm](b)at(4.5,.25){trecho B};
+\draw[thick,corPrim,-{Stealth}](r)--(f)--(d);
+\draw[thick,corAccent,-{Stealth}](d)--(a);
+\draw[thick,corAccent,-{Stealth}](d)--(b);
+\node[font=\tiny]at(-3.2,1.35){entrada};
+\node[font=\tiny]at(-.1,1.35){baixa tensão};
+\end{tikzpicture}
+\column{.38\textwidth}
+\begin{caixaProjeto}[title=Leitura]
+Trechos longos e derivações não devem ser condensados em uma única linha. O esquema precisa mostrar onde a alimentação é distribuída.
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Driver dimerizável — potência e controle em camadas distintas}
+\centering
+\begin{tikzpicture}[scale=.80,every node/.style={font=\scriptsize}]
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2cm,minimum height=.85cm](p)at(-4.2,1.1){potência};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.3cm,minimum height=1.1cm](d)at(0,1.1){driver};
+\node[draw=corAccent!85!black,fill=corAccent!7,rounded corners,minimum width=2cm,minimum height=.85cm](l)at(4.2,1.1){LED};
+\draw[thick,corPrim,-{Stealth}](p)--(d)--(l);
+\node[draw=corDef,fill=corDef!6,rounded corners,minimum width=2.3cm,minimum height=.85cm](c)at(0,-1.35){interface de controle};
+\draw[dashed,thick,corAccent,<->](c)--(d);
+\node[font=\tiny]at(0,-2.0){0--10 V, DALI, PWM ou outra interface prevista};
+\end{tikzpicture}
+\begin{caixaObs}
+Separar graficamente potência e controle facilita entender compatibilidade, endereçamento e diagnóstico do sistema LED.
+\end{caixaObs}
+\end{frame}
