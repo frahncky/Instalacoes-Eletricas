@@ -73,8 +73,10 @@
 \input{teoria/montagem/01_seguranca_ferramentas.tex}
 \input{teoria/montagem/02_infraestrutura_condutores.tex}
 
-% Sequencia revisada de esquemas: substitui os capitulos antigos, que
-% permanecem no repositorio apenas como historico de desenvolvimento.
+% A nova sequencia substitui integralmente os dois capitulos antigos.
+% Garante que nos TikZ com texto multilinha tenham alinhamento valido,
+% inclusive quando o proprio desenho redefine apenas a fonte dos nos.
+\tikzset{execute at begin picture={\tikzset{every node/.append style={align=center}}}}
 \input{teoria/montagem/03b_esquemas_iluminacao.tex}
 \input{teoria/montagem/03c_tomadas_base.tex}
 \input{teoria/montagem/03d_componentes_reais.tex}
