@@ -137,7 +137,7 @@ S_A&=\SI{8.44}{kVA}\;(\SI{38.4}{A})\\
 S_B&=\SI{8.54}{kVA}\;(\SI{38.8}{A})\\
 S_C&=\SI{8.80}{kVA}\;(\SI{40.0}{A})
 \end{align*}
-Total equivalente: \SI{25.78}{kW}. Proteção de 63 A é a premissa inicial da unidade. Para esta ilustração, os VA de previsão foram tomados numericamente como W; a declaração real usa potências ativas nominais. Verificar também cenários de demanda, pois o balanceamento instalado concentra os três aparelhos de ar-condicionado na fase A.
+Total equivalente: \SI{25.78}{kW}. Proteção de 63 A é a premissa inicial da unidade. Nesta ilustração, os VA de previsão foram tomados numericamente como W; a declaração real usa potências ativas nominais. Verificar cenários de demanda, pois os três aparelhos de ar-condicionado estão na fase A.
 \end{caixaProjeto}
 \column{0.49\textwidth}
 \begin{caixaNorma}[title=Edifício multifamiliar]
@@ -147,7 +147,7 @@ Centro de medição, demanda do conjunto, prumadas, queda, proteção geral e so
 \end{frame}
 
 \begin{frame}{Residencial II — unifilar da unidade}
-\centering\begin{tikzpicture}[scale=0.74,every node/.style={font=\tiny}]
+\centering\begin{tikzpicture}[scale=0.90,every node/.style={font=\scriptsize}]
 \tikzset{b/.style={draw=corPrim,fill=corDef!8,rounded corners,minimum width=2cm,minimum height=0.56cm,align=center}}
 \node[b](cm)at(0,4.4){Centro de medição\\EMUC};\node[b](pr)at(0,3.5){Prumada 3F+N+PE};\node[b](qd)at(0,2.55){QD-A\\DG 3P 63 A + DPS};
 \node[b](l)at(-3.6,0.9){A1--A6\\luz/TUG + RCBO};\node[b](ch)at(-1.2,0.9){A7--A8\\chuveiros};\node[b](co)at(1.2,0.9){A9--A10\\forno/lavadora};\node[b](ac)at(3.6,0.9){A11--A13\\climatização};

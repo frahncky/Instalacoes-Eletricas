@@ -42,7 +42,7 @@
 \CotaH{0}{26}{18.22}{26,00 m}\CotaV{0}{18}{26.22}{18,00 m}
 }
 
-\begin{frame}{Comercial I — pavimento típico refinado}
+\begin{frame}[shrink=5]{Comercial I — pavimento típico refinado}
 \centering\begin{tikzpicture}[scale=0.37,every node/.style={font=\tiny}]\EdifComBase\end{tikzpicture}
 \vspace{0.4mm}\scriptsize Salas voltadas ao corredor central; escada, elevador e shaft técnico com acessos próprios; sanitários atendidos por corredor lateral de 1,30 m. Potência e telecom usam compartimentação/segregação compatível no shaft.
 \end{frame}
@@ -114,7 +114,7 @@ O empreendimento não pode ser enquadrado pela tabela de unidade individual da N
 \end{frame}
 
 \begin{frame}{Comercial I — SPDA, DPS e aterramento integrados}
-\centering\begin{tikzpicture}[scale=0.70,every node/.style={font=\tiny}]
+\centering\begin{tikzpicture}[scale=0.95,every node/.style={font=\scriptsize}]
 \tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.2cm,minimum height=0.58cm,align=center}}
 \node[b](r)at(-4,3.5){Rede Equatorial};\node[b](qg)at(-4,2.3){QGBT\\DPS origem};\node[b](qd)at(-4,1.1){QDs pavimentos};\node[b](sp)at(1,3.5){SPDA cobertura};\node[b](desc)at(1,2.3){Descidas};\node[b](bep)at(1,1.1){BEP / equipot.};\node[b](malha)at(1,-0.1){aterramento};
 \draw[-{Stealth},thick,corPrim](r)--(qg)--(qd);\draw[-{Stealth},thick,corAt](sp)--(desc)--(bep)--(malha);\draw[corNorma,thick](qg)--(bep);\draw[corNorma,thick](qd)--(bep);
