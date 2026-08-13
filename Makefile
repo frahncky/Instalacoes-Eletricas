@@ -1,36 +1,42 @@
 LATEXMK ?= latexmk
-FLAGS := -pdf -interaction=nonstopmode -halt-on-error
-MAIN := instalacoes_eletricas_material3.tex
-PREDIAL := instalacoes_eletricas_prediais.tex
-INDUSTRIAL := instalacoes_eletricas_industriais.tex
-MODULO := instalacoes_eletricas_simbologia_projetos_equatorial_ma.tex
+OUTDIR := build
+FLAGS := -pdf -interaction=nonstopmode -halt-on-error -outdir=$(OUTDIR)
 
-.PHONY: all main teoricos predial industrial modulo clean distclean
+COMPLETO := materiais/instalacoes_eletricas_completo.tex
+PREDIAL := materiais/instalacoes_eletricas_prediais.tex
+INDUSTRIAL := materiais/instalacoes_eletricas_industriais.tex
+PROJETOS := materiais/caderno_projetos.tex
 
-all: main teoricos modulo
+.PHONY: all completo teoricos predial industrial projetos clean distclean
 
-main:
-	$(LATEXMK) $(FLAGS) $(MAIN)
+all: completo predial industrial projetos
+
+completo:
+	@mkdir -p $(OUTDIR)
+	$(LATEXMK) $(FLAGS) $(COMPLETO)
 
 teoricos: predial industrial
 
 predial:
+	@mkdir -p $(OUTDIR)
 	$(LATEXMK) $(FLAGS) $(PREDIAL)
 
 industrial:
+	@mkdir -p $(OUTDIR)
 	$(LATEXMK) $(FLAGS) $(INDUSTRIAL)
 
-modulo:
-	$(LATEXMK) $(FLAGS) $(MODULO)
+projetos:
+	@mkdir -p $(OUTDIR)
+	$(LATEXMK) $(FLAGS) $(PROJETOS)
 
 clean:
-	$(LATEXMK) -c $(MAIN)
-	$(LATEXMK) -c $(PREDIAL)
-	$(LATEXMK) -c $(INDUSTRIAL)
-	$(LATEXMK) -c $(MODULO)
+	$(LATEXMK) -c -outdir=$(OUTDIR) $(COMPLETO)
+	$(LATEXMK) -c -outdir=$(OUTDIR) $(PREDIAL)
+	$(LATEXMK) -c -outdir=$(OUTDIR) $(INDUSTRIAL)
+	$(LATEXMK) -c -outdir=$(OUTDIR) $(PROJETOS)
 
 distclean:
-	$(LATEXMK) -C $(MAIN)
-	$(LATEXMK) -C $(PREDIAL)
-	$(LATEXMK) -C $(INDUSTRIAL)
-	$(LATEXMK) -C $(MODULO)
+	$(LATEXMK) -C -outdir=$(OUTDIR) $(COMPLETO)
+	$(LATEXMK) -C -outdir=$(OUTDIR) $(PREDIAL)
+	$(LATEXMK) -C -outdir=$(OUTDIR) $(INDUSTRIAL)
+	$(LATEXMK) -C -outdir=$(OUTDIR) $(PROJETOS)

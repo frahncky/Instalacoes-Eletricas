@@ -4,12 +4,18 @@ on:
   push:
     branches: [main]
     paths:
-      - '**/*.tex'
+      - 'materiais/**'
+      - 'estilo/**'
+      - 'teoria/**'
+      - 'projetos/**'
       - 'Makefile'
       - '.github/workflows/compila-instalacoes-eletricas.yml'
   pull_request:
     paths:
-      - '**/*.tex'
+      - 'materiais/**'
+      - 'estilo/**'
+      - 'teoria/**'
+      - 'projetos/**'
       - 'Makefile'
       - '.github/workflows/compila-instalacoes-eletricas.yml'
   workflow_dispatch:
@@ -42,8 +48,8 @@ jobs:
         with:
           name: instalacoes-eletricas-pdfs
           path: |
-            instalacoes_eletricas_material3.pdf
-            instalacoes_eletricas_prediais.pdf
-            instalacoes_eletricas_industriais.pdf
-            instalacoes_eletricas_simbologia_projetos_equatorial_ma.pdf
+            build/instalacoes_eletricas_completo.pdf
+            build/instalacoes_eletricas_prediais.pdf
+            build/instalacoes_eletricas_industriais.pdf
+            build/caderno_projetos.pdf
           if-no-files-found: error
