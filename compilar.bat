@@ -12,7 +12,9 @@ if not exist build mkdir build
 
 call :compilar "materiais\instalacoes_eletricas_completo.tex"
 if errorlevel 1 exit /b 1
-call :compilar "materiais\instalacoes_eletricas_prediais.tex"
+call :compilar "materiais\instalacoes_prediais_projeto.tex"
+if errorlevel 1 exit /b 1
+call :compilar "materiais\instalacoes_prediais_montagem.tex"
 if errorlevel 1 exit /b 1
 call :compilar "materiais\instalacoes_eletricas_industriais.tex"
 if errorlevel 1 exit /b 1

@@ -1,0 +1,81 @@
+%=====================================================================
+% INSTALACOES ELETRICAS PREDIAIS - LIGACAO, MONTAGEM E VERIFICACAO
+% Parte 2 de 2 do material predial
+% Atualizacao: agosto de 2026
+%=====================================================================
+\documentclass[11pt,aspectratio=169]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{siunitx}
+\usepackage{booktabs,array,tabularx,multirow}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[european,american currents]{circuitikz}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,shapes.geometric,patterns,decorations.pathmorphing,decorations.markings,matrix}
+\pgfplotsset{compat=1.18}
+\sisetup{locale=DE,per-mode=symbol,detect-all}
+
+\newcommand{\sen}{\operatorname{sen}}
+\newcommand{\tg}{\operatorname{tg}}
+\newcommand{\fase}[1]{\textcolor{corPrim}{\textbf{#1}}}
+\newcommand{\alerta}[1]{\textcolor{corAt}{\textbf{#1}}}
+\newcommand{\Disciplina}{}
+\newcommand{\TituloCurto}{Montagem}
+\input{estilo/beamer_estilo_casa.tex}
+\input{projetos/base/simbolos_eletricos_tikz.tex}
+
+\title{Instalações Elétricas Prediais}
+\subtitle{Parte 2 — Ligação, montagem, execução e verificação}
+\author{Francisco}
+\institute{Do esquema elétrico à instalação verificada}
+\date{}
+
+\begin{document}
+
+{\setbeamercolor{background canvas}{bg=corPrim}\setbeamertemplate{footline}{}
+\begin{frame}[plain,noframenumbering]\titlepage\end{frame}}
+
+\begin{frame}{O que este Beamer entrega}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Ligação e montagem]
+\begin{itemize}
+\item leitura de planta, unifilar e esquemas funcionais;
+\item ferramentas, materiais, caixas e eletrodutos;
+\item lançamento, identificação e terminação de condutores;
+\item iluminação, tomadas e cargas específicas;
+\item montagem completa do quadro de distribuição.
+\end{itemize}
+\end{caixaProjeto}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Segurança e entrega]
+\begin{itemize}
+\item desenergização, bloqueio e organização do trabalho;
+\item continuidade, isolação, polaridade e testes de DR;
+\item inspeção, energização controlada e comissionamento;
+\item falhas típicas e diagnóstico sistemático;
+\item prática integrada com lista de materiais e registros.
+\end{itemize}
+\end{caixaNorma}
+\end{columns}
+\end{frame}
+
+\input{teoria/comum/06_seguranca_nr10_manutencao.tex}
+\input{teoria/montagem/01_seguranca_ferramentas.tex}
+\input{teoria/montagem/02_infraestrutura_condutores.tex}
+\input{teoria/montagem/03_esquemas_ligacao.tex}
+\input{teoria/montagem/04_quadros_protecao.tex}
+\input{teoria/montagem/05_ensaios_comissionamento.tex}
+\input{teoria/montagem/06_pratica_integrada.tex}
+\input{teoria/montagem/07_referencias_montagem.tex}
+
+\end{document}

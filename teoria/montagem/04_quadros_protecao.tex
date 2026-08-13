@@ -1,0 +1,419 @@
+%=====================================================================
+% MONTAGEM PREDIAL - QUADROS, PROTECOES E BARRAMENTOS
+%=====================================================================
+
+\section{Montagem de quadros e dispositivos de proteção}
+
+\begin{frame}{Do unifilar ao quadro físico}
+\centering
+\begin{tikzpicture}[
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.0cm,minimum height=.7cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](u)at(-4.5,1.0){Unifilar\\funções e calibres};
+\node[b](l)at(-1.5,1.0){Lista de materiais\\modelos e acessórios};
+\node[b](a)at(1.5,1.0){Arranjo físico\\módulos e barras};
+\node[b](f)at(4.5,1.0){Fiação interna\\bornes e rotas};
+\node[b,draw=corNorma,fill=corNorma!7](t)at(0,-1.2){Inspeção, torque, ensaios e identificação};
+\draw[a](u)--(l)--(a)--(f);\draw[a](f)--(t);\draw[a](t)--(u);
+\end{tikzpicture}
+\vspace{4mm}
+\begin{caixaAt}
+O painel não deve ser “resolvido” durante a montagem. O projeto precisa definir função, corrente, polos, capacidade de interrupção, coordenação, barras, cabos e espaço; a montagem materializa e registra essas decisões.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Antes de montar: leia a placa e o ambiente}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.7cm}X X}
+\toprule
+Grupo & Conferir & Consequência \\
+\midrule
+Sistema & tensão, frequência, fases, neutro, PE e esquema de aterramento & polos, barras e ensaios \\
+Curto-circuito & corrente presumida no ponto e proteção a montante & Icn/Icu, coordenação e invólucro \\
+Corrente/carga & demanda, simultaneidade, harmônicas e reserva & barramentos, cabos e temperatura \\
+Ambiente & embutido/sobrepor, umidade, poeira, corrosão e acesso & material, IP, ventilação e posição \\
+Operação & responsável, seccionamento e continuidade requerida & agrupamento por DR/RCBO e seletividade \\
+Manutenção & expansão, termografia, reaperto e substituição & reserva, acesso e identificação \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Não instalar quadro cuja corrente nominal ou grau de proteção foram escolhidos apenas pela quantidade de módulos.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Arquitetura interna de um quadro predial}
+\centering
+\begin{tikzpicture}[scale=.78,every node/.style={font=\scriptsize}]
+\draw[very thick,rounded corners](-6,-3)rectangle(6,3.4);
+\draw[fill=black!5](-5.5,2.15)rectangle(5.5,2.75);
+\node[draw=corPrim,fill=corDef!7,minimum width=1.6cm,minimum height=.45cm]at(-4.4,2.45){DG};
+\node[draw=corAt,fill=corAt!7,minimum width=1.6cm,minimum height=.45cm]at(-2.3,2.45){DPS};
+\node[draw=corNorma,fill=corNorma!7,minimum width=1.6cm,minimum height=.45cm]at(-.2,2.45){DR-A};
+\node[draw=corNorma,fill=corNorma!7,minimum width=1.6cm,minimum height=.45cm]at(1.9,2.45){DR-B};
+\node[draw=corPrim,fill=corDef!7,minimum width=1.6cm,minimum height=.45cm]at(4.0,2.45){reserva};
+\draw[very thick](-5.5,1.65)--(5.5,1.65);
+\foreach \x/\n in {-4.7/C1,-3.4/C2,-2.1/C3,-.8/C4,.8/C5,2.1/C6,3.4/C7,4.7/C8}{
+\node[draw=corPrim,minimum width=1.0cm,minimum height=.7cm]at(\x,.95){\n};}
+\draw[very thick](-5.5,.25)--(5.5,.25);
+\node[draw=corDef,fill=corDef!7,minimum width=4.4cm,minimum height=.45cm]at(-2.8,-.35){barra N-A};
+\node[draw=corDef,fill=corDef!7,minimum width=4.4cm,minimum height=.45cm]at(2.8,-.35){barra N-B};
+\node[draw=corNorma,fill=corNorma!7,minimum width=10.0cm,minimum height=.45cm]at(0,-1.35){barra PE};
+\node[draw=black!55,fill=black!4,minimum width=10.0cm,minimum height=.45cm]at(0,-2.3){canaleta / terminais / identificação};
+\node[font=\tiny,corPrim]at(0,3.05){trilhos DIN e zonas funcionais};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Arranjo físico precisa seguir o fluxo elétrico}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{caixaProjeto}[title=Fluxo recomendado]
+\begin{enumerate}
+\item entrada e seccionamento;
+\item proteção geral;
+\item DPS e sua proteção/coordenação;
+\item DR/RCBO ou grupos funcionais;
+\item disjuntores terminais;
+\item bornes N e PE;
+\item saída dos circuitos.
+\end{enumerate}
+\end{caixaProjeto}
+\column{0.50\textwidth}
+\begin{itemize}
+\item minimizar cruzamentos e laços;
+\item separar entrada de saídas quando possível;
+\item preservar raio e acesso aos bornes;
+\item evitar fontes de calor junto a dispositivos sensíveis;
+\item deixar reserva física e elétrica;
+\item permitir inspeção sem desmontar metade do quadro;
+\item manter diagrama/legenda no invólucro.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Barramento pente — compatibilidade não é só o passo modular}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{tikzpicture}[scale=.78]
+\foreach \x in {-3,-1.5,0,1.5,3}{\draw[fill=corDef!8,draw=corPrim,thick](\x-.5,0)rectangle(\x+.5,2.3);}
+\draw[corAccent,line width=7pt](-3.45,-.45)--(3.45,-.45);
+\foreach \x in {-3,-1.5,0,1.5,3}{\draw[corAccent,line width=4pt](\x,-.45)--(\x,0);}
+\node[font=\scriptsize]at(0,-1.15){pente de distribuição};
+\end{tikzpicture}
+\column{0.46\textwidth}
+\begin{itemize}
+\item corrente nominal e seção do pente;
+\item número de fases e sequência dos dentes;
+\item distância/passo e formato do borne;
+\item linha de produto aceita pelo fabricante;
+\item capa e terminação nas pontas livres;
+\item alimentação no ponto permitido;
+\item torque e inserção total.
+\end{itemize}
+\end{columns}
+\begin{caixaAt}
+Não cortar um pente e deixar cobre exposto, nem forçar dente incompatível no borne. Usar acessórios finais e proteção contra toque da mesma solução.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{DR e RCBO — continuidade versus seletividade funcional}
+\scriptsize
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Um DR para vários circuitos]
+\begin{tikzpicture}[scale=.62]
+\node[draw,minimum width=1.6cm](dr)at(0,2.5){DR-A};
+\foreach \x/\n in {-2/C1,0/C2,2/C3}{\node[draw,minimum width=1.3cm](c\n)at(\x,0){\n};\draw[-{Stealth}](dr)--(c\n);}
+\end{tikzpicture}
+\begin{itemize}
+\item menor custo e volume;
+\item uma fuga interrompe todo o grupo;
+\item soma de fugas naturais precisa ser avaliada.
+\end{itemize}
+\end{caixaProjeto}
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=RCBO por circuito]
+\begin{tikzpicture}[scale=.62]
+\foreach \x/\n in {-2/C1,0/C2,2/C3}{\node[draw,minimum width=1.3cm,align=center](c\n)at(\x,1.2){RCBO\\\n};\draw[-{Stealth}](c\n)--(\x,-.2);}
+\end{tikzpicture}
+\begin{itemize}
+\item falha fica restrita ao circuito;
+\item facilita diagnóstico e continuidade;
+\item exige mais módulos e investimento.
+\end{itemize}
+\end{caixaProjeto}
+\end{columns}
+\begin{caixaAt}
+Tipo, sensibilidade, polos e imunidade do diferencial devem ser definidos pelas cargas e pela norma; não usar “DR genérico” para qualquer circuito eletrônico.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Cada DR precisa do seu caminho de neutro}
+\centering
+\begin{tikzpicture}[scale=.82,every node/.style={font=\scriptsize}]
+\node[draw=corNorma,fill=corNorma!7,minimum width=1.8cm](a)at(-3.5,2.3){DR-A};
+\node[draw=corNorma,fill=corNorma!7,minimum width=1.8cm](b)at(3.5,2.3){DR-B};
+\node[draw=corDef,fill=corDef!7,minimum width=3.2cm](na)at(-3.5,0){barra N-A};
+\node[draw=corDef,fill=corDef!7,minimum width=3.2cm](nb)at(3.5,0){barra N-B};
+\node[draw=corPrim,minimum width=1.5cm](c1)at(-5,-2){C1};
+\node[draw=corPrim,minimum width=1.5cm](c2)at(-2,-2){C2};
+\node[draw=corPrim,minimum width=1.5cm](c3)at(2,-2){C3};
+\node[draw=corPrim,minimum width=1.5cm](c4)at(5,-2){C4};
+\draw[corDef,thick,-{Stealth}](a)--(na);\draw[corDef,thick,-{Stealth}](b)--(nb);
+\draw[corDef,thick](na)--(c1);\draw[corDef,thick](na)--(c2);\draw[corDef,thick](nb)--(c3);\draw[corDef,thick](nb)--(c4);
+\draw[corAt,very thick](-.8,-.1)--(.8,-1.1);\draw[corAt,very thick](-.8,-1.1)--(.8,-.1);
+\node[font=\tiny,corAt]at(0,-1.45){não interligar N-A e N-B};
+\end{tikzpicture}
+\begin{caixaAt}
+Fase e neutro de um circuito devem atravessar o mesmo dispositivo diferencial. Neutro compartilhado ou ponte N--PE a jusante causa desarme e elimina a coerência da proteção.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{DPS — conexão curta, coordenada e protegida}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{tikzpicture}[scale=.72,every node/.style={font=\scriptsize}]
+\node[draw=corPrim,fill=corDef!7,minimum width=2cm](bar)at(-3,1.5){barras F/N};
+\node[draw=corAt,fill=corAt!8,minimum width=2cm,minimum height=1.1cm](dps)at(0,1.5){DPS};
+\node[draw=corNorma,fill=corNorma!7,minimum width=2cm](pe)at(3,1.5){barra PE};
+\draw[corPrim,line width=2pt,-{Stealth}](bar)--(dps);
+\draw[corNorma,line width=2pt,-{Stealth}](dps)--(pe);
+\draw[dashed,corAccent,<->](-1.9,2.25)--(1.9,2.25);
+\node[font=\tiny,corAccent]at(0,2.55){trajeto total mínimo};
+\draw[corNorma,thick](pe)--(3,0)node[ground]{};
+\end{tikzpicture}
+\column{0.46\textwidth}
+\begin{itemize}
+\item classe/tipo e tensão compatíveis com o sistema;
+\item Uc, Up, corrente de descarga e esquema de ligação;
+\item proteção de retaguarda/coordenação conforme fabricante;
+\item condutores curtos, retos e sem laços;
+\item seção e terminal adequados;
+\item indicador de fim de vida visível;
+\item coordenação com DPS a montante/jusante.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Barra PE — um ponto comum, várias ligações identificadas}
+\centering
+\begin{tikzpicture}[scale=.82,every node/.style={font=\scriptsize}]
+\draw[fill=corNorma!18,draw=corNorma,very thick](-5,-.35)rectangle(5,.35);
+\foreach \x in {-4,-2.7,-1.4,0,1.4,2.7,4}{\draw[fill=white,draw=corNorma](\x,0)circle(.14);}
+\foreach \x/\n in {-4/C1,-2.7/C2,-1.4/C3,0/invólucro,1.4/DPS,2.7/alimentador,4/reserva}{\draw[corNorma,thick](\x,.35)--(\x,1.55);\node[font=\tiny,rotate=55,anchor=west]at(\x,1.6){\n};}
+\draw[corNorma,very thick](2.7,-.35)--(2.7,-1.8);\node[font=\tiny]at(2.7,-2.15){origem/BEP};
+\end{tikzpicture}
+\vspace{2mm}
+\begin{caixaObs}
+Cada PE deve ter borne adequado e rastreável. Não empilhar terminais sob um único parafuso sem autorização, não interromper o PE por dispositivo de comando e não usar o trilho DIN como único caminho de proteção.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Neutro e PE — separados no quadro terminal}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Barra N]
+\begin{itemize}
+\item isolada do invólucro quando o esquema exigir;
+\item segmentada por DR/RCBO;
+\item dimensionada para corrente e harmônicas;
+\item cada circuito identificado;
+\item sem uso como terra funcional improvisado.
+\end{itemize}
+\end{caixaNorma}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Barra PE]
+\begin{itemize}
+\item ligada ao invólucro metálico e ao PE de origem;
+\item continuidade permanente;
+\item recebe massas, DPS e equipotencialização prevista;
+\item sem fusível, chave ou DR em série;
+\item conexões acessíveis para inspeção.
+\end{itemize}
+\end{caixaNorma}
+\end{columns}
+\begin{caixaAt}
+Ponte N--PE em quadro terminal não “melhora o aterramento”: cria corrente no PE, pode impedir o DR de funcionar corretamente e altera o esquema projetado.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Fiação interna — rota curta sem sacrificar manutenção}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{tikzpicture}[scale=.72]
+\draw[very thick](-3,-2.7)rectangle(3,2.7);
+\draw[fill=black!6](-2.7,1.5)rectangle(2.7,2.0);
+\draw[fill=black!6](-2.7,-.3)rectangle(2.7,.2);
+\foreach \x in {-2,-1,0,1,2}{\node[draw,minimum width=.7cm,minimum height=.8cm]at(\x,1.75){};\node[draw,minimum width=.7cm,minimum height=.8cm]at(\x,-.05){};}
+\draw[corPrim,thick,rounded corners](-2,1.35)--(-2,.75)--(-1,.75)--(-1,.35);
+\draw[corFix,thick,rounded corners](0,1.35)--(0,.75)--(1,.75)--(1,.35);
+\draw[corNorma,thick,rounded corners](2,-.45)--(2,-1.6)--(-2.5,-1.6);
+\node[font=\tiny]at(0,-2.25){canaletas e reserva de curvatura};
+\end{tikzpicture}
+\column{0.48\textwidth}
+\begin{itemize}
+\item usar seção e classe compatíveis com os bornes;
+\item separar potência, controle e sinais quando aplicável;
+\item preservar raio e não tensionar terminais;
+\item evitar cabos sobre alavancas e indicadores;
+\item não bloquear ventilação ou acesso ao torque;
+\item amarrar sem esmagar a isolação;
+\item etiquetar nas duas pontas.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Preparação do borne — uma conexão por vez}
+\centering
+\begin{tikzpicture}[
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.0cm,minimum height=.7cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](id)at(-5,0){Identificar\\circuito e borne};
+\node[b](dec)at(-2.5,0){Decapar\\sem ferir a alma};
+\node[b](ter)at(0,0){Aplicar terminal\\se previsto};
+\node[b](ins)at(2.5,0){Inserir até\\a referência};
+\node[b](tor)at(5,0){Aplicar torque\\e registrar};
+\draw[a](id)--(dec)--(ter)--(ins)--(tor);
+\end{tikzpicture}
+\vspace{5mm}
+\begin{caixaAt}
+Não dobrar fios para “engrossar”, não estanhar condutor flexível em borne de pressão, não prender isolação e não deixar cobre aparente além do limite do borne.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Torque — valor, ferramenta e rastreabilidade}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.6cm}X X}
+\toprule
+Etapa & Ação & Registro \\
+\midrule
+Fonte & obter torque na marcação/ficha do fabricante & referência e revisão consultadas \\
+Ferramenta & selecionar torquímetro/chave dentro da faixa & identificação e validade de calibração \\
+Aplicação & manter bit correto, alinhamento e um único ciclo controlado & operador, data e posição \\
+Marcação & usar selo visual apenas se o procedimento definir & cor/lote e mapa de torque \\
+Inspeção & verificar inserção, cobre exposto e deformação & não conformidade e retrabalho \\
+Reaperto & somente quando fabricante/procedimento determinar & condição, valor e justificativa \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Marca de tinta não prova torque. Ela apenas indica que uma etapa foi declarada; a evidência real é ferramenta adequada, valor conhecido e procedimento rastreável.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Capacidade de interrupção — ler o ponto de instalação}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{tikzpicture}[scale=.78,every node/.style={font=\scriptsize}]
+\node[draw=corPrim,fill=corDef!7,minimum width=2cm](tr)at(-3,2){fonte/rede};
+\node[draw=corPrim,fill=corDef!7,minimum width=2cm](qg)at(0,2){QGBT};
+\node[draw=corPrim,fill=corDef!7,minimum width=2cm](qd)at(3,2){QD};
+\draw[-{Stealth},thick,corPrim](tr)--(qg)--(qd);
+\draw[corAt,thick,-{Stealth}](3,1.35)--(3,-.1);
+\node[draw=corAt,fill=corAt!8,minimum width=2.8cm,align=center]at(3,-.7){$I_{cc,pros}$ no QD};
+\end{tikzpicture}
+\column{0.48\textwidth}
+\begin{itemize}
+\item obter corrente de curto presumida no barramento;
+\item verificar capacidade do conjunto/dispositivo;
+\item considerar coordenação ou proteção de retaguarda somente com documentação válida;
+\item conferir tensão, polos e categoria do dispositivo;
+\item registrar estudo e referência do fabricante;
+\item não confundir corrente nominal com capacidade de interrupção.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Balanceamento físico — distribuir e depois medir}
+\scriptsize
+\begin{columns}[T,onlytextwidth]
+\column{0.55\textwidth}
+\begin{tabular}{c l r}
+\toprule
+Fase & Circuitos exemplo & Demanda \\
+\midrule
+L1 & C1 luz, C4 TUG sala, C7 POS & 4,8 kVA \\
+L2 & C2 luz, C5 TUG cozinha, C8 AC & 4,6 kVA \\
+L3 & C3 luz, C6 serviço, C9 reserva & 4,7 kVA \\
+\bottomrule
+\end{tabular}
+\column{0.43\textwidth}
+\begin{caixaProjeto}[title=Na montagem]
+\begin{itemize}
+\item seguir sequência do pente/barramento;
+\item conferir a fase real de cada módulo;
+\item etiquetar no quadro e no circuito;
+\item medir correntes em operação representativa;
+\item atualizar quadro se houver remanejamento.
+\end{itemize}
+\end{caixaProjeto}
+\end{columns}
+\begin{caixaAt}
+Uma coluna bem distribuída no papel pode ficar errada se o pente tiver sequência diferente ou se um circuito for movido sem atualizar a fase.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Lista de materiais do quadro — exemplo rastreável}
+\scriptsize
+\begin{tabularx}{\textwidth}{c >{\bfseries}p{3.2cm}p{2.1cm}X}
+\toprule
+Item & Descrição funcional & Quantidade & Dados que fecham a compra \\
+\midrule
+01 & invólucro/quadro & 1 & módulos úteis, reserva, IP, corrente, porta e acessórios \\
+02 & disjuntor geral & 1 & polos, In, curva, Icn/Icu, tensão e linha \\
+03 & DPS & conjunto & tipo, Uc, Up, In/Imax, esquema e retaguarda \\
+04 & DR/RCBO & por projeto & polos, In, $I_{\Delta n}$, tipo e imunidade \\
+05 & disjuntores finais & por circuito & polos, In, curva, capacidade e acessórios \\
+06 & barras N/PE & conjunto & corrente, bornes, isolação e segmentação \\
+07 & pente/bloco & conjunto & fases, corrente, passo e compatibilidade \\
+08 & terminais/etiquetas & lote & seções, classe, impressora e reserva \\
+09 & canaletas/trilhos & conjunto & dimensões, tampas e fixação \\
+\bottomrule
+\end{tabularx}
+\begin{caixaObs}
+Marca/modelo são fechados depois dos requisitos funcionais, mas a montagem só começa com a compatibilidade real dos componentes confirmada.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Sequência segura de montagem do quadro}
+\scriptsize
+\begin{enumerate}
+\item receber e conferir invólucro, diagrama, materiais e placas;
+\item montar trilhos, canaletas, barras e acessórios mecânicos;
+\item posicionar dispositivos conforme arranjo aprovado;
+\item validar segregação, acesso, dissipação e reserva;
+\item executar barras/pentes e fiação de entrada ainda isolados da fonte;
+\item montar saídas, neutros, PE e terminais;
+\item identificar todos os dispositivos, cabos e bornes;
+\item aplicar torque controlado e inspeção independente;
+\item ensaiar continuidade de PE, isolação, polaridade e diferenciais;
+\item liberar energização por procedimento e registrar grandezas.
+\end{enumerate}
+\begin{caixaAt}
+Bloqueio e ausência de tensão devem ser confirmados no ponto de trabalho. “Disjuntor geral desligado” sozinho não prova desenergização nem elimina fontes de retorno.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Inspeção final do quadro — leitura cruzada}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.0cm}X X}
+\toprule
+Documento & Conferir no quadro & Não conformidade típica \\
+\midrule
+Unifilar & sequência, polos, calibres, DR, DPS e barras & componente diferente sem revisão \\
+Quadro de cargas & circuito, fase, seção e uso & etiqueta não corresponde ao ambiente \\
+Arranjo & posição, reserva e acessibilidade & módulo invertido/oculto \\
+Lista de cabos & origem, destino, formação e PE & cabo ou anilha trocados \\
+Mapa de torque & todos os bornes aplicáveis & ponto sem registro \\
+Relatório de ensaio & continuidade, isolação, DR e função & resultado sem instrumento/critério \\
+As built & alterações autorizadas e data & quadro real diverge da entrega \\
+\bottomrule
+\end{tabularx}
+\begin{caixaProjeto}[title=Resultado esperado]
+Outro profissional deve conseguir entender, operar, isolar e manter o quadro sem depender da memória de quem o montou.
+\end{caixaProjeto}
+\end{frame}

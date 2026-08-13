@@ -1,0 +1,241 @@
+%=====================================================================
+% PROJETO PREDIAL - ENTRADA, MEDICAO E INTERFACE COM A DISTRIBUIDORA
+%=====================================================================
+
+\section{Entrada, medição e padrão Equatorial Maranhão}
+
+\begin{frame}{A fronteira da distribuidora precisa estar explícita}
+\centering
+\begin{tikzpicture}[
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.05cm,minimum height=0.72cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](rede)at(-5.0,0){Rede de\\distribuição};
+\node[b](pc)at(-2.5,0){Ponto de\\conexão};
+\node[b](ramal)at(0,0){Ramal de\\conexão};
+\node[b](med)at(2.5,0){Medição e\\proteção geral};
+\node[b](qg)at(5.0,0){Origem da instalação\\e QD/QGBT};
+\draw[a](rede)--(pc);\draw[a](pc)--(ramal);\draw[a](ramal)--(med);\draw[a](med)--(qg);
+\draw[corAccent,very thick,dashed] (1.25,-1.0)--(1.25,1.0);
+\node[font=\tiny,corAccent,align=center] at (-1.0,-1.25){critérios da distribuidora};
+\node[font=\tiny,corAccent,align=center] at (3.5,-1.25){instalação do consumidor};
+\end{tikzpicture}
+\vspace{5mm}
+\begin{caixaObs}
+Responsabilidade física, propriedade dos componentes e limite elétrico não devem ser presumidos. Confirmar a definição na norma vigente e no orçamento de conexão.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}[shrink=4]{Documentos vigentes usados no Maranhão}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.8cm}p{2.0cm}X}
+\toprule
+Documento & Revisão consultada & Aplicação \\
+\midrule
+NT.00001.EQTL & Rev. 09, 29/05/2025 & unidade individual em BT, carga instalada até \SI{75}{kW} \\
+NT.00004.EQTL & Rev. 08, 31/12/2025 & empreendimentos de múltiplas unidades consumidoras \\
+Anexo I da NT.00004 & Rev. 08, 21/05/2026 & cálculo de queda de tensão em EMUC \\
+NT.00020.EQTL & versão vigente & micro e minigeração distribuída \\
+NT.00030.EQTL & versão vigente & caixas de medição e proteção \\
+NT.00042.EQTL & versão vigente & conexão de estação de recarga de veículo elétrico \\
+\bottomrule
+\end{tabularx}
+\vspace{2mm}
+\begin{caixaAt}
+Revisões podem mudar durante o projeto. Registrar a data da consulta e conferir novamente antes de protocolar, comprar a caixa e executar o padrão.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}[shrink=4]{Tabela 220/380 V: enquadramento inicial da unidade individual}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.3cm}p{2.2cm}c c X}
+\toprule
+Carga instalada & Fornecimento & DG & Cu cliente & Observação \\
+\midrule
+até \SI{5}{kW} & monofásico 220 V & 25 A & \SI{4}{mm^2} & faixa inicial \\
+5,1--\SI{8}{kW} & monofásico 220 V & 40 A & \SI{6}{mm^2} & -- \\
+8,1--\SI{12}{kW} & monofásico 220 V & 63 A & \SI{10}{mm^2} & limite monofásico urbano no MA \\
+até \SI{12}{kW} & trifásico 380/220 V & 20 A & \SI{6}{mm^2} & opção pode gerar custo de adaptação \\
+12,1--\SI{24}{kW} & trifásico 380/220 V & 40 A & \SI{6}{mm^2} & -- \\
+24,1--\SI{38}{kW} & trifásico 380/220 V & 63 A & \SI{10}{mm^2} & faixa do projeto residencial I \\
+38,1--\SI{48}{kW} & trifásico 380/220 V & 80 A & \SI{16}{mm^2} & -- \\
+48,1--\SI{60}{kW} & trifásico 380/220 V & 100 A & \SI{25}{mm^2} & -- \\
+60,1--\SI{75}{kW} & trifásico 380/220 V & 125 A & \SI{35}{mm^2} & limite da tabela BT \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\tiny Fonte técnica: Tabela 1 da NT.00001.EQTL Rev.09. Reproduzidos apenas os campos necessários ao enquadramento didático; consultar a tabela integral para ramal, eletrodutos, aterramento e notas.
+\end{frame}
+
+\begin{frame}{Exemplo: residência com \SI{33.96}{kW} instalados}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{align*}
+P_{\mathrm{inst}}&=\SI{33.96}{kW}\\
+24{,}1&<33{,}96\leq38
+\end{align*}
+\begin{caixaEx}[title=Enquadramento]
+\begin{itemize}
+\item fornecimento: 380/220 V, 3F+N;
+\item disjuntor geral: 63 A;
+\item condutor Cu do cliente: mínimo \SI{10}{mm^2};
+\item verificar demais colunas e notas da tabela.
+\end{itemize}
+\end{caixaEx}
+\column{0.50\textwidth}
+\begin{caixaAt}[title=Não encerrar o projeto aqui]
+A tabela da distribuidora dimensiona o padrão sob hipóteses próprias. O alimentador interno ainda deve ser recalculado por:
+\begin{itemize}
+\item capacidade de condução;
+\item queda de tensão;
+\item curto-circuito e proteção;
+\item neutro, PE e método real.
+\end{itemize}
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Padrão aéreo: sequência física dos componentes}
+\centering
+\begin{tikzpicture}[scale=0.88,every node/.style={font=\scriptsize}]
+\draw[very thick] (-5.2,-1.7)--(-5.2,3.3);
+\draw[very thick] (-5.6,2.8)--(-4.8,2.8);
+\draw[corPrim,thick] (-5.2,2.8).. controls (-2.5,2.5) and (-1.6,2.2)..(0,2.0);
+\draw[very thick] (0,-1.7)--(0,3.0);
+\node[draw=corPrim,fill=corDef!7,minimum width=1.8cm,minimum height=1.2cm,align=center](cx)at(0.95,0.75){caixa de\\medição};
+\node[draw=corPrim,fill=corDef!7,minimum width=1.8cm,minimum height=0.8cm,align=center](dg)at(0.95,-0.45){proteção\\geral};
+\draw[corPrim,thick] (0,2.0)--(cx.north);
+\draw[corPrim,thick] (cx)--(dg);
+\draw[corPrim,thick,-{Stealth}] (dg.east)--(3.15,-0.45)node[right]{alimentador};
+\draw[corNorma,thick] (cx.south west)--(-0.65,-0.7)--(-0.65,-1.35)node[ground]{};
+\node[align=center] at (-5.2,-2.1){poste da rede};
+\node[align=center] at (0,-2.1){poste/muro do padrão};
+\node[corAccent,align=center] at (-2.5,3.0){ramal de conexão};
+\end{tikzpicture}
+\begin{caixaObs}
+Alturas, afastamentos, tipo de poste, eletroduto, caixa e ramal devem seguir os desenhos construtivos vigentes da Equatorial e a situação real do imóvel.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Medição e proteção: acessibilidade sem acesso indevido}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{tikzpicture}[scale=0.83]
+\draw[very thick,rounded corners] (0,0) rectangle (4.5,5.1);
+\draw[thick] (0,2.0)--(4.5,2.0);
+\node[draw=corPrim,circle,minimum size=1.35cm] at (2.25,3.55){kWh};
+\node[draw=corPrim,fill=corDef!7,minimum width=1.7cm,minimum height=0.7cm] at (2.25,1.0){DG};
+\node[font=\scriptsize] at (2.25,4.65){compartimento de medição};
+\node[font=\scriptsize] at (2.25,1.65){proteção};
+\draw[corAccent,thick,dashed] (0.25,2.25) rectangle (4.25,4.85);
+\node[font=\tiny,corAccent] at (3.65,2.45){lacrável};
+\end{tikzpicture}
+\column{0.50\textwidth}
+\begin{itemize}
+\item caixa homologada para o tipo de fornecimento;
+\item leitura e operação conforme acesso exigido;
+\item compartimentos e pontos de lacre preservados;
+\item condutores identificados e sem emendas indevidas;
+\item raio de curvatura e espaço para terminais;
+\item DG compatível com a tabela e capacidade de curto;
+\item vedação, drenagem e resistência ao ambiente.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Aterramento do padrão não cria um PE isolado}
+\centering
+\begin{tikzpicture}[
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.25cm,minimum height=0.72cm,align=center,font=\scriptsize}]
+\node[b](med)at(-4.2,1.2){Medição e DG};
+\node[b](qd)at(-1.0,1.2){QD\\barras N e PE};
+\node[b,draw=corNorma,fill=corNorma!7](bep)at(2.2,1.2){BEP\\equipotencialização};
+\node[b,draw=corNorma,fill=corNorma!7](massas)at(5.2,1.2){Massas e partes\\condutivas};
+\draw[-{Stealth},thick,corPrim](med)--(qd);
+\draw[thick,corNorma](qd)--(bep)--(massas);
+\draw[thick,corNorma](bep.south)--(2.2,-0.4)node[ground]{};
+\node[font=\tiny,corNorma] at (3.0,-0.45){eletrodo(s)};
+\end{tikzpicture}
+\vspace{4mm}
+\begin{caixaAt}
+O condutor de proteção dos circuitos retorna ao barramento PE e ao BEP. Neutro e PE só se relacionam onde o esquema de aterramento determinar; não instalar pontes improvisadas nos quadros terminais.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Ambiente costeiro altera materiais e manutenção}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Até e após \SI{2}{km} da orla]
+A NT.00001 diferencia materiais do ramal conforme a distância da orla marítima. O projeto deve registrar a localização e consultar a coluna correta da tabela.
+\end{caixaNorma}
+\column{0.49\textwidth}
+\begin{itemize}
+\item selecionar caixa, ferragens e fixações adequadas;
+\item evitar pares galvânicos incompatíveis;
+\item proteger entradas contra água e condensação;
+\item aplicar torque e preparação conforme fabricante;
+\item prever inspeção de corrosão e reaperto técnico.
+\end{itemize}
+\end{columns}
+\begin{caixaAt}
+Pintura ou fita não corrige material inadequado. A solução começa na especificação e segue na montagem e manutenção.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{EMUC: a unidade não define sozinha o empreendimento}
+\centering
+\begin{tikzpicture}[
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.0cm,minimum height=0.7cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](rede)at(0,3.4){Rede};
+\node[b](med)at(0,2.1){Centro de medição};
+\node[b](pr)at(0,0.8){Prumada / distribuição};
+\node[b](u1)at(-3.6,-0.8){Unidade 1};
+\node[b](u2)at(-1.2,-0.8){Unidade 2};
+\node[b](u3)at(1.2,-0.8){Unidade 3};
+\node[b](uc)at(3.6,-0.8){Área comum};
+\draw[a](rede)--(med);\draw[a](med)--(pr);
+\foreach \x in {u1,u2,u3,uc}{\draw[a](pr)--(\x);}
+\end{tikzpicture}
+\vspace{2mm}
+\begin{caixaNorma}
+Demanda do conjunto, centro de medição, prumadas, queda, proteção geral, espaço técnico e transferência de ativos seguem a NT.00004 e seus anexos vigentes.
+\end{caixaNorma}
+\end{frame}
+
+\begin{frame}{Vistoria: conferir antes de solicitar a ligação}
+\small
+\begin{enumerate}
+\item tipo de fornecimento, caixa e DG conferem com a carga declarada;
+\item poste, ramal, eletrodutos, curvas e fixações seguem o desenho aplicável;
+\item alturas, afastamentos e acesso ao medidor estão corretos;
+\item condutores, terminais, identificação e raios de curvatura estão adequados;
+\item aterramento, eletrodo e conexão estão instalados e acessíveis;
+\item compartimentos lacráveis não foram invadidos;
+\item padrão está íntegro, vedado, limpo e sem materiais improvisados;
+\item dados do imóvel, carga e titular estão coerentes com a solicitação.
+\end{enumerate}
+\begin{caixaAt}
+Não energizar a instalação interna como teste improvisado. Ensaios e energização seguem procedimento, instrumentos adequados e responsabilidades definidas.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Erros que causam retrabalho no padrão}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.4cm}X}
+\toprule
+Erro & Correção de projeto/obra \\
+\midrule
+Caixa comprada antes do enquadramento & fechar carga e tipo de fornecimento primeiro \\
+DG fora da faixa normativa & usar tabela vigente e justificar caso especial \\
+Poste ou eletroduto incompatível & seguir desenho construtivo aplicável \\
+Medidor sem acesso regulamentar & reposicionar o padrão antes da execução final \\
+Emenda em compartimento inadequado & prever comprimento e terminal correto \\
+Neutro e PE unidos indevidamente & corrigir barras e esquema de aterramento \\
+Material inadequado à orla & especificar conforme ambiente e tabela \\
+Projeto interno divergente da carga declarada & revisar quadro, memorial e solicitação \\
+\bottomrule
+\end{tabularx}
+\end{frame}

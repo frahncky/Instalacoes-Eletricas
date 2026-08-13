@@ -122,15 +122,15 @@ Não escolher pelo preço do equipamento isoladamente: comparar rede, carga mec�
 \end{itemize}
 \column{0.47\textwidth}
 \centering
-\begin{tikzpicture}[scale=0.72,every node/.style={font=\scriptsize}]
-\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=1.75cm,minimum height=0.62cm}}
-\node[b] (rede) at (0,1.5) {Rede CA};
-\node[b] (ret) at (2.3,1.5) {Retificador};
-\node[b] (dc) at (4.6,1.5) {Link CC};
-\node[b] (inv) at (6.9,1.5) {PWM};
-\node[b] (mot) at (9.2,1.5) {Motor};
+\begin{tikzpicture}[every node/.style={font=\scriptsize}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.2cm,minimum height=0.58cm}}
+\node[b] (rede) at (0,4.4) {Rede CA};
+\node[b] (ret) at (0,3.3) {Retificador};
+\node[b] (dc) at (0,2.2) {Link CC};
+\node[b] (inv) at (0,1.1) {PWM};
+\node[b] (mot) at (0,0) {Motor};
 \foreach \u/\v in {rede/ret,ret/dc,dc/inv,inv/mot}{\draw[-{Stealth},thick,corPrim] (\u)--(\v);}
-\draw[corNorma,thick] (9.2,1.1)--(9.2,0.2) node[ground]{};
+\draw[corNorma,thick] (mot.south)--(0,-0.8) node[ground]{};
 \end{tikzpicture}
 \end{columns}
 \end{frame}

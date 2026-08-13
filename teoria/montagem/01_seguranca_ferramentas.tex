@@ -1,0 +1,217 @@
+%=====================================================================
+% MONTAGEM PREDIAL - SEGURANCA, PLANEJAMENTO E FERRAMENTAS
+%=====================================================================
+
+\section{Planejamento seguro, ferramentas e materiais}
+
+\begin{frame}{Montagem começa antes de abrir a primeira caixa}
+\centering
+\begin{tikzpicture}[
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.15cm,minimum height=0.78cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](proj)at(-5.0,0){Projeto\\liberado};
+\node[b](risco)at(-2.5,0){Análise de risco\\e procedimento};
+\node[b](mat)at(0,0){Materiais e\\instrumentos};
+\node[b](exec)at(2.5,0){Execução\\controlada};
+\node[b](ensaio)at(5.0,0){Inspeção, ensaio\\e registro};
+\draw[a](proj)--(risco);\draw[a](risco)--(mat);\draw[a](mat)--(exec);\draw[a](exec)--(ensaio);
+\end{tikzpicture}
+\vspace{5mm}
+\begin{caixaAt}
+Este material é didático. Intervenções em instalações elétricas exigem trabalhadores qualificados, capacitados e autorizados conforme as responsabilidades e condições aplicáveis.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Responsabilidades precisam estar definidas}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.9cm}X X}
+\toprule
+Papel & Antes do serviço & Durante e depois \\
+\midrule
+Responsável técnico & projeto, especificações e critérios de aceitação & decisões técnicas, alterações e documentação \\
+Supervisor & equipe, recursos, análise de risco e sequência & controle da execução e liberação das etapas \\
+Executor autorizado & conferir tarefa, ferramentas e condição segura & executar, comunicar desvios e registrar resultados \\
+Responsável por ensaios & método, instrumento e limites & medir, interpretar e emitir registro \\
+Cliente/operação & acesso, cargas e restrições de uso & aceite, operação e manutenção futura \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}{Ordem de serviço: transformar projeto em tarefa controlada}
+\small
+\begin{enumerate}
+\item identificar local, circuito, origem e limites físicos da atividade;
+\item anexar desenho, revisão e lista de materiais aplicáveis;
+\item registrar perigos elétricos e não elétricos;
+\item definir desenergização, impedimento de reenergização e liberação;
+\item atribuir responsáveis, equipe e comunicação;
+\item listar instrumentos, EPIs, EPCs e calibração necessária;
+\item estabelecer inspeções intermediárias e critérios de aceite;
+\item fechar alterações, ensaios, fotos e as built.
+\end{enumerate}
+\begin{caixaObs}
+Uma ordem de serviço genérica não controla risco nem qualidade. A tarefa precisa ter origem, destino, revisão e critério de término.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Análise de risco: eletricidade não é o único perigo}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.9cm}X X}
+\toprule
+Perigo & Exposição típica & Controle planejado \\
+\midrule
+Choque/arco & quadro, condutor existente, retorno e geração & desenergização, teste, bloqueio, barreiras \\
+Altura & luminárias, fachadas e entrada aérea & acesso adequado, NR-35 quando aplicável \\
+Perfuração & parede com tubulação ou circuito oculto & compatibilização, detecção e delimitação \\
+Poeira/projeção & cortes, rasgos e furações & proteção coletiva, ocular e respiratória \\
+Esforço/queda & bobinas, escadas, ferramentas e entulho & organização, movimentação e área isolada \\
+Ambiente & umidade, calor, chuva e espaço reduzido & suspender, adaptar método ou controlar condição \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}{Ferramentas: escolher pelo processo, não pelo hábito}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.6cm}X X}
+\toprule
+Etapa & Ferramentas principais & Controle \\
+\midrule
+Marcação & trena, nível, esquadro, linha e detector & cotas e interferências \\
+Infraestrutura & furadeira, serra-copo, curvador, guia e escareador & diâmetro, raio e acabamento \\
+Condutores & guia, lubrificante compatível, desenrolador e puxador & tração e torção \\
+Preparação & decapador, alicate de corte e desencapador de cabo & não ferir a alma \\
+Terminação & prensa-terminal e torquímetro/chave de torque & matriz e torque corretos \\
+Identificação & impressora/etiqueta e marcador permanente & padrão único e legível \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}{Instrumentos: cada um responde a uma pergunta}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.9cm}X X}
+\toprule
+Instrumento & Pergunta & Limite de uso \\
+\midrule
+Detector bipolar & há tensão e qual a faixa? & verificar antes/depois em fonte conhecida \\
+Multímetro TRMS & tensão, resistência, frequência? & categoria, ponta e fusível adequados \\
+Alicate amperímetro & corrente sem abrir o circuito? & abraçar o condutor correto, não o cabo completo \\
+Megômetro & isolação suporta tensão de ensaio? & desconectar eletrônica sensível \\
+Terrômetro & resistência do sistema/eletrodo? & método e geometria compatíveis \\
+Testador de DR & corrente/tempo de atuação? & interpretar conforme dispositivo e circuito \\
+Analisador de rede & harmônicas, potência e eventos? & configuração, janela e referência de tensão \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}{Ferramenta isolada não autoriza trabalho energizado}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaAt}[title=Erro perigoso]
+Confundir cabo isolado, cabo de ferramenta revestido ou luva comum com proteção certificada para o risco elétrico.
+\end{caixaAt}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Uso correto]
+\begin{itemize}
+\item ferramenta compatível com a tarefa e tensão;
+\item inspeção visual antes do uso;
+\item armazenamento que preserve a isolação;
+\item retirada imediata quando houver dano;
+\item procedimento de trabalho prevalece sobre o acessório.
+\end{itemize}
+\end{caixaNorma}
+\end{columns}
+\begin{caixaObs}
+Trabalho energizado é exceção tecnicamente justificada, com análise e controles específicos. A regra de montagem predial é preparar e executar desenergizado.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{EPI e EPC: barreiras complementares}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.7cm}X X}
+\toprule
+Grupo & Exemplos & Verificar \\
+\midrule
+Proteção coletiva & bloqueio, barreira, sinalização, cobertura e aterramento temporário quando aplicável & instalação, estabilidade e responsabilidade \\
+Cabeça/face & capacete e proteção facial compatível & classe, estado e ajuste \\
+Mãos & luvas adequadas ao risco e cobertura mecânica quando necessária & ensaio, validade e perfuração \\
+Corpo & vestimenta compatível com o risco térmico e ambiente & fechamento, conservação e contaminação \\
+Olhos/respiração & óculos, viseira e proteção respiratória & poeira, projeção e ventilação \\
+Altura & sistema de acesso e proteção contra queda & inspeção e ancoragem \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+EPI não corrige circuito energizado sem necessidade, bloqueio ausente ou procedimento incompleto.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Recebimento: rejeitar material antes de instalar}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{itemize}
+\item conferir fabricante, modelo e certificação aplicável;
+\item comparar seção, tensão, temperatura e classe do cabo;
+\item verificar curva, polos, corrente e capacidade do disjuntor;
+\item confirmar tipo e sensibilidade do DR;
+\item conferir $U_c$, $U_p$, $I_n/I_{max}$ do DPS;
+\item inspecionar trincas, oxidação, umidade e lacres.
+\end{itemize}
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Rastreabilidade]
+Registrar:
+\begin{itemize}
+\item lote e nota de recebimento;
+\item ficha técnica usada;
+\item quantidade aceita/rejeitada;
+\item local de armazenamento;
+\item substituições aprovadas.
+\end{itemize}
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Organização do posto reduz falha de montagem}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{tikzpicture}[scale=0.82]
+\draw[fill=black!3] (0,0) rectangle (6.2,3.8);
+\draw[fill=corDef!8,draw=corPrim] (0.35,2.45) rectangle (2.25,3.35);
+\node[font=\scriptsize,align=center] at (1.3,2.9){componentes\\conferidos};
+\draw[fill=corNorma!8,draw=corNorma] (2.55,2.45) rectangle (4.45,3.35);
+\node[font=\scriptsize,align=center] at (3.5,2.9){ferramentas\\inspecionadas};
+\draw[fill=corAccent!10,draw=corAccent] (4.75,2.45) rectangle (5.85,3.35);
+\node[font=\scriptsize,align=center] at (5.3,2.9){resíduos};
+\draw[very thick] (0.45,0.75)--(5.75,0.75);
+\node[font=\scriptsize] at (3.1,1.15){bancada limpa e iluminada};
+\node[font=\tiny] at (3.1,0.35){documento e circuito identificados};
+\end{tikzpicture}
+\column{0.46\textwidth}
+\begin{itemize}
+\item separar materiais por circuito;
+\item manter pontas e ferramentas protegidas;
+\item evitar sobras dentro de caixas e quadros;
+\item controlar parafusos, terminais e etiquetas;
+\item proteger equipamentos contra poeira e impacto;
+\item registrar etapa concluída antes de fechar.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Liberação da etapa de montagem}
+\small
+\begin{enumerate}
+\item projeto e revisão corretos estão disponíveis no local;
+\item circuito e fontes possíveis foram identificados;
+\item desenergização, bloqueio e teste foram concluídos;
+\item equipe, responsabilidades e comunicação estão definidos;
+\item ferramentas, instrumentos e EPIs/EPCs foram inspecionados;
+\item material confere com a especificação;
+\item ambiente permite execução segura e limpa;
+\item critérios de inspeção e registro estão definidos.
+\end{enumerate}
+\begin{caixaAt}
+Qualquer resposta negativa interrompe a liberação. Corrigir a condição antes de iniciar a execução.
+\end{caixaAt}
+\end{frame}

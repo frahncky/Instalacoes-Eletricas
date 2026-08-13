@@ -1,0 +1,328 @@
+%=====================================================================
+% MONTAGEM PREDIAL - INFRAESTRUTURA, CONDUTORES E CONEXOES
+%=====================================================================
+
+\section{Infraestrutura, condutores e conexões}
+
+\begin{frame}{Infraestrutura define se o projeto pode ser montado}
+\centering
+\begin{tikzpicture}[
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=1.85cm,minimum height=0.72cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](m)at(-5.2,0){Marcação\\e cotas};
+\node[b](c)at(-3.1,0){Caixas e\\quadros};
+\node[b](e)at(-1.0,0){Eletrodutos\\e rotas};
+\node[b](l)at(1.1,0){Limpeza e\\guia};
+\node[b](p)at(3.2,0){Puxamento\\dos cabos};
+\node[b](t)at(5.3,0){Terminação\\e inspeção};
+\draw[a](m)--(c);\draw[a](c)--(e);\draw[a](e)--(l);\draw[a](l)--(p);\draw[a](p)--(t);
+\end{tikzpicture}
+\vspace{5mm}
+\begin{caixaAt}
+Não fechar parede, forro ou piso antes de conferir continuidade da rota, diâmetro, segregação, acessibilidade e correspondência com o projeto.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Marcação: transferir o desenho para a obra}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{tikzpicture}[scale=0.78]
+\draw[very thick] (0,0) rectangle (6.1,4.4);
+\draw[fill=black!8] (0,0) rectangle (6.1,0.25);
+\draw[dashed,corAccent,thick] (0,1.25)--(6.1,1.25);
+\draw[dashed,corDef,thick] (0,2.55)--(6.1,2.55);
+\node[draw=corPrim,minimum size=0.5cm] at (1.2,1.25){T};
+\node[draw=corNorma,minimum size=0.5cm] at (3.0,1.25){S};
+\node[draw=corPrim,minimum width=1.1cm,minimum height=0.65cm] at (4.9,2.55){QD};
+\draw[{Latex}-{Latex},thin] (5.75,0.25)--(5.75,1.25)node[midway,left,font=\tiny]{cota do projeto};
+\end{tikzpicture}
+\column{0.50\textwidth}
+\begin{itemize}
+\item adotar uma referência de nível única;
+\item medir pelo eixo/face definidos no desenho;
+\item conferir abertura de portas e posição do mobiliário;
+\item compatibilizar com hidráulica, gás, estrutura e dados;
+\item marcar circuito e tipo de caixa, não apenas um ponto;
+\item registrar alteração antes de rasgar ou perfurar.
+\end{itemize}
+\end{columns}
+\begin{caixaObs}
+Alturas são definidas no projeto e nas exigências de acessibilidade/uso. Não existe uma única cota prática válida para todo ambiente.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Caixas: volume, função e acesso}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.6cm}X X}
+\toprule
+Tipo & Uso & Conferir \\
+\midrule
+4x2 / 4x4 & tomadas, interruptores e derivações & quantidade de módulos, profundidade e condutores \\
+Octogonal & ponto de iluminação e suporte previsto & carga mecânica e fixação independente quando exigida \\
+Passagem & mudança de direção e puxamento & dimensões, tampa e acesso permanente \\
+Quadro embutido & proteção e distribuição & módulos, reserva, barramentos e dissipação \\
+Caixa de piso & energia/dados em áreas abertas & vedação, resistência e segregação \\
+Externa & áreas úmidas ou expostas & grau IP, prensa-cabos, dreno e material \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Caixa não é depósito de sobra de cabo. Acomodação deve preservar raio de curvatura, isolação, terminais e acesso aos parafusos.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Eletrodutos: continuidade mecânica e raio de curvatura}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.51\textwidth}
+\begin{tikzpicture}[scale=0.82]
+\draw[corPrim,line width=8pt] (0,0)--(2.4,0) arc (-90:0:1.35) --(3.75,3.1);
+\draw[white,line width=3pt] (0,0)--(2.4,0) arc (-90:0:1.35) --(3.75,3.1);
+\draw[dashed,corAccent,thick] (2.4,0)--(3.75,1.35);
+\node[font=\scriptsize,corAccent] at (2.45,1.25){raio};
+\node[draw=corPrim,fill=corDef!7,minimum size=0.65cm] at (0,0){C};
+\node[draw=corPrim,fill=corDef!7,minimum size=0.65cm] at (3.75,3.1){C};
+\end{tikzpicture}
+\column{0.47\textwidth}
+\begin{itemize}
+\item manter diâmetro e seção útil ao longo da rota;
+\item eliminar rebarbas e bordas cortantes;
+\item respeitar raio do eletroduto e dos cabos;
+\item fixar para evitar deslocamento na concretagem;
+\item usar buchas, arruelas e luvas compatíveis;
+\item inserir caixas quando o puxamento exigir.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Antes do puxamento: provar e limpar a rota}
+\small
+\begin{enumerate}
+\item conferir origem, destino e identificação do eletroduto;
+\item passar guia com ponteira que não agrida a tubulação;
+\item verificar obstrução, esmagamento e água acumulada;
+\item limpar sem introduzir material incompatível;
+\item medir o comprimento real e acrescentar folgas previstas;
+\item confirmar ocupação e esforço de puxamento;
+\item proteger bordas de entrada e saída;
+\item posicionar bobinas para desenrolar sem torção.
+\end{enumerate}
+\begin{caixaAt}
+Não usar o novo cabo como ferramenta para desobstruir eletroduto. Corrigir a infraestrutura antes de lançar os condutores.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Ocupação: conferir com o diâmetro externo real}
+\small
+Para três ou mais cabos no eletroduto:
+\[
+\eta=\frac{\sum A_{cabos}}{A_{interna}}\leq0{,}40
+\]
+\begin{caixaEx}[title={Rota com 3 fases, neutro e PE}]
+Cinco cabos com diâmetro externo de \SI{4.8}{mm}:
+\[
+\sum A=5\frac{\pi(4{,}8)^2}{4}=\SI{90.5}{mm^2}
+\]
+Para eletroduto com diâmetro interno de \SI{18.5}{mm}:
+\[
+\eta=\frac{90{,}5}{\pi(18{,}5)^2/4}=33{,}7\%
+\]
+A ocupação atende, mas ainda é preciso verificar curvas, distância e esforço de lançamento.
+\end{caixaEx}
+\end{frame}
+
+\begin{frame}{Desenrolar corretamente evita torção permanente}
+\centering
+\begin{tikzpicture}[scale=0.9]
+\draw[very thick] (-4,0) circle (1.15);
+\draw[very thick] (-4,0) circle (0.35);
+\draw[very thick] (-5.35,-1.35)--(-2.65,-1.35);
+\draw[-{Stealth},thick,corNorma] (-2.8,0.7)--(-1.4,0.7);
+\draw[corPrim,thick] (-2.85,0.25).. controls (-0.8,0.5) and (0.8,0.0)..(3.8,0.25);
+\node[font=\scriptsize,corNorma] at (-2.1,1.05){giro da bobina};
+\node[font=\scriptsize] at (-4,-1.75){desenrolador};
+\node[draw=corPrim,fill=corDef!7,minimum width=1.7cm,minimum height=0.65cm] at (4.6,0.25){eletroduto};
+\draw[corAt,thick,dashed] (-4,-2.45) circle (0.8);
+\draw[corAt,thick] (-4.55,-3.0)--(-3.45,-1.9);
+\node[font=\scriptsize,corAt,anchor=west] at (-3.0,-2.45){não retirar em espiras pelo lado};
+\end{tikzpicture}
+\begin{caixaObs}
+Bobina apoiada em eixo ou desenrolador gira enquanto o cabo sai tangencialmente. Isso reduz laços, torção, dano e esforço de puxamento.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Puxamento: distribuir esforço e proteger a isolação}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{enumerate}
+\item agrupar e escalonar as pontas;
+\item aplicar malha/puxador apropriado;
+\item proteger a transição com fita compatível;
+\item usar lubrificante aprovado para cabo/eletroduto;
+\item manter comunicação entre alimentação e tração;
+\item parar diante de esforço anormal;
+\item deixar folga apenas onde prevista.
+\end{enumerate}
+\column{0.48\textwidth}
+\begin{tikzpicture}[scale=0.82]
+\foreach \y/\c in {0.75/corPrim,0.25/corAccent,-0.25/corNorma,-0.75/black!65}{
+  \draw[\c,line width=3pt] (-3,\y)--(-0.4,0.18*\y);
+}
+\draw[fill=black!10] (-0.65,-0.55)--(0.65,-0.25)--(0.65,0.25)--(-0.65,0.55)--cycle;
+\draw[very thick] (0.65,-0.25)--(2.4,-0.25)--(2.4,0.25)--(0.65,0.25);
+\draw[-{Stealth},very thick,corPrim] (2.4,0)--(3.45,0);
+\node[font=\tiny] at (0,-0.9){cabeça escalonada};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Identificação: reconhecer o circuito nas duas pontas}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.1cm}X X}
+\toprule
+Condutor & Identificação funcional & Regra de montagem \\
+\midrule
+PE & verde-amarelo & uso exclusivo como proteção \\
+Neutro & azul-claro & manter coerência em toda a instalação \\
+Fases & cores distintas do PE e neutro & repetir padrão no quadro e nas caixas \\
+Retorno & cor diferente da fase permanente & etiquetar quando houver múltiplos retornos \\
+Comando e\newline viajantes & cores e marcadores definidos & identificar origem, destino e função \\
+Circuito & etiqueta em ambas as extremidades & código igual ao quadro e à planta \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Fita colorida pontual não transforma um condutor reservado a PE ou neutro em fase. A identificação deve respeitar as restrições normativas.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Decapagem: remover isolação sem reduzir a seção}
+\centering
+\begin{tikzpicture}[scale=0.92]
+\draw[corPrim,line width=10pt] (-5,1)--(-1.2,1);
+\draw[corAccent,line width=4pt] (-1.2,1)--(0.8,1);
+\node[font=\scriptsize] at (-3.1,1.65){isolação preservada};
+\node[font=\scriptsize] at (-0.2,1.65){comprimento conforme borne};
+\draw[corPrim,line width=10pt] (1.5,1)--(4.4,1);
+\draw[corAccent,line width=4pt] (4.4,1)--(5.5,1);
+\draw[corAt,very thick] (4.55,0.75)--(4.8,1.25);
+\draw[corAt,very thick] (4.85,0.75)--(5.1,1.25);
+\node[font=\scriptsize,corAt] at (3.7,0.15){alma cortada: rejeitar e refazer};
+\end{tikzpicture}
+\vspace{3mm}
+\begin{itemize}
+\item ajustar ferramenta à seção e à classe do condutor;
+\item não marcar, torcer, estanhar ou cortar fios da alma;
+\item respeitar o comprimento indicado pelo borne/terminal;
+\item refazer a ponta sempre que houver dano ou cobre oxidado.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Terminal: compatibilizar condutor, borne e ferramenta}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.5cm}X X}
+\toprule
+Solução & Aplicação típica & Verificar \\
+\midrule
+Ponta direta & borne projetado para a classe do condutor & fios contidos e comprimento correto \\
+Ilhós tubular & borne que aceita terminal comprimido & seção, comprimento e matriz \\
+Olhal/garfo & parafuso ou barramento apropriado & diâmetro, material e pressão de contato \\
+Luva de emenda & prolongamento/derivação autorizada & faixa de seções e isolamento posterior \\
+Conector de alavanca/mola & derivação e manutenção rápida & certificação, seção, classe e corrente \\
+Bimetálico & transição Cu-Al quando prevista & preparação, composto e torque \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Não colocar dois condutores em borne projetado para um, nem usar terminal maior ``compensado'' por esmagamento.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Crimpagem: o resultado depende da matriz}
+\centering
+\begin{tikzpicture}[scale=0.86]
+\node[draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.0cm,minimum height=0.72cm](a)at(-4.5,0){seção e terminal};
+\node[draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.0cm,minimum height=0.72cm](b)at(-1.5,0){matriz correta};
+\node[draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.0cm,minimum height=0.72cm](c)at(1.5,0){compressão total};
+\node[draw=corNorma,fill=corNorma!7,rounded corners,minimum width=2.0cm,minimum height=0.72cm](d)at(4.5,0){inspeção e tração};
+\draw[-{Stealth},thick,corPrim](a)--(b);\draw[-{Stealth},thick,corPrim](b)--(c);\draw[-{Stealth},thick,corPrim](c)--(d);
+\end{tikzpicture}
+\vspace{4mm}
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaAt}[title=Subcrimpagem]
+Baixa pressão deixa vazios, aumenta resistência e permite soltura.
+\end{caixaAt}
+\column{0.49\textwidth}
+\begin{caixaAt}[title=Sobrecrimpagem]
+Matriz inadequada pode trincar o terminal ou reduzir a seção do condutor.
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Torque: aperto correto é um valor, não uma sensação}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{tikzpicture}[scale=0.86]
+\draw[fill=corDef!8,draw=corPrim,very thick] (-1.5,-0.55) rectangle (1.5,0.55);
+\draw[fill=black!15] (-0.35,0.55) rectangle (0.35,1.25);
+\draw[very thick] (-2.9,1.25)--(2.9,1.25);
+\draw[corAccent,line width=4pt] (-1.2,0)--(1.2,0);
+\node[font=\scriptsize] at (0,-1.05){borne com condutor preparado};
+\draw[-{Stealth},thick,corNorma] (2.3,2.0) arc (30:-55:1.0);
+\node[font=\scriptsize,corNorma] at (2.65,2.15){torque};
+\end{tikzpicture}
+\column{0.50\textwidth}
+\begin{itemize}
+\item obter o torque na ficha ou no próprio equipamento;
+\item usar ferramenta adequada e dentro da faixa;
+\item aplicar no parafuso correto, sem extensão improvisada;
+\item marcar/registrar quando o procedimento exigir;
+\item não reapertar periodicamente sem recomendação técnica;
+\item investigar aquecimento, não apenas ``dar mais aperto''.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Derivações: manter conexão acessível e inspecionável}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Conexão aceitável]
+\begin{itemize}
+\item conector adequado às seções e materiais;
+\item dentro de caixa com tampa acessível;
+\item isolação restabelecida e sem esforço mecânico;
+\item identificação preservada;
+\item volume suficiente para acomodação.
+\end{itemize}
+\end{caixaNorma}
+\column{0.49\textwidth}
+\begin{caixaAt}[title=Conexão a rejeitar]
+\begin{itemize}
+\item torção manual coberta por fita como solução final;
+\item emenda enterrada no reboco ou dentro do eletroduto;
+\item cobre exposto, fios soltos ou dois cabos no mesmo borne;
+\item material incompatível ou sem faixa declarada;
+\item cabo tracionando diretamente a conexão.
+\end{itemize}
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Inspeção antes de fechar caixas e rotas}
+\small
+\begin{enumerate}
+\item caixas estão niveladas, firmes, limpas e na cota correta;
+\item eletrodutos têm continuidade, acabamento e segregação;
+\item cabos correspondem ao circuito, seção e cores do projeto;
+\item isolação não sofreu corte, esmagamento ou tração anormal;
+\item terminações usam terminal, matriz e torque corretos;
+\item derivações estão acessíveis, isoladas e acomodadas;
+\item folgas permitem manutenção sem excesso solto;
+\item fotos e desvios foram registrados para o as built.
+\end{enumerate}
+\begin{caixaProjeto}
+Fechar acabamento é um ponto de não retorno caro. A inspeção intermediária evita quebrar parede para corrigir falha escondida.
+\end{caixaProjeto}
+\end{frame}

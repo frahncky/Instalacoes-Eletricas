@@ -1,0 +1,448 @@
+%=====================================================================
+% MONTAGEM PREDIAL - ENSAIOS, ENERGIZACAO E COMISSIONAMENTO
+%=====================================================================
+
+\section{Ensaios, energização e comissionamento}
+
+\begin{frame}{Comissionar é produzir evidência de que a instalação atende}
+\centering
+\begin{tikzpicture}[
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.0cm,minimum height=.7cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](i)at(-5,0){Inspeção\\o que foi montado};
+\node[b](e)at(-2.5,0){Ensaios sem tensão\\integridade};
+\node[b](en)at(0,0){Energização\\controlada};
+\node[b](f)at(2.5,0){Ensaios funcionais\\desempenho};
+\node[b](r)at(5,0){Registros\\e entrega};
+\draw[a](i)--(e)--(en)--(f)--(r);
+\end{tikzpicture}
+\vspace{5mm}
+\begin{caixaAt}
+“Funcionou” não é evidência suficiente. Cada resultado precisa de ponto ensaiado, método, instrumento, valor, critério, responsável, data e vínculo com a revisão do projeto.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Plano de inspeção e ensaios — ITP}
+\scriptsize
+\begin{tabularx}{\textwidth}{c >{\bfseries}p{2.7cm}X X}
+\toprule
+Etapa & Verificação & Critério de aceitação & Registro \\
+\midrule
+Recebimento & cabos, quadros, dispositivos e certificados & especificação/revisão aprovada & ficha e rastreio de lote \\
+Infraestrutura & rota, caixas, segregação e acesso & projeto e inspeção antes do fechamento & checklist/fotos \\
+Cabos & seção, identificação, terminação e torque & projeto + fabricante & lista de cabos/mapa \\
+Sem tensão & continuidade, isolação e polaridade & procedimento/norma aplicável & folha de medição \\
+Com tensão & tensão, sequência, DR, função e carga & projeto, norma e fabricante & relatório de ensaio \\
+Entrega & as built, ajustes e pendências & dossiê completo e aprovado & termo de comissionamento \\
+\bottomrule
+\end{tabularx}
+\begin{caixaObs}
+Pontos de espera impedem fechar parede, forro ou quadro antes da inspeção que depois ficaria impossível.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Instrumento certo, faixa certa e estado conhecido}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.6cm}X X}
+\toprule
+Instrumento & Uso & Conferir antes do ensaio \\
+\midrule
+Detector de tensão & constatação conforme procedimento & categoria, faixa e prova antes/depois \\
+Multímetro & tensão, resistência e continuidade geral & CAT, pontas, fusíveis e função selecionada \\
+Micro-ohmímetro/baixa R & continuidade de PE e ligações & corrente de teste, zero dos cabos e resolução \\
+Megômetro & resistência de isolação & tensão de ensaio e equipamentos desconectados \\
+Testador de DR & corrente/tempo de atuação & tipo de DR, sequência e condição do circuito \\
+Medidor de loop & impedância e curto presumido & método compatível com DR e sistema \\
+Terrômetro & resistência de eletrodo & método, geometria e interferências \\
+Luxímetro/alicate & desempenho e corrente & faixa, orientação, calibração e posição \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Categoria CAT não substitui técnica de trabalho. Instrumento inadequado, cabo danificado ou função errada pode criar arco, choque e leitura falsa.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Sequência antes de qualquer medição energizada}
+\scriptsize
+\begin{enumerate}
+\item revisar análise de risco, procedimento e limites do trabalho;
+\item identificar todas as fontes, inclusive gerador, UPS, fotovoltaico e retornos;
+\item seccionar, impedir reenergização e sinalizar;
+\item constatar ausência de tensão com método/instrumento previstos;
+\item descarregar/aterrar quando aplicável;
+\item delimitar a área e proteger partes vizinhas;
+\item executar inspeção e ensaios desenergizados;
+\item retirar curtos, pontes e instrumentos de ensaio;
+\item recompor barreiras e confirmar prontidão;
+\item autorizar energização controlada com equipe informada.
+\end{enumerate}
+\begin{caixaAt}
+Esta sequência não substitui o procedimento da organização nem a NR-10. O responsável define o método específico para a instalação e a equipe autorizada.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Inspeção visual — defeitos que o instrumento pode não revelar}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{itemize}
+\item componentes e seções conforme projeto;
+\item proteção contra contato direto e barreiras;
+\item identificação de circuitos, neutro e PE;
+\item separação, IP e integridade de caixas;
+\item conexão, terminal e torque registrados;
+\item barras N por DR e PE contínuo;
+\item dispositivos acessíveis e sem obstrução;
+\item materiais sem dano, umidade ou contaminação.
+\end{itemize}
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Leitura cruzada]
+Comparar no local:
+\begin{enumerate}
+\item planta e circuito;
+\item quadro de cargas;
+\item unifilar;
+\item lista de cabos;
+\item detalhe de montagem;
+\item revisão liberada;
+\item alteração/as built.
+\end{enumerate}
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Continuidade do PE — medir o caminho completo}
+\scriptsize
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{tikzpicture}[scale=.76,every node/.style={font=\scriptsize}]
+\node[draw=corNorma,fill=corNorma!7,minimum width=2cm](bar)at(-3.6,1.5){barra PE};
+\node[draw=corPrim,minimum width=2cm](massa)at(3.6,1.5){massa remota};
+\node[draw=corAccent,fill=corAccent!7,minimum width=2.2cm](m)at(0,-1.0){medidor baixa R};
+\draw[corNorma,line width=2.2pt](bar)--(massa);
+\draw[corAccent,thick](m.west)--(-3.6,-1)--(bar.south);
+\draw[corAccent,thick](m.east)--(3.6,-1)--(massa.south);
+\node[font=\tiny,corNorma]at(0,1.82){PE do circuito};
+\end{tikzpicture}
+\column{0.46\textwidth}
+\begin{enumerate}
+\item zerar/subtrair resistência dos cabos de teste;
+\item medir do barramento PE a cada massa e tomada;
+\item registrar comprimento/seção quando relevante;
+\item comparar com resistência esperada e critérios do projeto;
+\item investigar valores instáveis ou crescentes;
+\item repetir após qualquer retrabalho.
+\end{enumerate}
+\end{columns}
+\begin{caixaAt}
+O bip de continuidade de um multímetro pode aceitar dezenas de ohms. Para provar conexão protetiva, usar método e resolução adequados ao baixo valor esperado.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Resistência de isolação — preparar o circuito antes do megômetro}
+\scriptsize
+\centering
+\begin{tikzpicture}[scale=.72,every node/.style={font=\scriptsize}]
+\node[draw=corPrim,fill=corDef!7,minimum width=2cm](meg)at(-4.5,0){megômetro};
+\node[draw=corPrim,minimum width=2cm,align=center](ativos)at(0,1.2){ativos unidos\\F + N};
+\node[draw=corNorma,minimum width=2cm](pe)at(0,-1.2){PE / massa};
+\node[draw=corAt,fill=corAt!7,minimum width=2.5cm,align=center](eq)at(4.5,0){eletrônica e DPS\\isolados conforme método};
+\draw[corPrim,thick,-{Stealth}](meg)--(ativos);
+\draw[corNorma,thick,-{Stealth}](meg)--(pe);
+\draw[corAt,dashed,very thick](2.4,-1.8)rectangle(5.8,1.8);
+\draw[corAt,very thick](2.8,-1.3)--(5.4,1.3);\draw[corAt,very thick](2.8,1.3)--(5.4,-1.3);
+\end{tikzpicture}
+\vspace{0.5mm}
+\begin{enumerate}
+\item confirmar ausência de tensão e descarregar capacitores;
+\item desconectar/proteger equipamentos que não suportam a tensão de ensaio;
+\item definir grupos de condutores e tensão de teste no procedimento aplicável;
+\item medir, aguardar estabilização e registrar valor/tempo/temperatura;
+\item descarregar o circuito após o ensaio e recompor conexões.
+\end{enumerate}
+\begin{caixaAt}
+Aplicar 500 Vcc indiscriminadamente pode danificar driver, SPD, automação e equipamentos eletrônicos. O plano de ensaio precisa dizer o que fica conectado e qual tensão usar.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Critérios de isolação — exemplo de tabela de procedimento}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.1cm}c c X}
+\toprule
+Circuito ensaiado & Tensão cc de referência & Limite de referência & Condição obrigatória \\
+\midrule
+SELV/PELV & 250 V & 0,5 M$\Omega$ & fontes/equipamentos tratados conforme o fabricante \\
+Até 500 V, inclusive FELV & 500 V & 1,0 M$\Omega$ & eletrônica e DPS isolados quando necessário \\
+Acima de 500 V & 1 000 V & 1,0 M$\Omega$ & procedimento específico e componentes compatíveis \\
+\bottomrule
+\end{tabularx}
+\begin{caixaNorma}[title=Como usar esta tabela]
+Valores são referência didática tradicional de verificação de BT. Antes do ensaio real, confirmar a edição vigente da norma aplicável, o procedimento da organização e as limitações de todos os equipamentos conectados.
+\end{caixaNorma}
+\begin{caixaAt}
+Resultado alto não corrige circuito ligado no borne errado. Isolação e polaridade são verificações diferentes.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Polaridade — o comando deve interromper o condutor previsto}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{tikzpicture}[scale=.75]
+\draw[corPrim,thick](-3,2)--(-1.2,2);\node[font=\tiny]at(-2.6,2.3){F};
+\node[draw=corNorma,minimum width=1.8cm](s)at(0,2){S1};
+\node[draw,circle,minimum size=.9cm](l)at(3,2){L1};
+\draw[corAccent,thick](s)--(l);
+\draw[corDef,thick](-3,0)--(3,0)--(l.south);\node[font=\tiny]at(-2.6,.3){N};
+\draw[corNorma,thick](-3,-.7)--(3.5,-.7)--(3.5,2);\node[font=\tiny]at(-2.5,-1){PE};
+\draw[corNorma,thick](-1.2,2)--(s);
+\end{tikzpicture}
+\column{0.48\textwidth}
+Verificar, conforme o sistema:
+\begin{itemize}
+\item fase no borne previsto de interruptores e proteções;
+\item polos ativos seccionados juntos quando exigido;
+\item tomadas e conectores segundo marcação/padrão do projeto;
+\item neutro no barramento do DR correto;
+\item PE no contato de proteção e massas;
+\item ausência de pontes N--PE indevidas.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Desligamento automático — relacionar loop e proteção}
+\small
+Para um esquema em que o critério seja aplicável:
+\[
+Z_s\leq\frac{U_0}{I_a}
+\]
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{caixaDef}[title=Termos]
+\begin{itemize}
+\item $Z_s$: impedância do laço de falta;
+\item $U_0$: tensão fase--terra;
+\item $I_a$: corrente que garante atuação no tempo requerido.
+\end{itemize}
+\end{caixaDef}
+\column{0.50\textwidth}
+\begin{caixaEx}[title=Exemplo didático]
+Para $U_0=220$ V e $I_a=100$ A:
+\[
+Z_{s,max}=\frac{220}{100}=2{,}20\ \Omega.
+\]
+Se a medição corrigida for 1,10 $\Omega$, o critério numérico é atendido.
+\end{caixaEx}
+\end{columns}
+\begin{caixaAt}
+$I_a$ não é simplesmente a corrente nominal do disjuntor. Deve vir da característica tempo--corrente e do tempo de desligamento exigido; DR pode participar da medida de proteção conforme o esquema.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Teste de DR — botão T e instrumento respondem perguntas diferentes}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.9cm}X X}
+\toprule
+Verificação & O que demonstra & Limitação \\
+\midrule
+Botão T do DR & mecanismo e circuito interno de teste têm condição de atuar & não mede tempo, corrente nem PE da instalação \\
+Testador no ponto & atuação para corrente/fase programadas e tempo medido & exige condição correta do circuito e método seguro \\
+Inspeção de tipo & DR correto para a forma de onda/carga & depende da especificação e marcação \\
+Rastreio de N & neutro passa pelo mesmo DR e não é compartilhado & precisa inspeção/continuidade do circuito \\
+Fuga operacional & margem entre fuga natural e sensibilidade & varia com equipamentos e regime \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Não repetir disparos indefinidamente sem investigar. Registrar corrente de teste, ângulo/fase quando aplicável, tempo, ponto ensaiado e critério da edição normativa/procedimento.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Aterramento — o método depende do que se quer medir}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.51\textwidth}
+\begin{tikzpicture}[scale=.72,every node/.style={font=\scriptsize}]
+\draw[very thick](-5,0)--(5,0);
+\draw[corNorma,line width=3pt](-3,0)--(-3,-2.2);\node[font=\tiny]at(-3,-2.5){eletrodo E};
+\draw[corAccent,line width=2pt](0,0)--(0,-1.4);\node[font=\tiny]at(0,-1.7){sonda P};
+\draw[corPrim,line width=2pt](3.5,0)--(3.5,-1.4);\node[font=\tiny]at(3.5,-1.7){sonda C};
+\node[draw=corDef,fill=corDef!7,minimum width=2cm](t)at(-.2,2){terrômetro};
+\draw[corNorma,thick](t)--(-3,0);\draw[corAccent,thick](t)--(0,0);\draw[corPrim,thick](t)--(3.5,0);
+\end{tikzpicture}
+\column{0.47\textwidth}
+\begin{itemize}
+\item queda de potencial mede o eletrodo com geometria adequada;
+\item alicate mede laço existente, não um eletrodo isolado qualquer;
+\item continuidade prova a ligação PE, não a resistência do solo;
+\item impedância de loop avalia caminho de falta do sistema;
+\item registrar umidade, posição das sondas e conexões existentes;
+\item comparar ao critério do esquema de aterramento/projeto.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Energização controlada — etapas e pontos de parada}
+\centering
+\begin{tikzpicture}[
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=1.8cm,minimum height=.68cm,align=center,font=\tiny},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](r)at(-5.1,0){Revisão final\\barreiras e cabos};
+\node[b](g)at(-3.05,0){Energizar DG\\sem cargas};
+\node[b](v)at(-1.0,0){Medir tensões\\e sequência};
+\node[b](c)at(1.05,0){Energizar\\circuito a circuito};
+\node[b](f)at(3.1,0){Testar função\\e proteção};
+\node[b](m)at(5.15,0){Aplicar carga\\e monitorar};
+\draw[a](r)--(g)--(v)--(c)--(f)--(m);
+\end{tikzpicture}
+\vspace{5mm}
+\begin{caixaAt}[title=Parar imediatamente se houver]
+Tensão inesperada, ruído, cheiro, aquecimento, desarme sem causa conhecida, corrente incompatível, indicação errada, perda de fase/neutro ou qualquer risco não controlado. Desenergizar pelo procedimento e investigar antes de repetir.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Tensão, sequência de fases e rotação}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.7cm}X X}
+\toprule
+Medição & Objetivo & Erro evitado \\
+\midrule
+F--N em cada fase & confirmar tensão de utilização e neutro & equipamento 127/220/230 V em tensão errada \\
+F--F entre pares & confirmar sistema trifásico e simetria & fase ausente ou ligação incorreta \\
+N--PE & detectar diferença anormal sob condição conhecida & neutro frouxo/corrente indevida no PE \\
+Sequência L1-L2-L3 & confirmar ordem de fases & inversão de motores/elevadores \\
+Corrente por fase/N & conferir carga e equilíbrio & sobrecarga ou harmônicas no neutro \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Corrigir rotação no ponto previsto do circuito, com instalação desenergizada. Não trocar fases aleatoriamente em vários quadros e perder a sequência documentada.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Ensaio funcional — verificar comando, falha e retorno}
+\scriptsize
+Para cada sistema, registrar:
+\begin{enumerate}
+\item condição inicial e permissivos;
+\item comando local, remoto e automático;
+\item indicação de ligado/desligado/falha;
+\item comportamento na perda e no retorno de energia;
+\item atuação de intertravamentos e limites;
+\item parada normal e de emergência quando aplicável;
+\item modo manual e automático sem comandos simultâneos;
+\item ajuste final de temporizadores, sensores e cenas;
+\item corrente, ruído, temperatura e anomalias;
+\item coerência entre função real e diagrama.
+\end{enumerate}
+\begin{caixaObs}
+Ensaiar também a condição de falha prevista. Um sistema que só funciona no cenário ideal ainda não foi comissionado.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Carga e termografia — resultado depende da condição}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{caixaNorma}[title=Registrar a condição]
+\begin{itemize}
+\item corrente e percentual de carga;
+\item tempo desde a energização;
+\item temperatura ambiente e ventilação;
+\item emissividade/distância/reflexos;
+\item ponto comparável entre fases;
+\item imagem térmica + imagem visível;
+\item equipamento e ajuste usados.
+\end{itemize}
+\end{caixaNorma}
+\column{0.50\textwidth}
+\begin{caixaAt}[title=Não concluir pelo “ponto vermelho”]
+Temperatura aparente isolada não prova defeito. Avaliar diferença entre componentes equivalentes, carga, limite do fabricante, conexão, ventilação e tendência. Corrigir a causa e repetir sob condição comparável.
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Folha de resultados — exemplo mínimo}
+\scriptsize
+\begin{tabularx}{\textwidth}{p{1.2cm}p{2.1cm}p{1.8cm}p{1.8cm}p{1.8cm}X}
+\toprule
+ID & Ponto/circuito & Ensaio & Resultado & Critério & Situação/ação \\
+\midrule
+E-01 & QD1--T03 & PE baixa R & 0,18 $\Omega$ & procedimento P-04 & conforme \\
+E-02 & C7 & isolação & 250 M$\Omega$ & procedimento P-05 & conforme \\
+E-03 & T03 & polaridade & L/N/PE corretos & diagrama R03 & conforme \\
+E-04 & C7 & DR & 22 ms & critério vigente & conforme \\
+E-05 & QD1 & tensão L1-N & 221,4 V & faixa de projeto & conforme \\
+E-06 & L12 & função & falha intermitente & sequência F-12 & refazer borne X2:07 \\
+\bottomrule
+\end{tabularx}
+\vspace{2mm}
+\begin{caixaObs}
+Anexar instrumento, número de série, calibração, responsável, data, revisão do projeto, temperatura/condição e evidência do retrabalho com novo ensaio.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Diagnóstico: do sintoma à causa comprovada}
+\centering
+\begin{tikzpicture}[scale=0.78,transform shape,
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.05cm,minimum height=.72cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](s)at(0,3.2){Definir sintoma\\e condição};
+\node[b](seg)at(-3.5,1.7){Tornar seguro\\e preservar evidência};
+\node[b](doc)at(3.5,1.7){Ler diagrama\\e histórico};
+\node[b](hip)at(0,.1){Criar hipóteses\\ordenadas};
+\node[b](test)at(-3.5,-1.5){Testar uma\\hipótese por vez};
+\node[b](corr)at(0,-2.8){Corrigir causa\\e atualizar documento};
+\node[b](re)at(3.5,-1.5){Reensaiar\\função e proteção};
+\draw[a](s)--(seg);\draw[a](s)--(doc);\draw[a](seg)--(hip);\draw[a](doc)--(hip);\draw[a](hip)--(test)--(corr)--(re);
+\end{tikzpicture}
+\begin{caixaAt}
+Troca aleatória de componentes cria novas falhas e apaga evidências. A causa só está comprovada quando explica o sintoma e o reensaio fecha sem efeitos colaterais.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Dossiê de entrega e operação}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{itemize}
+\item projeto as built e revisões encerradas;
+\item memoriais e quadros de cargas finais;
+\item diagramas, listas de cabos e bornes;
+\item certificados/fichas dos componentes;
+\item mapas de torque e inspeção;
+\item relatórios de continuidade, isolação, DR, aterramento e função;
+\item pendências e desvios formalmente aceitos;
+\item treinamento e contatos de suporte.
+\end{itemize}
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Plano de manutenção]
+\begin{itemize}
+\item periodicidade por criticidade/ambiente;
+\item inspeções e testes recorrentes;
+\item limpeza e acesso seguro;
+\item critérios de substituição;
+\item peças sobressalentes;
+\item controle de revisão;
+\item registro de falhas e intervenções.
+\end{itemize}
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Avaliação prática — comissionar um circuito completo}
+\scriptsize
+O aluno recebe planta, unifilar, quadro de cargas, esquema de ligação e circuito montado com uma falha. Deve:
+\begin{enumerate}
+\item validar revisão, fontes e análise de risco;
+\item inspecionar a montagem contra os documentos;
+\item propor o plano e os critérios de ensaio;
+\item provar ausência de tensão conforme procedimento;
+\item medir PE, isolação e polaridade;
+\item localizar e corrigir a falha com autorização;
+\item recompor, energizar de forma controlada e testar função;
+\item preencher relatório e atualizar o as built;
+\item explicar quais evidências permitem liberar o circuito.
+\end{enumerate}
+\begin{caixaAt}
+Critério de aprovação: nenhuma etapa de segurança pode ser compensada por um resultado funcional correto.
+\end{caixaAt}
+\end{frame}

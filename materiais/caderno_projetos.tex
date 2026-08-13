@@ -1,6 +1,6 @@
 %=====================================================================
-% INSTALACOES ELETRICAS — SEIS PROJETOS COMPLETOS
-% 2 residenciais | 2 comerciais | 2 industriais
+% INSTALACOES ELETRICAS — SETE PROJETOS COMPLETOS
+% 2 residenciais | 3 comerciais | 2 industriais
 % ABNT + Equatorial Maranhao
 %=====================================================================
 \documentclass[11pt,aspectratio=169]{beamer}
@@ -22,10 +22,10 @@
 \pgfplotsset{compat=1.18}
 \sisetup{locale=DE,per-mode=symbol,detect-all}
 \newcommand{\Disciplina}{Instalações Elétricas Prediais e Industriais}
-\newcommand{\TituloCurto}{6 Projetos}
+\newcommand{\TituloCurto}{7 Projetos}
 \input{estilo/beamer_estilo_casa.tex}
-\title{Instalações Elétricas — Seis Projetos Completos}
-\subtitle{2 residenciais, 2 comerciais e 2 industriais — ABNT + Equatorial Maranhão}
+\title{Instalações Elétricas — Sete Projetos Completos}
+\subtitle{2 residenciais, 3 comerciais e 2 industriais — ABNT + Equatorial Maranhão}
 \author{Coleção de Engenharia Elétrica}
 \institute{Material 03 — caderno de projetos}
 \date{Atualização: agosto de 2026}
@@ -35,12 +35,13 @@
 \small
 \begin{columns}[T,onlytextwidth]
 \column{0.49\textwidth}
-\begin{caixaProjeto}[title=Seis arquiteturas diferentes]
+\begin{caixaProjeto}[title=Sete arquiteturas diferentes]
 \begin{itemize}
 \item casa térrea com duas suítes;
 \item apartamento com varanda e duas suítes;
 \item edifício corporativo com elevador, escada e SPDA;
 \item centro empresarial e de treinamento;
+\item loja de shopping com projeto luminotécnico;
 \item indústria leve atendida em BT;
 \item indústria com subestação própria e SPDA.
 \end{itemize}
@@ -57,7 +58,7 @@ Os casos usam as normas ABNT aplicáveis e os documentos vigentes da Equatorial 
 \fill[corPrim] (current page.south west) rectangle (current page.north east);
 \fill[corAccent] (current page.south west) rectangle ++(0.18\paperwidth,\paperheight);
 \node[anchor=west,white,font=\fontsize{31}{35}\bfseries,text width=11cm] at ([xshift=2.5cm,yshift=0.95cm]current page.west) {Fim do caderno de projetos};
-\node[anchor=west,corAccent!30!white,font=\fontsize{14}{17}\bfseries,text width=11.5cm,align=left] at ([xshift=2.55cm,yshift=-1.35cm]current page.west) {Seis projetos distintos — Equatorial Maranhão};
+\node[anchor=west,corAccent!30!white,font=\fontsize{14}{17}\bfseries,text width=11.5cm,align=left] at ([xshift=2.55cm,yshift=-1.35cm]current page.west) {Sete projetos distintos — Equatorial Maranhão};
 \end{tikzpicture}
 \end{frame}
 \end{document}

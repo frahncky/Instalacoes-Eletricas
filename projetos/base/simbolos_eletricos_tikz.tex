@@ -1,0 +1,66 @@
+%=====================================================================
+% SIMBOLOS ELETRICOS TIKZ — DEFINICOES SEM SLIDES
+% Carregado no preambulo dos materiais que precisam desenhar plantas.
+%=====================================================================
+
+\providecommand{\SimLuz}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corAccent,thick] (0,0) circle (0.14);
+\draw[corAccent,thick] (-0.10,-0.10)--(0.10,0.10);
+\draw[corAccent,thick] (-0.10,0.10)--(0.10,-0.10);
+\end{scope}}
+\providecommand{\SimTUG}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corPrim,thick] (0,0) circle (0.13);
+\draw[corPrim,thick] (-0.16,0)--(0.16,0);
+\end{scope}}
+\providecommand{\SimTUGM}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corPrim,thick] (0,0) circle (0.13);
+\draw[corPrim,thick] (-0.16,0)--(0.16,0);
+\draw[corPrim,thick] (-0.16,0.065)--(0.16,0.065);
+\end{scope}}
+\providecommand{\SimTUE}[3]{\begin{scope}[shift={(#1,#2)}]
+\draw[corFix,thick] (0,0) circle (0.16);
+\node[font=\tiny\bfseries,corFix] at (0,0) {#3};
+\end{scope}}
+\providecommand{\SimInterruptor}[3]{\begin{scope}[shift={(#1,#2)}]
+\draw[corNorma,thick] (0,0) circle (0.11);
+\node[font=\tiny\bfseries,corNorma,anchor=west] at (0.14,0) {#3};
+\end{scope}}
+\providecommand{\SimQD}[3]{\begin{scope}[shift={(#1,#2)}]
+\draw[corPrim,fill=corDef!10,thick,rounded corners=1pt] (-0.32,-0.20) rectangle (0.32,0.20);
+\node[font=\tiny\bfseries] at (0,0) {#3};
+\end{scope}}
+\providecommand{\SimDados}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corDef,thick] (0,0.15)--(-0.14,-0.11)--(0.14,-0.11)--cycle;
+\node[font=\tiny\bfseries,corDef] at (0,-0.01) {D};
+\end{scope}}
+\providecommand{\SimMotor}[3]{\begin{scope}[shift={(#1,#2)}]
+\draw[corAt,thick] (0,0) circle (0.20);
+\node[font=\tiny\bfseries,corAt] at (0,0) {#3};
+\end{scope}}
+\providecommand{\SimVFD}[3]{\begin{scope}[shift={(#1,#2)}]
+\draw[corDef,fill=corDef!8,thick,rounded corners=1pt] (-0.28,-0.18) rectangle (0.28,0.18);
+\node[font=\tiny\bfseries,corDef] at (0,0) {#3};
+\end{scope}}
+\providecommand{\SimTomadaTri}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corFix,thick] (0,0) circle (0.16);
+\node[font=\tiny\bfseries,corFix] at (0,0) {$3\sim$};
+\end{scope}}
+\providecommand{\SimEmerg}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corAt,fill=corAt!12,thick] (0,0) circle (0.16);
+\node[font=\tiny\bfseries,corAt] at (0,0) {!};
+\end{scope}}
+
+\providecommand{\RotaL}[4]{\draw[corAccent!80!black,dashed,thick] (#1,#2)--(#3,#4);}
+\providecommand{\RotaT}[4]{\draw[corPrim!75,dashed,thick] (#1,#2)--(#3,#4);}
+\providecommand{\RotaF}[4]{\draw[corFix!80,dashed,thick] (#1,#2)--(#3,#4);}
+
+\providecommand{\CotaH}[4]{%
+\draw[thin] (#1,#3)--(#1,#3+0.28);
+\draw[thin] (#2,#3)--(#2,#3+0.28);
+\draw[{Latex}-{Latex},thin] (#1,#3+0.20)--(#2,#3+0.20)
+node[midway,fill=white,inner sep=1pt,font=\tiny]{#4};}
+\providecommand{\CotaV}[4]{%
+\draw[thin] (#3,#1)--(#3+0.28,#1);
+\draw[thin] (#3,#2)--(#3+0.28,#2);
+\draw[{Latex}-{Latex},thin] (#3+0.20,#1)--(#3+0.20,#2)
+node[midway,fill=white,inner sep=1pt,font=\tiny,rotate=90]{#4};}

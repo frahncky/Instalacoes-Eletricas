@@ -121,6 +121,15 @@
   \ifcsname Disciplina\endcsname\Disciplina\else\insertshorttitle\fi}
 \newcommand{\CasaRodapeDir}{%
   \ifcsname TituloCurto\endcsname\TituloCurto\else\insertshorttitle\fi}
+\newcommand{\CasaMetaCapa}{%
+  \ifcsname Disciplina\endcsname
+    \if\relax\detokenize\expandafter{\Disciplina}\relax
+    \else
+      \Disciplina\ \textbullet\ \insertdate
+    \fi
+  \else
+    \insertdate
+  \fi}
 \setbeamertemplate{footline}{%
   \leavevmode%
   \hbox{%
@@ -175,7 +184,7 @@
   \vspace{8mm}%
   {\color{white}\normalsize\insertauthor\par}%
   \vspace{1mm}%
-  {\color{white!70}\small\CasaRodapeEsq\ \textbullet\ \insertdate\par}%
+  {\color{white!70}\small\CasaMetaCapa\par}%
 }
 \setbeamertemplate{title page}[estilo da casa]
 

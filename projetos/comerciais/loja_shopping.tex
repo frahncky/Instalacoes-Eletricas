@@ -1,0 +1,582 @@
+%=====================================================================
+% PROJETO COMERCIAL — LOJA DE SHOPPING COM FOCO EM LUMINOTECNICA
+% Caso didatico completo: leitura, calculo, documentacao e execucao.
+%=====================================================================
+
+\section{Projeto Comercial — loja de shopping e luminotécnica}
+
+\newcommand{\LojaEnvelope}{%
+  \draw[arqExt] (0,0) rectangle (18,10);
+  \ArqParedeInt{0}{7.3}{18}{7.3}
+  \ArqParedeInt{7.0}{7.3}{7.0}{10}
+  \ArqParedeInt{10.0}{7.3}{10.0}{10}
+  \ArqParedeInt{15.0}{7.3}{15.0}{10}
+  \ArqParedeInt{11.7}{7.3}{11.7}{10}
+  \ArqParedeInt{13.35}{7.3}{13.35}{10}
+  \ArqJanH{0.25}{7.15}{0}
+  \ArqVaoH{7.15}{10.85}{0}
+  \ArqJanH{10.85}{17.75}{0}
+  \ArqPortaHDown{2.7}{7.3}{0.90}
+  \ArqPortaHDown{8.0}{7.3}{0.90}
+  \ArqPortaHDown{10.35}{7.3}{0.75}
+  \ArqPortaHDown{12.05}{7.3}{0.75}
+  \ArqPortaHDown{13.7}{7.3}{0.75}
+  \ArqPortaHDown{16.0}{7.3}{0.80}
+  \node[arqLabel] at (3.5,9.55){ESTOQUE};
+  \node[arqLabel] at (8.5,9.55){APOIO};
+  \node[arqSub] at (10.85,9.55){PROV. 1};
+  \node[arqSub] at (12.52,9.55){PROV. 2};
+  \node[arqSub] at (14.18,9.55){PROV. PCD};
+  \node[arqLabel] at (16.5,9.55){ELÉTRICA / TI};
+  \node[arqSub] at (9,0.45){ACESSO PELO MALL};
+  \CotaH{0}{18}{10.18}{18,00 m}
+  \CotaV{0}{10}{18.18}{10,00 m}}
+
+\newcommand{\LojaBase}{%
+  \LojaEnvelope
+  \draw[arqMob,rounded corners=2pt] (0.45,0.45) rectangle (3.1,1.15);
+  \draw[arqMob,rounded corners=2pt] (14.9,0.45) rectangle (17.55,1.15);
+  \node[arqSub] at (1.78,0.80){VITRINE A};
+  \node[arqSub] at (16.22,0.80){VITRINE B};
+  \foreach \x/\y in {3.0/2.4,7.4/2.4,11.8/2.4,3.0/4.6,7.4/4.6,11.8/4.6}{%
+    \draw[arqMob,rounded corners=1pt] (\x,\y) rectangle ++(2.4,0.8);}
+  \draw[arqMob,rounded corners=1pt] (14.8,5.35) rectangle (17.35,6.35);
+  \node[arqLabel] at (16.08,5.85){CAIXA / POS};
+  \foreach \y in {7.75,8.45,9.15}{\draw[arqEquip] (0.35,\y) rectangle (6.55,\y+0.25);}
+  \ArqDesk{7.45}{8.25}{2.1}{0.65}
+  \foreach \x in {10.3,11.95,13.6}{\draw[arqMob] (\x,8.0) rectangle ++(1.0,0.45);}
+  \node[arqLabel] at (8.8,6.8){ÁREA DE VENDAS};}
+
+\begin{frame}{Loja de shopping — o que o aluno precisa entregar}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Projeto]
+\begin{itemize}
+\item briefing, arquitetura e tarefas visuais;
+\item critérios luminotécnicos por zona;
+\item cálculo, seleção e arranjo das luminárias;
+\item teto refletido, comandos, cargas e circuitos;
+\item quadro, alimentador, unifilar e detalhes.
+\end{itemize}
+\end{caixaProjeto}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Execução e entrega]
+\begin{itemize}
+\item compatibilização com o manual do shopping;
+\item montagem de trilhos, drivers, quadro e comandos;
+\item focalização das luminárias de destaque;
+\item ensaios elétricos e medição de iluminância;
+\item as built, cenas, regulagens e comissionamento.
+\end{itemize}
+\end{caixaNorma}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Briefing e arquitetura da loja didática}
+\centering
+\begin{tikzpicture}[scale=0.44,every node/.style={font=\tiny}]
+\LojaBase
+\end{tikzpicture}
+\vspace{1mm}
+\begin{caixaObs}
+Unidade de \SI{180}{m^2}: frente envidraçada, área de vendas, duas vitrines, caixa, estoque, apoio, provadores e sala elétrica/TI. A alimentação nasce no quadro do lojista; o ponto de entrega interno é definido pelo shopping.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Documentos de entrada: não projetar a loja isoladamente}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.0cm}X X}
+\toprule
+Documento & Informação que deve ser lida & Decisão afetada \\
+\midrule
+Manual técnico do shopping & tensão, demanda concedida, curto, proteção, medição, horários e materiais & alimentador, QDL, seletividade e obra \\
+Projeto arquitetônico & layout, pé-direito, forro, vitrines, provadores e acessos & zonas, focos, comandos e cotas \\
+Projeto de incêndio & rota, iluminação/sinalização de emergência e sprinklers & teto refletido e circuitos de segurança \\
+Ar-condicionado & fan-coils, condensadoras, drenos e grelhas & carga, quadros e interferências \\
+Automação, segurança e TI & POS, rede, CFTV, alarme e controle & tomadas dedicadas, segregação e reserva \\
+Catálogos fotométricos & fluxo, distribuição, potência, IRC, CCT, UGR e vida & cálculo e especificação \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+A NT.00001 da distribuidora não dimensiona diretamente o circuito interno da loja. Primeiro vale o ponto de entrega e o manual técnico do empreendimento; a NBR 5410 continua aplicável à instalação de baixa tensão.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Normas e critérios: declarar a hierarquia}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{itemize}
+\item ABNT NBR 5410 — instalação elétrica em baixa tensão;
+\item ABNT NBR ISO/CIE 8995-1 — iluminação de ambientes de trabalho interiores;
+\item ABNT NBR 10898 — sistema de iluminação de emergência;
+\item normas do CBMMA, especialmente NT 18 e projeto aprovado;
+\item regras de acessibilidade e do código local aplicáveis;
+\item manual do shopping e fichas dos fabricantes.
+\end{itemize}
+\column{0.46\textwidth}
+\begin{caixaNorma}[title=Regra de uso]
+Confirmar a edição vigente e adquirir os documentos licenciados no início do executivo. Valores deste caso são \textbf{premissas didáticas}, não transcrição de tabelas normativas.
+\end{caixaNorma}
+\begin{caixaAt}
+Conflito entre critérios deve ser resolvido e registrado antes da obra; não escolher silenciosamente o valor mais conveniente.
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{A loja usa camadas de luz, não uma única malha}
+\centering
+\begin{tikzpicture}[
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.35cm,minimum height=0.78cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](amb)at(-4.6,1.2){Ambiente\\circulação e leitura geral};
+\node[b](ac)at(-1.55,1.2){Destaque\\produto e manequim};
+\node[b](vit)at(1.55,1.2){Vitrine\\atração e modelagem};
+\node[b](tar)at(4.6,1.2){Tarefa\\caixa, estoque, provador};
+\node[b,draw=corNorma,fill=corNorma!7](seg)at(0,-1.0){Emergência\\saída e abandono seguro};
+\draw[a](amb)--(ac)--(vit)--(tar);
+\draw[a](seg)--(0,0.45);
+\end{tikzpicture}
+\vspace{4mm}
+\begin{caixaObs}
+O ambiente fornece base uniforme; o destaque cria hierarquia; a vitrine comunica; a luz de tarefa permite conferir cor, preço e pagamento; a emergência permanece funcional quando a iluminação normal falha.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Metas do estudo luminotécnico}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.45cm}c c c X}
+\toprule
+Zona & $\overline{E}_m$ & Uniformidade & IRC & Critério complementar \\
+\midrule
+Área de vendas & 300 lx horizontal & $U_0\geq0{,}40$ & $R_a\geq90$ & contraste por destaque, sem ofuscamento incapacitante \\
+Exposição vertical & 500 lx vertical & verificar malha & $R_a\geq90$ & cor e modelagem coerentes com o produto \\
+Vitrine & 750 lx de referência & por cena & $R_a\geq90$ & controlar reflexo no vidro e luz do mall \\
+Caixa/POS & 500 lx & $U_0\geq0{,}60$ & $R_a\geq80$ & leitura de tela, dinheiro e etiquetas \\
+Provadores & 300 lx vertical & simetria facial & $R_a\geq90$ & evitar sombras duras e distorção de cor \\
+Estoque & 200 lx & $U_0\geq0{,}40$ & $R_a\geq80$ & leitura de etiquetas e prateleiras \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Metas são adotadas para o exercício. No projeto real, fechar requisitos com a edição vigente das normas, o cliente, o tipo de mercadoria e o manual do shopping.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Método dos lúmens — iluminação ambiente da área de vendas}
+\small
+\[
+N=\frac{E_m\,A}{\Phi_L\,UF\,MF}
+\]
+\begin{caixaEx}[title=Premissas do estudo]
+\begin{align*}
+A&=18\times7{,}3=131{,}4\ \mathrm{m^2}, & E_m&=300\ \mathrm{lx},\\
+\Phi_L&=3\,200\ \mathrm{lm}, & UF&=0{,}72,\quad MF=0{,}80.
+\end{align*}
+\[
+N=\frac{300\times131{,}4}{3\,200\times0{,}72\times0{,}80}=21{,}4
+\quad\Longrightarrow\quad \boxed{24\ \text{luminárias}}
+\]
+\end{caixaEx}
+\begin{caixaObs}
+Arredondar e distribuir não encerra o projeto: é obrigatório simular/verificar a malha, uniformidade, sombras, iluminância vertical, ofuscamento e interferências no teto.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{UF e MF não podem ser escolhidos por palpite}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{caixaNorma}[title=Fator de utilização — UF]
+Depende de:
+\begin{itemize}
+\item distribuição fotométrica da luminária;
+\item índice do recinto;
+\item refletâncias de teto, paredes e piso;
+\item plano de trabalho e geometria real.
+\end{itemize}
+Obter no arquivo/catálogo fotométrico ou no software validado.
+\end{caixaNorma}
+\column{0.50\textwidth}
+\begin{caixaNorma}[title=Fator de manutenção — MF]
+Depende de:
+\begin{itemize}
+\item depreciação do fluxo do LED;
+\item sujeira na luminária e no recinto;
+\item falha/substituição e regime de operação;
+\item intervalo e método de limpeza.
+\end{itemize}
+O memorial deve registrar o plano de manutenção associado.
+\end{caixaNorma}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Teto refletido — arranjo e identificação}
+\centering
+\begin{tikzpicture}[scale=0.44,every node/.style={font=\tiny}]
+\LojaEnvelope
+\foreach \x in {1.5,4.5,7.5,10.5,13.5,16.5}{
+  \foreach \y in {1.35,3.05,4.75,6.45}{
+    \draw[corAccent,fill=corAccent!12,rounded corners=1pt] (\x-0.28,\y-0.10) rectangle (\x+0.28,\y+0.10);}}
+\foreach \x/\y in {2.2/2.15,4.0/2.15,6.6/2.15,8.4/2.15,11.0/2.15,12.8/2.15,2.2/5.35,4.0/5.35,6.6/5.35,8.4/5.35,11.0/5.35,12.8/5.35,1.4/0.8,3.0/0.8,15.0/0.8,16.6/0.8,15.5/5.6,17.0/5.6}{
+  \draw[corFix,fill=corFix!10] (\x,\y) circle (0.13);}
+\foreach \x in {1.0,3.0,5.0}{\draw[corAccent,fill=corAccent!12] (\x,8.4) rectangle ++(0.8,0.16);}
+\foreach \x in {10.45,12.1,13.75}{\draw[corAccent,fill=corAccent!12] (\x,8.6) circle (0.13);}
+\SimQD{16.5}{8.55}{QDL}
+\draw[corAt,thick,-{Stealth}] (8.95,0.55)--(8.95,0.05);
+\node[corAt,font=\tiny\bfseries] at (9.5,0.35){SAÍDA};
+\end{tikzpicture}
+\vspace{0.5mm}
+\scriptsize Retângulos âmbar: ambiente L-A; círculos magenta: destaque L-D; fundo: estoque/provadores; QDL e saída permanecem acessíveis. A prancha executiva deve acrescentar cotas, códigos de circuito, altura, modelo e orientação.
+\end{frame}
+
+\begin{frame}{Luz de destaque — mirar o plano vertical correto}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{tikzpicture}[scale=0.82]
+\draw[very thick] (-0.2,0)--(-0.2,5.0);
+\draw[very thick] (-0.2,5.0)--(5.4,5.0);
+\draw[arqMob] (3.35,0) rectangle (4.75,3.0);
+\node[font=\scriptsize] at (4.05,1.5){expositor};
+\draw[corFix,fill=corFix!12] (2.0,4.85) circle (0.18);
+\draw[corFix!75,fill=corFix!8] (2.0,4.65)--(3.45,0.2)--(4.65,0.2)--cycle;
+\draw[dashed,corAccent] (2.0,4.65)--(4.05,1.5);
+\draw[corPrim,<->] (2.0,4.25) arc (270:305:0.65);
+\node[font=\tiny,corPrim] at (2.75,4.05){ângulo de foco};
+\end{tikzpicture}
+\column{0.48\textwidth}
+\begin{itemize}
+\item usar fotometria e ângulo de abertura reais;
+\item evitar foco atrás da pessoa, que cria sombra sobre o produto;
+\item reduzir reflexo especular em vidro, tela e embalagem;
+\item limitar luminância direta no campo visual;
+\item prever ajuste e travamento após o merchandising;
+\item registrar posição e direção no as built.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Qualidade da luz — especificação mínima rastreável}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.55cm}X X}
+\toprule
+Parâmetro & O que significa & Como fechar no projeto \\
+\midrule
+Fluxo e fotometria & quantidade e distribuição de luz & arquivo IES/LDT da referência ofertada \\
+Potência e corrente & carga real do circuito/driver & ficha do conjunto, inclusive perdas \\
+IRC e fidelidade & reprodução das cores do produto & $R_a$ e métricas adicionais exigidas pela marca \\
+CCT e consistência & aparência de cor e variação entre peças & temperatura escolhida e tolerância/binning \\
+Ofuscamento & desconforto por luminância elevada & posição, óptica, acabamento e avaliação do ambiente \\
+Flicker e estroboscopia & modulação perceptível ou por câmera & compatibilidade driver, dimerização e filmagem \\
+Vida e manutenção & depreciação e falhas do conjunto & LxBy, garantia, acesso e reposição compatível \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Não aceitar substituição apenas por “mesma potência”. Duas luminárias de 20 W podem produzir distribuições, ofuscamento, cor e durabilidade totalmente diferentes.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Cenas e comandos — o funcional antes da automação}
+\centering
+\begin{tikzpicture}[scale=0.84,transform shape,
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.15cm,minimum height=0.66cm,align=center,font=\scriptsize},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](q)at(0,3.5){QDL — circuitos de força};
+\node[b](ctl)at(0,2.25){Controlador / contatores\\relógio + interface};
+\node[b](amb)at(-4.5,0.6){C1 ambiente};
+\node[b](des)at(-2.25,-0.5){C2 destaque};
+\node[b](vit)at(0,0.6){C3 vitrine/fachada};
+\node[b](tar)at(2.25,-0.5){C4 caixa/provador};
+\node[b](est)at(4.5,0.6){C5 estoque/sensor};
+\draw[a](q)--(ctl);
+\foreach \x in {amb,des,vit,tar,est}{\draw[a](ctl)--(\x);}
+\end{tikzpicture}
+\vspace{2mm}
+\begin{caixaProjeto}[title=Cenas previstas]
+Limpeza (ambiente 100\%), abertura (ambiente + destaque), operação (todas as zonas úteis), vitrine após fechamento e desligamento geral com exceções declaradas. Emergência não depende do controlador de cenas.
+\end{caixaProjeto}
+\end{frame}
+
+\begin{frame}{Iluminação de emergência — sistema independente e coordenado}
+\centering
+\begin{tikzpicture}[scale=0.44,every node/.style={font=\tiny}]
+\LojaEnvelope
+\draw[corAt,line width=2.1pt,-{Stealth}] (3.0,8.5)--(3.0,6.9)--(8.9,6.9)--(8.9,0.15);
+\foreach \x/\y in {3.0/8.5,3.0/6.9,8.9/6.9,8.9/3.8,8.9/0.7}{\SimEmerg{\x}{\y}}
+\node[draw=corAt,fill=corAt!10,minimum width=1.2cm,minimum height=0.45cm] at (8.9,0.32){SAÍDA};
+\node[font=\tiny,corAt] at (5.9,7.15){rota de abandono do estudo};
+\end{tikzpicture}
+\vspace{1mm}
+\begin{caixaAt}
+Tipo de sistema, autonomia, níveis, espaçamento, alimentação e sinalização devem seguir o projeto de incêndio aprovado, a NBR 10898 e a NT 18 do CBMMA. O desenho da loja deve coincidir com o desenho de segurança do shopping.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Potência de iluminação — fechar pelo equipamento especificado}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.6cm}r r r X}
+\toprule
+Sistema & Quant. & Pot. unit. & Potência & Circuito \\
+\midrule
+Ambiente linear & 24 & 28 W & 672 W & C1 \\
+Destaque em trilho & 18 & 18 W & 324 W & C2 \\
+Vitrine & 8 & 24 W & 192 W & C3 \\
+Caixa/provadores & 10 & 12 W & 120 W & C4 \\
+Estoque/apoio & 6 & 18 W & 108 W & C5 \\
+Fachada/letreiro & 1 conjunto & 150 W & 150 W & C6 \\
+Emergência & 5 & 3 W & 15 W & CE \\
+\midrule
+\textbf{Total} & -- & -- & \textbf{1 581 W} & -- \\
+\bottomrule
+\end{tabularx}
+\[
+\mathrm{DPI}=\frac{1\,581}{180}=8{,}8\ \mathrm{W/m^2}
+\]
+\begin{caixaObs}
+Potência específica permite comparar alternativas, mas não comprova iluminância ou qualidade. Eficiência energética e desempenho visual precisam ser atendidos juntos.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Quadro de cargas da loja — hipótese didática}
+\scriptsize
+\begin{tabularx}{\textwidth}{c l c c c c X}
+\toprule
+Circ. & Uso & Fase & $P/S$ & $I_b$ & DJ & Condutor inicial \\
+\midrule
+C1 & ambiente & L1-N & 0,67 kW & 3,2 A & 10 A & 1,5 mm$^2$ \\
+C2 & destaque & L2-N & 0,32 kW & 1,6 A & 10 A & 1,5 mm$^2$ \\
+C3 & vitrine & L3-N & 0,19 kW & 0,9 A & 10 A & 1,5 mm$^2$ \\
+C4 & caixa/provadores & L1-N & 0,12 kW & 0,6 A & 10 A & 1,5 mm$^2$ \\
+C5 & estoque/apoio & L2-N & 0,11 kW & 0,5 A & 10 A & 1,5 mm$^2$ \\
+C6 & letreiro & L3-N & 0,15 kW & 0,7 A & 10 A & 1,5 mm$^2$ \\
+C7--C9 & TUG/POS/TI & L1/L2/L3-N & 4,0 kVA & -- & 16/20 A & 2,5 mm$^2$ \\
+C10 & climatização & 3F & 12,0 kW & 19,8 A & 25 A 3P & 6 mm$^2$ \\
+CE & emergência & circuito próprio & 0,02 kW & -- & projeto & projeto de incêndio \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Seções são ponto de partida. Recalcular por método de instalação, temperatura, agrupamento, harmônicas, queda, curto, proteção e terminal do equipamento.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Alimentador do lojista — corrente e critérios simultâneos}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+Hipóteses: $P_{dem}=17{,}2\ \mathrm{kW}$, $V=380\ \mathrm{V}$, $fp=0{,}92$, trifásico.
+\[
+I_b=\frac{17\,200}{\sqrt3\,380\,0{,}92}=28{,}4\ \mathrm{A}
+\]
+\begin{caixaEx}[title=Seleção preliminar]
+DJ 3P 32 A e cobre 10 mm$^2$, desde que:
+\[
+I_b\leq I_n\leq I_z.
+\]
+\end{caixaEx}
+\column{0.50\textwidth}
+Para $I_{z,tab}=57$ A, $k_T=0{,}87$ e $k_G=0{,}80$:
+\[
+I_z=57\times0{,}87\times0{,}80=39{,}7\ \mathrm{A}.
+\]
+Com $L=65$ m e cobre a quente, estimativa:
+\[
+\Delta V\%=\frac{100\sqrt3\rho L I\cos\varphi}{SV}=1{,}74\%.
+\]
+\begin{caixaAt}
+Confirmar curto, seletividade e orçamento de queda permitido pelo shopping.
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Balanceamento: ler circuito, fase e potência juntos}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.58\textwidth}
+\begin{tabular}{l r r r}
+\toprule
+Grupo monofásico & L1 & L2 & L3 \\
+\midrule
+Iluminação & 0,79 & 0,43 & 0,34 \\
+TUG de vendas & 0,70 & 0,70 & 0,60 \\
+POS/TI/segurança & 1,20 & 0,40 & 0,40 \\
+Reserva operacional & 0,50 & 0,50 & 0,50 \\
+\midrule
+\textbf{Total (kVA)} & \textbf{3,19} & \textbf{2,03} & \textbf{1,84} \\
+\bottomrule
+\end{tabular}
+\column{0.40\textwidth}
+\begin{caixaAt}[title=Leitura crítica]
+O quadro ainda está desequilibrado. Transferir parte de POS/TI ou TUG de L1 para L2/L3, respeitando continuidade, circuitos dedicados e operação.
+\end{caixaAt}
+\begin{caixaObs}
+Carga trifásica de climatização não corrige o desequilíbrio entre cargas monofásicas.
+\end{caixaObs}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Unifilar do QDL — da alimentação aos usos}
+\centering
+\begin{tikzpicture}[scale=0.84,transform shape,
+  b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=1.85cm,minimum height=0.62cm,align=center,font=\tiny},
+  a/.style={-{Stealth},thick,corPrim}]
+\node[b](orig)at(0,4.5){QD do shopping\\380/220 V};
+\node[b](alim)at(0,3.5){DJ origem + alimentador\\5G10 mm$^2$};
+\node[b](dg)at(0,2.5){QDL: DG 3P 32 A\\DPS + seccionamento};
+\node[b](dr1)at(-3.9,1.2){DR/RCBO grupo A\\conforme análise};
+\node[b](dr2)at(0,1.2){Barramento protegido\\climatização 3F};
+\node[b](dr3)at(3.9,1.2){DR/RCBO grupo B\\conforme análise};
+\node[b](c1)at(-5.0,-0.3){C1/C4\\L1-N};
+\node[b](c2)at(-3.0,-0.3){C2/C5\\L2-N};
+\node[b](c10)at(0,-0.3){C10 AC\\3F + PE};
+\node[b](c3)at(3.0,-0.3){C3/C6\\L3-N};
+\node[b](t)at(5.0,-0.3){C7--C9\\TUG/POS/TI};
+\node[b,draw=corNorma,fill=corNorma!7](pe)at(5.0,3.35){Barra PE\\BEP do shopping};
+\draw[a](orig)--(alim)--(dg);
+\draw[a](dg)--(dr1);\draw[a](dg)--(dr2);\draw[a](dg)--(dr3);
+\draw[a](dr1)--(c1);\draw[a](dr1)--(c2);\draw[a](dr2)--(c10);\draw[a](dr3)--(c3);\draw[a](dr3)--(t);
+\draw[corNorma,thick](pe)--(dg);
+\end{tikzpicture}
+\vspace{2mm}
+\begin{caixaObs}
+O executivo informa polos, curva, capacidade de interrupção, esquema de aterramento, ligação do DPS, barramentos de neutro por DR e terminais. “DPS + DR” sem esses dados não é diagrama executivo.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Detalhe de montagem — trilho, driver e manutenção}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{tikzpicture}[scale=0.80]
+\draw[very thick] (-0.4,4.8)--(6.0,4.8);
+\draw[fill=black!10,draw=black!50] (0.4,4.45) rectangle (5.2,4.75);
+\draw[corPrim,thick] (0.8,4.60)--(4.8,4.60);
+\draw[fill=corDef!10,draw=corPrim,rounded corners] (1.0,3.45) rectangle (3.0,4.05);
+\node[font=\tiny] at (2.0,3.75){driver acessível};
+\draw[corPrim,thick] (2.0,4.45)--(2.0,4.05);
+\draw[fill=corFix!12,draw=corFix,thick] (4.0,3.7) circle (0.35);
+\draw[corFix,thick] (4.0,4.45)--(4.0,4.05);
+\draw[corFix!55,fill=corFix!7] (4.0,3.35)--(3.15,0.4)--(4.85,0.4)--cycle;
+\draw[dashed,corAt] (0.2,3.15) rectangle (3.35,4.2);
+\node[font=\tiny,corAt] at (1.8,2.9){alçapão / acesso};
+\node[font=\tiny] at (4.0,0.1){produto};
+\end{tikzpicture}
+\column{0.46\textwidth}
+\begin{enumerate}
+\item confirmar capacidade e continuidade do trilho;
+\item fixar na estrutura prevista, não apenas na placa do forro;
+\item alimentar com caixa/terminal acessível;
+\item garantir ventilação e acesso ao driver;
+\item identificar circuito e fase;
+\item orientar, focalizar e travar o projetor;
+\item registrar modelo, óptica e posição final.
+\end{enumerate}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Compatibilização do teto — checagem antes de furar}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.0cm}X X}
+\toprule
+Interferência & Risco & Solução de projeto \\
+\midrule
+Sprinkler e detector & obstrução, sombra ou descumprimento do incêndio & respeitar cobertura e afastamentos do sistema aprovado \\
+Difusor de ar & oscilação, sujeira, condensação ou desconforto & coordenar eixo e distância com HVAC \\
+Alçapão & equipamento inacessível & reservar faixa de manutenção e raio de abertura \\
+Estrutura/suporte & fixação sem capacidade & indicar substrato, suporte e carga \\
+Comunicação visual & sombra, reflexo ou conflito de altura & verificar corte, elevação e cena noturna \\
+Eletrocalha/dados & cruzamentos e segregação inadequada & compatibilizar rota e caixas de derivação \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Uma planta de teto refletido sem as demais disciplinas é apenas um desenho de intenção. A liberação de obra exige sobreposição e análise de interferências.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Comissionamento luminotécnico — medir uma malha, não um ponto}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{tikzpicture}[scale=0.72]
+\draw[very thick] (0,0) rectangle (7.2,4.8);
+\foreach \x in {0.9,2.7,4.5,6.3}{\foreach \y in {0.8,2.4,4.0}{\fill[corAccent] (\x,\y) circle (2.4pt);}}
+\draw[dashed,corPrim] (0.9,0.8) grid[xstep=1.8,ystep=1.6] (6.3,4.0);
+\node[font=\scriptsize] at (3.6,-0.45){malha no plano de medição};
+\end{tikzpicture}
+\column{0.50\textwidth}
+\begin{enumerate}
+\item estabilizar a instalação e registrar a cena;
+\item controlar ou registrar contribuição da luz externa;
+\item usar luxímetro adequado, orientado e sem sombra do operador;
+\item medir todos os pontos e a vertical onde aplicável;
+\item calcular média, mínimo e uniformidade;
+\item ajustar focos, cenas e dimerização;
+\item repetir e anexar resultados ao comissionamento.
+\end{enumerate}
+\[
+U_0=\frac{E_{min}}{\overline{E}}.
+\]
+\end{columns}
+\end{frame}
+
+\begin{frame}{Exemplo de aceitação — interpretar os números}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.55\textwidth}
+\begin{tabular}{c r@{\quad}c r@{\quad}c r}
+\toprule
+Ponto & lx & Ponto & lx & Ponto & lx \\
+\midrule
+1 & 322 & 5 & 301 & 9 & 315 \\
+2 & 336 & 6 & 289 & 10 & 298 \\
+3 & 310 & 7 & 274 & 11 & 307 \\
+4 & 295 & 8 & 281 & 12 & 324 \\
+\bottomrule
+\end{tabular}
+\[
+\overline{E}=304\ \mathrm{lx},\qquad E_{min}=274\ \mathrm{lx},\qquad U_0=0{,}90.
+\]
+\column{0.43\textwidth}
+\begin{caixaEx}[title=Conclusão do exemplo]
+A meta horizontal de 300 lx e a uniformidade adotada foram atendidas pela média/mínimo medidos.
+\end{caixaEx}
+\begin{caixaAt}
+Isso ainda não aceita a loja inteira: conferir vertical de produtos, vitrine, caixa, provadores, emergência, ofuscamento, cor, cenas e potência.
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Entrega executiva da loja — conjunto mínimo}
+\small
+\begin{enumerate}
+\item planta de pontos e teto refletido, cotados e compatibilizados;
+\item legenda, códigos, detalhes de fixação e cortes relevantes;
+\item memória luminotécnica, arquivos fotométricos e critérios;
+\item quadro de cargas, balanceamento, alimentador e queda;
+\item unifilar, diagrama de comandos/cenas e lista de cabos;
+\item especificação de luminárias, drivers, trilhos e controles;
+\item lista de materiais e plano de montagem por etapa;
+\item relatórios de ensaios elétricos e medições luminotécnicas;
+\item as built, regulagens finais, cenas e plano de manutenção.
+\end{enumerate}
+\begin{caixaProjeto}[title=Competência avaliada]
+O aluno deve conseguir localizar um ponto na planta, achar seu circuito no quadro, interpretar sua ligação no diagrama, executar a montagem, medir o resultado e justificar qualquer divergência.
+\end{caixaProjeto}
+\end{frame}
+
+\begin{frame}{Exercício de leitura integrada — loja de shopping}
+\small
+Sem alterar as premissas, produza uma revisão R01 que:
+\begin{enumerate}
+\item transfira cargas monofásicas para reduzir o desequilíbrio;
+\item identifique na planta todas as luminárias de C2 e sua orientação;
+\item acrescente as referências cruzadas entre teto, unifilar e detalhe de trilho;
+\item indique quais circuitos permanecem após o fechamento da loja;
+\item estabeleça uma malha de medição para vitrine e provadores;
+\item atualize quadro, lista de cabos, lista de materiais e memorial;
+\item gere uma ordem de serviço de montagem e uma ficha de comissionamento.
+\end{enumerate}
+\begin{caixaAt}
+Critério de correção: a revisão deve permanecer coerente em todos os documentos. Alterar apenas a planta não vale como projeto revisado.
+\end{caixaAt}
+\end{frame}
