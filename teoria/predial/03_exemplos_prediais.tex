@@ -33,7 +33,7 @@ $P=\SI{5.5}{kW}$, $V=\SI{220}{V}$:
 \[
 I_b=\frac{5500}{220}=\SI{25}{A}.
 \]
-Para o caso-base residencial, utiliza-se circuito dedicado, Cu 6 mm$^2$ e DJ 32 A, após as verificações de capacidade de condução e queda.
+Para este exemplo de 5,5 kW, adota-se inicialmente circuito dedicado, Cu 6 mm$^2$ e DJ 32 A, após as verificações de capacidade de condução e queda. O projeto residencial adiante usa chuveiros de 4,5 kW e outra seleção.
 \end{caixaEx}
 \column{0.49\textwidth}
 \begin{caixaNorma}[title=Proteção adicional]
@@ -51,20 +51,20 @@ Não escolher seção apenas por uma tabela de potência de chuveiro. Compriment
 \column{0.52\textwidth}
 No projeto residencial desenvolvido neste material:
 \[
-P_A=\SI{6.60}{kW},\quad P_B=\SI{6.66}{kW},\quad P_C=\SI{6.62}{kW}.
+S_A=\SI{11.36}{kVA},\qquad S_B=S_C=\SI{11.30}{kVA}.
 \]
 Em 220 V fase-neutro:
 \[
-I_A=\SI{30.0}{A},\quad I_B\approx\SI{30.3}{A},\quad I_C\approx\SI{30.1}{A}.
+I_A\approx\SI{51.6}{A},\qquad I_B=I_C\approx\SI{51.4}{A}.
 \]
 \column{0.46\textwidth}
 \begin{caixaProjeto}[title=Distribuição]
 \begin{itemize}
-\item A: C3 + C7;
-\item B: C2 + C4 + C5 + C6 + C9;
-\item C: C1 + C8 + C10 + C11.
+\item A: C1+C3+C7+C9+C13+C16;
+\item B: C2+C4+C10+C12+C15;
+\item C: C5+C6+C8+C11+C14.
 \end{itemize}
-A soma das três fases fecha exatamente com os \SI{19.88}{kW} instalados do estudo.
+A soma fecha com os 16 circuitos e mantém um chuveiro em cada fase. Este é o balanceamento dos valores instalados; cenários de demanda também devem ser verificados.
 \end{caixaProjeto}
 \end{columns}
 \end{frame}
@@ -75,12 +75,12 @@ A soma das três fases fecha exatamente com os \SI{19.88}{kW} instalados do estu
 \column{0.50\textwidth}
 Carga instalada do projeto:
 \[
-P_{inst}=\SI{19.88}{kW}.
+P_{inst,eq}=\SI{33.96}{kW}.
 \]
-A NT.00001.EQTL Rev.09 enquadra a faixa de 12,1 a 24 kW, para a tabela de 220/380 V, em ligação trifásica com disjuntor termomagnético de entrada de 40 A.
+A NT.00001.EQTL Rev.09 enquadra a faixa de 24,1 a 38 kW, na Tabela 1 de 220/380 V, em ligação trifásica com disjuntor termomagnético de entrada de 63 A.
 \column{0.48\textwidth}
 \begin{caixaNorma}[title=No Maranhão]
-A ligação trifásica urbana é 380/220 V, 3F+N. A mesma tabela indica 6 mm$^2$ de cobre como mínimo do condutor do cliente no padrão correspondente.
+A ligação trifásica urbana é 380/220 V, 3F+N. A mesma tabela indica 10 mm$^2$ de cobre como mínimo do condutor do cliente no padrão correspondente.
 \end{caixaNorma}
 \begin{caixaAt}
 O alimentador interno é recalculado pela NBR 5410; não se copia automaticamente o mínimo do padrão da concessionária.
@@ -92,11 +92,11 @@ O alimentador interno é recalculado pela NBR 5410; não se copia automaticament
 \small
 \begin{columns}[T,onlytextwidth]
 \column{0.49\textwidth}
-Se ao projeto de $\SI{19.88}{kW}$ for acrescentado um SAVE de $\SI{7.4}{kW}$:
+Se ao projeto de $\SI{33.96}{kW}$ for acrescentado um SAVE de $\SI{7.4}{kW}$:
 \[
-P_{inst,novo}=19{,}88+7{,}4=\SI{27.28}{kW}.
+P_{inst,novo}=33{,}96+7{,}40=\SI{41.36}{kW}.
 \]
-O enquadramento da entrada precisa ser revisto.
+O exemplo passa à faixa de 38,1 a 48 kW, associada a 80 A na Tabela 1; o enquadramento da entrada precisa ser revisto.
 \column{0.49\textwidth}
 \begin{caixaProjeto}[title=Consequência]
 Além do novo circuito e da capacidade do QD/alimentador, a conexão da estação de recarga deve observar a NT.00042.EQTL Rev.04 e eventual necessidade de aumento de carga perante a distribuidora.

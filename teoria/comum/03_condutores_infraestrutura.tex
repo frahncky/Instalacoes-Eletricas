@@ -102,17 +102,19 @@ Não reduzir o neutro automaticamente em escritórios, data centers, laboratóri
 \begin{columns}[T,onlytextwidth]
 \column{0.53\textwidth}
 \begin{align*}
-\Delta V_{1\phi}&\approx2IL(R\cos\varphi+X\sen\varphi)\\
-\Delta V_{3\phi}&\approx\sqrt3IL(R\cos\varphi+X\sen\varphi)\\
+\Delta V_{1\phi}&\approx2IL(R'\cos\varphi+X'\sen\varphi)\\
+\Delta V_{3\phi}&\approx\sqrt3IL(R'\cos\varphi+X'\sen\varphi)\\
 \Delta V(\%)&=100\frac{\Delta V}{V_n}
 \end{align*}
 \begin{itemize}
-\item Manter unidades coerentes: $R$, $X$ e comprimento.
+\item $L$ é o comprimento de ida; $R'$ e $X'$ são valores por unidade de comprimento, na condição de operação considerada.
+\item Em $1\phi$, o fator 2 já representa ida e retorno; não duplicar novamente o comprimento.
+\item Usar $V_n=V_{FN}$ no circuito monofásico e $V_n=V_{LL}$ no trifásico.
 \item Circuitos longos podem ser dimensionados pela queda, não pela ampacidade.
 \end{itemize}
 \column{0.45\textwidth}
 \begin{caixaEx}
-Trifásico: $I=\SI{40}{A}$, $L=\SI{80}{m}$, $R=\SI{3.08}{\ohm/km}$, $X=\SI{0.08}{\ohm/km}$, $fp=0{,}85$.
+Trifásico: $I=\SI{40}{A}$, $L=\SI{80}{m}$, $R'=\SI{3.08}{\ohm/km}$, $X'=\SI{0.08}{\ohm/km}$, $fp=0{,}85$.
 \[
 \Delta V\approx\SI{14.7}{V}\Rightarrow 3{,}9\%\;@\;\SI{380}{V}.
 \]
@@ -158,6 +160,33 @@ S\ge\frac{4000\sqrt{0{,}2}}{115}\approx\SI{15.6}{mm^2}.
 \]
 Escolhe-se seção comercial e verifica-se o conjunto de critérios.
 \end{caixaEx}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Condutor de proteção: seção também é calculada}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{caixaNorma}[title=Método tabular simplificado]
+Para condutores de fase e PE do mesmo material e nas condições previstas pelo método:
+\[
+S_{PE}=\begin{cases}
+S_F, & S_F\le\SI{16}{mm^2}\\
+\SI{16}{mm^2}, & \SI{16}{mm^2}<S_F\le\SI{35}{mm^2}\\
+S_F/2, & S_F>\SI{35}{mm^2}
+\end{cases}
+\]
+\end{caixaNorma}
+\column{0.48\textwidth}
+\begin{caixaAt}[title=O que ainda precisa fechar]
+\begin{itemize}
+\item seção mínima e proteção mecânica;
+\item condição adiabática $S\ge I_k\sqrt{t}/k$;
+\item impedância do caminho de falta e tempo de desligamento;
+\item conexões, continuidade e identificação;
+\item requisitos específicos de equipotencialização.
+\end{itemize}
+\end{caixaAt}
 \end{columns}
 \end{frame}
 

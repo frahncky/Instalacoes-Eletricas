@@ -42,25 +42,114 @@
 \vspace{0.4mm}\scriptsize Entrada pelo hall comum; lavabo voltado ao foyer; cozinha integrada à sala; serviço acessado pela cozinha; B1/B2 por dentro das suítes, com portas de correr; varanda pela sala.
 \end{frame}
 
-\begin{frame}{Residencial II — elétrica sobre a planta refinada}
+\begin{frame}{Residencial II — iluminação A1/A2}
 \centering\begin{tikzpicture}[scale=0.53,every node/.style={font=\tiny}]
 \AptoFinalBase\SimQD{6.85}{3.30}{QD-A}
-\foreach \x/\y in {1.45/2.8,3.35/1,1.5/6,3.35/8,4.7/4.3,5.9/2.9,8.5/1.9,11/1.9,8/5.1,10.1/6.5,13/6.6}{\SimLuz{\x}{\y}}
-\foreach \x/\y in {0.25/0.55,0.25/3.65,3.85/3.65,0.25/4.85,0.25/8.55,3.85/8.55,5.55/4.15,7.3/4.15,9.5/4.15,11.6/4.4,11.6/8.5,12.35/4.5,13.65/8.6}{\SimTUG{\x}{\y}}
-\foreach \x/\y in {7.65/0.25,8.65/0.25,9.55/1.5,10.25/0.35,11.55/1.5}{\SimTUGM{\x}{\y}}
-\SimTUE{3.4}{0.4}{CH}\SimTUE{3.4}{8.55}{CH}\SimTUE{8.9}{0.35}{FO}\SimTUE{10.7}{0.45}{LR}\SimTUE{0.3}{3.1}{AC}\SimTUE{0.3}{7.95}{AC}\SimTUE{11.55}{7.8}{AC}
-\end{tikzpicture}\end{frame}
+\foreach \x/\y in {1.45/2.8,3.35/1,1.5/6,3.35/8,4.7/4.3,6.2/1.2,5.9/2.9,8.5/1.9,11/1.9,8/5.1,10.1/6.5,13/6.6}{\SimLuz{\x}{\y}}
+\draw[corAccent!80!black,dashed,thick] (6.85,3.30)--(8.0,5.1)--(10.1,6.5)--(13,6.6);
+\draw[corAccent!80!black,dashed,thick] (6.85,3.30)--(8.5,1.9)--(11,1.9);
+\draw[corAccent!55!black,dashed,thick] (6.85,3.30)--(6.2,1.2)--(5.9,2.9)--(4.7,4.3)--(1.5,6)--(3.35,8);
+\draw[corAccent!55!black,dashed,thick] (4.7,4.3)--(1.45,2.8)--(3.35,1);
+\node[font=\tiny\bfseries,fill=white,inner sep=1pt,corAccent!80!black] at (9.5,4.8){A1};
+\node[font=\tiny\bfseries,fill=white,inner sep=1pt,corAccent!55!black] at (3.2,4.3){A2};
+\end{tikzpicture}
+\vspace{0.3mm}\scriptsize Previsão: A1 = 0,94 kVA e A2 = 0,94 kVA. A potência mínima total é 1,88 kVA, calculada pelas áreas e pelos acréscimos completos de 4 m$^2$.
+\end{frame}
 
-\begin{frame}{Residencial II — cargas e interface EMUC}
+\begin{frame}{Residencial II — 27 TUG e sete cargas específicas}
+\centering\begin{tikzpicture}[scale=0.53,every node/.style={font=\tiny}]
+\AptoFinalBase\SimQD{6.85}{3.30}{QD-A}
+% A3: suites, hall, foyer, sala e varanda — 16 pontos
+\foreach \x/\y in {0.25/0.55,0.25/4.15,2.35/0.25,3.95/4.15,0.25/4.85,0.25/8.75,2.35/8.75,3.95/4.65,4.35/4.30,5.35/0.55,5.45/4.05,7.40/4.05,9.50/4.05,11.70/4.10,11.70/8.70,13.70/8.70}{\SimTUG{\x}{\y}}
+% A4 cozinha, A5 servico, A6 banheiros
+\foreach \x/\y in {7.45/0.25,8.55/0.25,9.75/1.50,7.35/3.55}{\SimTUGM{\x}{\y}}
+\foreach \x/\y in {10.15/0.25,11.75/0.25,10.15/3.55,11.75/3.55}{\SimTUGM{\x}{\y}}
+\foreach \x/\y in {3.95/1.65,3.95/7.15,5.45/3.50}{\SimTUG{\x}{\y}}
+% A7--A13
+\SimTUE{3.4}{0.4}{A7}\SimTUE{3.4}{8.55}{A8}\SimTUE{8.9}{0.35}{A9}\SimTUE{10.7}{0.45}{A10}
+\SimTUE{0.3}{3.1}{A11}\SimTUE{0.3}{7.95}{A12}\SimTUE{11.55}{7.8}{A13}
+\end{tikzpicture}
+\vspace{0.3mm}\tiny A3 áreas secas/varanda (16) · A4 cozinha (4) · A5 serviço (4) · A6 banheiros/lavabo (3) · A7--A8 chuveiros · A9 forno · A10 lavadora · A11--A13 ar-condicionado.
+\end{frame}
+
+\begin{frame}[shrink=8]{Residencial II — memória dos mínimos por ambiente}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.35cm}c c c c >{\centering\arraybackslash}X}
+\toprule
+Ambiente & Área (m$^2$) & Perím. (m) & Luz (VA) & TUG & TUG (VA)\\
+\midrule
+Suíte 2 / B2 & 15,1 / 3,4 & 17,2 / próprio & 220 / 100 & 4 / 1 & 400 / 600\\
+Suíte master / B1 & 15,8 / 3,5 & 17,6 / próprio & 220 / 100 & 4 / 1 & 400 / 600\\
+Hall íntimo & 4,2 & critério por área & 100 & 1 & 100\\
+Foyer & 5,4 & critério por área & 100 & 1 & 100\\
+Lavabo & 2,2 & critério próprio & 100 & 1 & 600\\
+Sala/jantar & 35,4 & 24,0 & 520 & 5 & 500\\
+Cozinha & 10,6 & 13,2 & 160 & 4 & 1.900\\
+Serviço & 7,6 & 11,6 & 100 & 4 & 1.900\\
+Varanda & 10,0 & ao menos uma & 160 & 1 & 100\\
+\midrule
+\textbf{Total} & -- & -- & \textbf{1.880} & \textbf{27} & \textbf{7.200}\\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}[shrink=6]{Residencial II — circuitos A1 a A6}
+\scriptsize
+\begin{tabularx}{\textwidth}{c p{3.5cm} c c c c c X}
+\toprule
+C & Uso & $S$ & $I_b$ & Cu & DJ & Fase & Solução adotada\\
+\midrule
+A1 & Luz social/cozinha/serviço/varanda & 0,94 kVA & 4,3 A & 1,5 mm$^2$ & 10 A & A & RCBO 30 mA\\
+A2 & Luz íntima/foyer/lavabo & 0,94 kVA & 4,3 A & 1,5 mm$^2$ & 10 A & B & RCBO 30 mA\\
+A3 & TUG áreas secas e varanda & 1,60 kVA & 7,3 A & 2,5 mm$^2$ & 16 A & C & RCBO 30 mA\\
+A4 & TUG cozinha & 1,90 kVA & 8,6 A & 2,5 mm$^2$ & 16 A & B & RCBO 30 mA\\
+A5 & TUG serviço & 1,90 kVA & 8,6 A & 2,5 mm$^2$ & 16 A & C & RCBO 30 mA\\
+A6 & TUG banheiros/lavabo & 1,80 kVA & 8,2 A & 2,5 mm$^2$ & 16 A & C & RCBO 30 mA\\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}[shrink=6]{Residencial II — circuitos A7 a A13}
+\scriptsize
+\begin{tabularx}{\textwidth}{c p{3.1cm} c c c c c X}
+\toprule
+C & Equipamento & $P$ & $I_b$ & Cu & DJ & Fase & Proteção/observação\\
+\midrule
+A7 & Chuveiro B2 & 4,50 kW & 20,5 A & 4 mm$^2$ & 25 A & A & dedicado; RCBO 30 mA\\
+A8 & Chuveiro B1 & 4,50 kW & 20,5 A & 4 mm$^2$ & 25 A & B & dedicado; RCBO 30 mA\\
+A9 & Forno elétrico & 3,50 kW & 15,9 A & 4 mm$^2$ & 20 A & C & dedicado; RCBO 30 mA\\
+A10 & Lavadora & 1,20 kW & 5,5 A & 2,5 mm$^2$ & 16 A & B & dedicado; RCBO 30 mA\\
+A11--A13 & Ar-condicionado & 3$\times$1,00 kW & 4,5 A cada & 2,5 mm$^2$ & 16 A & A/A/A & dedicados; fabricante\\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Seleções iniciais: recalcular $I_z$, agrupamento, queda, curto, capacidade de interrupção e requisitos do fabricante. A proteção diferencial adotada deve ser compatível com cargas eletrônicas/inverter.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Residencial II — balanceamento e interface EMUC}
 \small\begin{columns}[T,onlytextwidth]
-\column{0.49\textwidth}\begin{caixaProjeto}[title=Unidade do estudo]\begin{itemize}\item iluminação: 1,4 kVA;\item TUG: 4,6 kVA;\item 2 chuveiros: 9 kW;\item forno: 3,5 kW;\item lavadora: 1,2 kW;\item 3 ar-cond.: 3 kW.\end{itemize}\end{caixaProjeto}
-\column{0.49\textwidth}\begin{caixaNorma}[title=Edifício multifamiliar]Centro de medição, prumadas e proteção geral são definidos conforme a NT.00004.EQTL vigente. O QD-A fica próximo à entrada e fora dos banheiros.\end{caixaNorma}
-\end{columns}\end{frame}
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Unidade revisada]
+\begin{align*}
+S_A&=\SI{8.44}{kVA}\;(\SI{38.4}{A})\\
+S_B&=\SI{8.54}{kVA}\;(\SI{38.8}{A})\\
+S_C&=\SI{8.80}{kVA}\;(\SI{40.0}{A})
+\end{align*}
+Total equivalente: \SI{25.78}{kW}. Proteção de 63 A é a premissa inicial da unidade. Para esta ilustração, os VA de previsão foram tomados numericamente como W; a declaração real usa potências ativas nominais. Verificar também cenários de demanda, pois o balanceamento instalado concentra os três aparelhos de ar-condicionado na fase A.
+\end{caixaProjeto}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Edifício multifamiliar]
+Centro de medição, demanda do conjunto, prumadas, queda, proteção geral e solução de conexão são definidos pela \textbf{NT.00004.EQTL Rev.08} e seu Anexo I vigente. Não multiplicar a carga desta unidade pelo número de apartamentos sem aplicar o método do empreendimento.
+\end{caixaNorma}
+\end{columns}
+\end{frame}
 
 \begin{frame}{Residencial II — unifilar da unidade}
 \centering\begin{tikzpicture}[scale=0.74,every node/.style={font=\tiny}]
 \tikzset{b/.style={draw=corPrim,fill=corDef!8,rounded corners,minimum width=2cm,minimum height=0.56cm,align=center}}
-\node[b](cm)at(0,4.2){Centro de medição\\EMUC};\node[b](pr)at(0,3.3){Prumada / alimentador};\node[b](qd)at(0,2.4){QD-A\\DG + DPS + DR/RCBO};
-\node[b](l)at(-3.6,0.9){luz/TUG};\node[b](ch)at(-1.2,0.9){chuveiros};\node[b](co)at(1.2,0.9){cozinha/serviço};\node[b](ac)at(3.6,0.9){climatização};
-\draw[-{Stealth},thick,corPrim](cm)--(pr)--(qd);\foreach \x in {l,ch,co,ac}{\draw[-{Stealth},thick](qd)--(\x);}\draw[corNorma,thick](qd.east)--(5,2.4)--(5,-0.2)node[ground]{};
+\node[b](cm)at(0,4.4){Centro de medição\\EMUC};\node[b](pr)at(0,3.5){Prumada 3F+N+PE};\node[b](qd)at(0,2.55){QD-A\\DG 3P 63 A + DPS};
+\node[b](l)at(-3.6,0.9){A1--A6\\luz/TUG + RCBO};\node[b](ch)at(-1.2,0.9){A7--A8\\chuveiros};\node[b](co)at(1.2,0.9){A9--A10\\forno/lavadora};\node[b](ac)at(3.6,0.9){A11--A13\\climatização};
+\node[b,draw=corNorma,fill=corNorma!7](bep)at(4.8,2.9){BEP do edifício\\PE/equipot.};
+\draw[-{Stealth},thick,corPrim](cm)--(pr)--(qd);\foreach \x in {l,ch,co,ac}{\draw[-{Stealth},thick](qd)--(\x);}\draw[corNorma,thick](pr)--(bep);\draw[corNorma,thick](qd)--(bep);\draw[corNorma,thick](bep.south)--(4.8,1.55)node[ground]{};
 \end{tikzpicture}\end{frame}

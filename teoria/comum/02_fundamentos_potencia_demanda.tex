@@ -27,20 +27,21 @@ V&=\frac{V_m}{\sqrt{2}},\qquad I=\frac{I_m}{\sqrt{2}}\\
 \end{columns}
 \end{frame}
 
-\begin{frame}{Potência ativa, reativa e aparente}
+\begin{frame}{Potência em regime senoidal e com distorção}
 \small
 \begin{columns}[T,onlytextwidth]
 \column{0.50\textwidth}
+\textbf{Monofásico senoidal:}
 \begin{align*}
-S &= VI \quad [\si{VA}]\\
+|S| &= VI \quad [\si{VA}]\\
 P &= VI\cos\varphi \quad [\si{W}]\\
 Q &= VI\sen\varphi \quad [\si{var}]\\
-S^2 &= P^2+Q^2,\qquad fp=\frac{P}{S}
+|S|^2 &= P^2+Q^2,\qquad fp=\cos\varphi
 \end{align*}
 \begin{itemize}
 \item $P$: potência convertida em trabalho, calor, luz etc.
 \item $Q$: intercâmbio de energia reativa.
-\item $S$: capacidade elétrica exigida de cabos, quadros e transformadores.
+\item $|S|$: potência aparente usada na solicitação térmica dos componentes.
 \end{itemize}
 \column{0.48\textwidth}
 \centering
@@ -51,10 +52,13 @@ S^2 &= P^2+Q^2,\qquad fp=\frac{P}{S}
 \draw (0.8,0) arc (0:30:0.8);
 \node at (1.15,0.28) {$\varphi$};
 \end{tikzpicture}
+\begin{caixaAt}
+Com harmônicas, continua válido $S=V_{rms}I_{rms}$ e $fp=P/S$, mas em geral $fp\neq\cos\varphi$ e o triângulo $P$--$Q$ não descreve sozinho toda a distorção.
+\end{caixaAt}
 \end{columns}
 \end{frame}
 
-\begin{frame}{Sistemas trifásicos}
+\begin{frame}{Sistemas trifásicos equilibrados}
 \small
 \begin{columns}[T,onlytextwidth]
 \column{0.52\textwidth}
@@ -64,6 +68,7 @@ Q_{3\phi}&=\sqrt3\,V_{LL}I_L\sen\varphi\\
 S_{3\phi}&=\sqrt3\,V_{LL}I_L
 \end{align*}
 \begin{itemize}
+\item As expressões acima pressupõem regime senoidal e carga equilibrada; em sistema desequilibrado, somar as potências por fase.
 \item Cargas equilibradas reduzem corrente de neutro fundamental.
 \item Cargas monofásicas devem ser distribuídas entre as fases.
 \item Harmônicas triplas podem somar no neutro mesmo com correntes eficazes semelhantes nas fases.
@@ -80,16 +85,18 @@ S_{3\phi}&=\sqrt3\,V_{LL}I_L
 \end{columns}
 \end{frame}
 
-\begin{frame}{Corrente de projeto}
+\begin{frame}{Corrente de projeto: identificar qual potência foi fornecida}
 \small
 \begin{columns}[T,onlytextwidth]
 \column{0.53\textwidth}
 \begin{caixaDef}
-A corrente de projeto $I_b$ é a corrente prevista no circuito considerando potência, tensão, rendimento, fator de potência e regime de funcionamento.
+A corrente de projeto $I_b$ usa a potência \textbf{elétrica de entrada}. Rendimento só entra no cálculo quando o dado disponível é potência útil de saída, como a potência mecânica no eixo de um motor.
 \end{caixaDef}
 \begin{align*}
-I_{1\phi}&=\frac{P}{V\,fp\,\eta}\\
-I_{3\phi}&=\frac{P}{\sqrt3\,V_{LL}\,fp\,\eta}
+I_{1\phi}&=\frac{P_{in}}{V\,fp}
+=\frac{P_{out}}{V\,fp\,\eta}\\
+I_{3\phi}&=\frac{P_{in}}{\sqrt3\,V_{LL}\,fp}
+=\frac{P_{out}}{\sqrt3\,V_{LL}\,fp\,\eta}
 \end{align*}
 \column{0.45\textwidth}
 \begin{caixaEx}
@@ -108,11 +115,14 @@ Esse valor ainda não resolve partida, cabo, disjuntor ou queda de tensão.
 \column{0.50\textwidth}
 \begin{align*}
 P_{inst}&=\sum P_k\\
-D_{max}&=\max_t P(t)\\
+D_{max}&=\max_t\overline{P}_{\Delta t}(t)\\
 F_d&=\frac{D_{max}}{P_{inst}}\\
 F_{div}&=\frac{\sum D_{max,k}}{D_{max,grupo}}
 \end{align*}
 \begin{itemize}
+\item Demanda é uma potência média no intervalo de integração adotado, não um pico instantâneo sem duração definida.
+\item Usar a mesma base de grandeza no numerador e denominador: kW com kW ou kVA com kVA.
+\item Em condições usuais, $0<F_d\le1$ e $F_{div}\ge1$.
 \item A entrada não deve ser dimensionada supondo simultaneidade total sem justificativa.
 \item Fator de demanda deve vir de regra aplicável, histórico, processo ou critério documentado.
 \end{itemize}

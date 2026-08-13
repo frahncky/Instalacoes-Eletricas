@@ -226,8 +226,8 @@ Uma planta sem portas, circulação e lógica de acesso não é base aceitável 
 \begin{columns}[T,onlytextwidth]
 \column{0.50\textwidth}
 \begin{align*}
-I_b&=\frac{P}{V\,fp}\qquad (1\phi)\\
-I_b&=\frac{P}{\sqrt3\,V\,fp\,\eta}\qquad (3\phi)
+I_b&=\frac{P_{in}}{V\,fp}=\frac{P_{out}}{V\,fp\,\eta}\quad (1\phi)\\
+I_b&=\frac{P_{in}}{\sqrt3\,V_{LL}\,fp}=\frac{P_{out}}{\sqrt3\,V_{LL}\,fp\,\eta}\quad (3\phi)
 \end{align*}
 \begin{caixaEx}
 Coordenação básica:
@@ -237,14 +237,14 @@ I_b\le I_n\le I_z
 e a proteção deve satisfazer também sobrecarga, curto-circuito e desligamento automático quando aplicável.
 \end{caixaEx}
 \column{0.48\textwidth}
-Para queda de tensão, no exemplo simplificado:
+Para circuito resistivo simplificado, com $L$ de ida e $S$ como seção:
 \[
 \Delta V_{1\phi}\%=100\frac{2\rho L I}{SV}
 \]
 \[
 \Delta V_{3\phi}\%=100\frac{\sqrt3\rho L I}{SV}
 \]
-com $\rho=0{,}0225\,\Omega\,\mathrm{mm^2/m}$ como valor de projeto simplificado.
+com $\rho=0{,}0225\,\Omega\,\mathrm{mm^2/m}$ como hipótese didática. Para cargas com $fp\neq1$, usar resistência e reatância na temperatura/condição de operação.
 \end{columns}
 \begin{caixaObs}
 Os exemplos devem ser recalculados quando método de instalação, temperatura, agrupamento, material, harmônicas ou condição de carga mudarem.
