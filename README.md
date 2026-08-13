@@ -81,21 +81,25 @@ No Maranhão, os exemplos trifásicos em baixa tensão usam **380/220 V, 3F+N**.
 - exemplos industriais;
 - exercícios industriais N1--N4.
 
-## Módulo de projetos
+## Caderno de seis projetos
 
-- `instalacoes_eletricas_simbologia_projetos_equatorial_ma.tex` — módulo independente de simbologia e projetos;
-- `instalacoes_eletricas_projetos_completos.tex` — agregador;
-- `instalacoes_eletricas_projetos_base.tex` — simbologia e plantas-base reutilizáveis;
-- `instalacoes_eletricas_projeto_casa.tex` — residência canônica;
-- `instalacoes_eletricas_projeto_apartamento.tex` — apartamento/EMUC;
-- `instalacoes_eletricas_projeto_comercial.tex` — edifício comercial/EMUC;
-- `instalacoes_eletricas_projeto_industrial.tex` — setor industrial.
+- `instalacoes_eletricas_simbologia_projetos_equatorial_ma.tex` — documento principal do caderno;
+- `instalacoes_eletricas_projetos_completos_realistas_v3.tex` — agregador ativo;
+- `instalacoes_eletricas_projetos_base.tex` — simbologia e bases reutilizáveis;
+- `plantas_realistas_base.tex` e `plantas_portas_extra.tex` — elementos arquitetônicos;
+- `instalacoes_eletricas_projeto_casa.tex` — residência térrea;
+- `instalacoes_eletricas_projeto_apartamento_realista.tex` — apartamento/EMUC;
+- `instalacoes_eletricas_projeto_comercial.tex` — edifício corporativo/EMUC;
+- `instalacoes_eletricas_projeto_comercial_2_realista.tex` — clínica/centro de serviços;
+- `instalacoes_eletricas_projeto_industrial_realista.tex` — indústria leve atendida em BT;
+- `instalacoes_eletricas_projeto_industrial_2_subestacao_realista.tex` — indústria com subestação própria;
+- `instalacoes_eletricas_projetos_entrega.tex` — comparação e checklist de entrega.
 
-As bases de casa, apartamento e edifício comercial foram refeitas com circulação e acessos coerentes. Nenhum quadro de cargas deve mencionar ambiente/equipamento que não exista na planta correspondente.
+Os seis projetos têm geometrias, circulação, cargas, quadros e soluções elétricas próprias. Nenhum quadro de cargas deve mencionar ambiente ou equipamento ausente na planta correspondente.
 
 ## Compilação
 
-A pasta contém o `beamer_estilo_casa.tex` necessário para compilação.
+O repositório contém o `beamer_estilo_casa.tex` necessário para compilação.
 
 ### Windows
 

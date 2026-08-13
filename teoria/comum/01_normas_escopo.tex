@@ -1,0 +1,185 @@
+\section{Normas, escopo e ciclo de projeto}
+
+\begin{frame}{Instalação elétrica: visão de sistema}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{caixaDef}
+Uma instalação elétrica é um \textbf{sistema coordenado}: fonte, entrada, medição, distribuição, proteção, condutores, aterramento, cargas, comando, documentação e procedimentos de operação/manutenção.
+\end{caixaDef}
+\begin{itemize}
+\item Predial: residência, comércio, escola, hospital, laboratório e serviços.
+\item Industrial: máquinas, motores, fornos, automação, instrumentação, CCM e redes internas.
+\item O objetivo não é apenas ``funcionar'': é garantir segurança, desempenho, continuidade e manutenção.
+\end{itemize}
+\column{0.46\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.74,every node/.style={font=\scriptsize}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=3.0cm,minimum height=0.65cm,align=center}}
+\node[b] (r) at (0,3.2) {Rede / fonte local};
+\node[b] (e) at (0,2.2) {Entrada e medição};
+\node[b] (q) at (0,1.2) {QGBT / QD};
+\node[b] (c1) at (-1.8,0.1) {Circuitos\\prediais};
+\node[b] (c2) at (1.8,0.1) {Circuitos\\industriais};
+\node[b] (s) at (0,-1.1) {PE + equipotencial\\+ DPS + SPDA};
+\draw[-{Stealth},thick,corPrim] (r)--(e)--(q);
+\draw[-{Stealth},thick,corPrim] (q)--(c1);
+\draw[-{Stealth},thick,corPrim] (q)--(c2);
+\draw[-{Stealth},thick,corNorma] (s)--(q);
+\draw[-{Stealth},thick,corNorma] (s)--(c1);
+\draw[-{Stealth},thick,corNorma] (s)--(c2);
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=7]{Mapa normativo — situação em agosto de 2026}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.8cm}p{3.1cm}X}
+\toprule
+Documento & Situação usada no material & Aplicação \\
+\midrule
+ABNT NBR 5410:2004 & Referência vigente adotada para BT; a própria NT.00001.EQTL Rev.09 a cita expressamente. & Instalações elétricas de baixa tensão: choque, condutores, circuitos, DR, aterramento, verificação etc. \\
+ABNT NBR 14039:2021 & Referência para instalações de média tensão. & Instalações de 1,0 kV a 36,2 kV. \\
+ABNT NBR 5419-1:2026 & Nova edição publicada em 2026. & Princípios e determinação da necessidade de proteção contra descargas atmosféricas; conferir as partes aplicáveis da série no projeto. \\
+ABNT NBR 17019:2022 & Referência para alimentação de veículos elétricos. & Instalações fixas para recarga de VE; também referenciada pela NT.00042.EQTL Rev.04. \\
+NR-10 + Portaria MTE 737/2026 & A nova redação foi publicada, mas a Portaria entra em vigor um ano após sua publicação. & Segurança em instalações e serviços com eletricidade; distinguir requisito vigente de requisito já publicado com vigência futura. \\
+Série ABNT NBR IEC 61439 & Usar edição aplicável ao conjunto. & Quadros e conjuntos de manobra e comando de baixa tensão. \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}[shrink=8]{Equatorial Energia — referências atuais para o Maranhão}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.65cm}p{2.15cm}X}
+\toprule
+Documento & Revisão/data & Quando usar \\
+\midrule
+NT.00001.EQTL & Rev.09 — 29/05/2025 & Fornecimento de energia em baixa tensão para unidade consumidora individual. É a referência principal do projeto residencial deste material. \\
+NT.00004.EQTL & Rev.08 — 31/12/2025 & Empreendimentos/edificações de múltiplas unidades consumidoras — condomínios, edifícios e centros de medição. \\
+NT.00020.EQTL & Rev.06 — 31/12/2025 & Conexão de micro e minigeração distribuída; formulários do Grupo B atualizados em 2026. \\
+NT.00030.EQTL & Rev.03 — 31/12/2025 & Padrões construtivos das caixas de medição e proteção. \\
+NT.00042.EQTL & Rev.04 — 31/12/2025 & Critérios de conexão de estações de recarga de veículos elétricos. \\
+NT.00045.EQTL & Rev.01 — 29/03/2023 & Postes para padrão de entrada. \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+As normas da concessionária tratam da interface com a rede e dos padrões de conexão. Elas \textbf{não substituem} o dimensionamento da instalação interna conforme ABNT e demais requisitos legais.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Equatorial Maranhão: limites que afetam o projeto residencial}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{caixaNorma}[title=NT.00001.EQTL Rev.09]
+A norma atende unidades individuais em BT com carga instalada de até 75 kW. Para o Maranhão:
+\begin{itemize}
+\item ligação monofásica urbana: 220 V, dentro dos limites previstos;
+\item ligação trifásica urbana: \textbf{380/220 V, 3F+N};
+\item acima dos limites e nos casos especiais, é necessária análise específica.
+\end{itemize}
+\end{caixaNorma}
+\column{0.48\textwidth}
+\begin{caixaProjeto}[title=Tabela 1 — 220/380 V]
+Exemplos de enquadramento por carga instalada:
+\begin{itemize}
+\item até 5 kW: mono 25 A;
+\item 5,1--8 kW: mono 40 A;
+\item 8,1--12 kW: mono 63 A;
+\item 12,1--24 kW: tri 40 A;
+\item 24,1--38 kW: tri 63 A.
+\end{itemize}
+\end{caixaProjeto}
+\end{columns}
+\begin{caixaObs}
+O projeto residencial completo deste material fecha em aproximadamente 19,88 kW instalados e, por isso, usa o enquadramento trifásico de 40 A como \textbf{consequência} da carga calculada.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Projeto interno e projeto para a concessionária não são a mesma coisa}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Unidade individual em BT]
+A NT.00001.EQTL informa que, em regra, não é necessário apresentar à concessionária um projeto elétrico separado para novas instalações/reformas de unidade individual atendida em tensão secundária.
+\end{caixaNorma}
+\column{0.49\textwidth}
+\begin{caixaAt}[title=Mas continuam obrigatórios]
+\begin{itemize}
+\item projeto interno tecnicamente correto;
+\item padrão de entrada conforme concessionária;
+\item ABNT, segurança e Corpo de Bombeiros quando aplicável;
+\item normas específicas para GD, VE e EMUC;
+\item responsabilidade técnica quando exigida.
+\end{itemize}
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{NR-10: nova redação publicada, vigência futura}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{caixaNorma}[title=Portaria MTE nº 737/2026]
+A Portaria é de 29/05/2026, foi publicada no DOU de 01/06/2026 e estabelece que sua nova redação da NR-10 \textbf{entra em vigor um ano após a publicação}.
+\end{caixaNorma}
+\begin{itemize}
+\item integra explicitamente a gestão com o GRO/NR-1;
+\item reforça choque e arco elétrico;
+\item detalha segurança em projetos e atualização documental;
+\item prevê estudo de energia incidente quando aplicável.
+\end{itemize}
+\column{0.46\textwidth}
+\begin{caixaAt}[title=Como aplicar em agosto de 2026]
+Não tratar a redação nova como se já estivesse vigente. No material:
+\begin{itemize}
+\item requisito atual é apresentado como atual;
+\item texto publicado para 2027 é identificado como futuro;
+\item boas práticas podem ser antecipadas sem falsa alegação normativa.
+\end{itemize}
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Ciclo completo de um projeto elétrico}
+\small
+\centering
+\begin{tikzpicture}[node distance=0.32cm,every node/.style={font=\scriptsize}]
+\tikzset{et/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.55cm,minimum height=0.72cm,align=center}}
+\node[et] (a) {1. Levantamento\\arquitetura e cargas};
+\node[et,right=of a] (b) {2. Normas, risco\\e premissas};
+\node[et,right=of b] (c) {3. Circuitos e\\unifilar};
+\node[et,below=of c] (d) {4. Cálculos\\e proteção};
+\node[et,left=of d] (e) {5. Quadros e\\infraestrutura};
+\node[et,left=of e] (f) {6. Memorial, BIM\\e especificação};
+\node[et,below=of f] (g) {7. Execução e\\fiscalização};
+\node[et,right=of g] (h) {8. Ensaios e\\comissionamento};
+\node[et,right=of h] (i) {9. As built e\\manutenção};
+\foreach \u/\v in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i}{\draw[-{Stealth},thick,corPrim] (\u)--(\v);}
+\draw[-{Stealth},thick,corAccent] (i.east) to[out=0,in=-70] node[right,align=center]{retroalimentar\\o projeto} (a.south east);
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Entregáveis mínimos de um bom projeto}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{itemize}
+\item Planta com pontos, rotas e identificação.
+\item Quadro de cargas, demanda e balanceamento.
+\item Diagramas unifilares e, quando necessário, multifilares.
+\item Memorial de cálculo: corrente, cabos, queda, curto, proteção e aterramento.
+\item Detalhes de quadros, BEP, DPS, SPDA e interfaces.
+\end{itemize}
+\column{0.49\textwidth}
+\begin{itemize}
+\item Especificação técnica e lista de materiais.
+\item Estudos adicionais quando aplicáveis.
+\item Plano de inspeção/comissionamento.
+\item As built e registro de alterações.
+\item ART/RRT e demais responsabilidades conforme competência profissional.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+%=====================================================================

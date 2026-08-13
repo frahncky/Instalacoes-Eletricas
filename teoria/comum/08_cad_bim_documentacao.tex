@@ -1,0 +1,111 @@
+\section{CAD, BIM, simulação e documentação}
+
+\begin{frame}{Ferramentas: cada uma responde a uma pergunta}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.6cm}X}
+\toprule
+Ferramenta & Uso \\
+\midrule
+CAD elétrico & Plantas, diagramas, detalhes, listas e documentação 2D. \\
+BIM & Compatibilização espacial, parâmetros, quantitativos e coordenação multidisciplinar. \\
+QElectroTech & Diagramas didáticos/funcionais de comando e potência. \\
+ETAP / EasyPower / similares & Fluxo de carga, curto, seletividade, partida, arco e harmônicas conforme módulos. \\
+Planilha / Python & Automação de cálculos, auditoria, geração de tabelas e checagens repetitivas. \\
+Analisador de energia & Validar modelo com medições reais em retrofit/operação. \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}{Fluxo de simulação elétrica}
+\small
+\centering
+\begin{tikzpicture}[node distance=0.30cm,every node/.style={font=\scriptsize}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.35cm,minimum height=0.65cm,align=center}}
+\node[b] (a) {Topologia e fontes};
+\node[b,right=of a] (b) {Cabos / trafos};
+\node[b,right=of b] (c) {Cargas / modos};
+\node[b,below=of c] (d) {Fluxo de carga};
+\node[b,left=of d] (e) {Curto-circuito};
+\node[b,left=of e] (f) {Seletividade / arco};
+\node[b,below=of f] (g) {Partida / harmônicas};
+\node[b,right=of g] (h) {Relatórios};
+\node[b,right=of h] (i) {Revisão do projeto};
+\foreach \u/\v in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i}{\draw[-{Stealth},thick,corPrim] (\u)--(\v);}
+\draw[-{Stealth},thick,corAccent] (i.east) to[out=0,in=-80] (a.south east);
+\end{tikzpicture}
+\vspace{2mm}
+\begin{caixaAt}
+Software calcula o modelo fornecido. Dado errado + modelo errado = resultado preciso e inútil.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{BIM: parâmetros elétricos úteis}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{itemize}
+\item Circuito e quadro de origem.
+\item Potência e tensão.
+\item Número de fases.
+\item Fator de potência e demanda.
+\item Reserva e status do circuito.
+\end{itemize}
+\column{0.49\textwidth}
+\begin{itemize}
+\item Comprimento e rota.
+\item Cabo/eletroduto/leito.
+\item Dispositivo de proteção.
+\item Classificação de carga crítica.
+\item Código para operação/manutenção.
+\end{itemize}
+\end{columns}
+\begin{caixaObs}
+O valor do BIM aumenta quando os parâmetros alimentam cálculo, documentação e operação -- não apenas um modelo 3D bonito.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}[fragile]{Automação de checagens com Python}
+\scriptsize
+\begin{lstlisting}[style=codPy]
+from math import sqrt, acos, sin
+
+def corrente_3f(P, Vll, fp=1.0, eta=1.0):
+    return P/(sqrt(3)*Vll*fp*eta)
+
+def queda_3f(I, L_m, R_ohm_km, X_ohm_km, fp, Vll):
+    phi = acos(fp)
+    dv = sqrt(3)*I*(L_m/1000)*(R_ohm_km*fp + X_ohm_km*sin(phi))
+    return 100*dv/Vll
+
+I = corrente_3f(42000, 380, 0.88)
+dv = queda_3f(I, 60, 0.75, 0.08, 0.88, 380)
+print(I, dv)
+\end{lstlisting}
+\begin{caixaObs}
+O script deve ler dados rastreáveis e gerar alerta, não escolher cabo ``por mágica''. O engenheiro continua responsável pelas premissas e validação.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Documentação para manutenção}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{itemize}
+\item Unifilar atualizado.
+\item Ajustes de relés/disjuntores.
+\item Curto-circuito disponível por barra.
+\item Identificação de fontes alternativas.
+\item Procedimentos de manobra.
+\end{itemize}
+\column{0.49\textwidth}
+\begin{itemize}
+\item Etiquetas e riscos aplicáveis.
+\item Histórico de intervenções.
+\item Ensaios de DR, isolamento e aterramento.
+\item Termografias e inspeções.
+\item Lista de sobressalentes críticos.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+%=====================================================================

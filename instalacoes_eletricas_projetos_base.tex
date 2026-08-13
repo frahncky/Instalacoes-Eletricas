@@ -1,0 +1,274 @@
+%=====================================================================
+% MODULO COMPLEMENTAR - PLANTAS E DIMENSIONAMENTO ELETRICO
+% Casa | Apartamento | Edificio comercial | Setor industrial
+% ABNT + Equatorial Energia aplicavel ao Maranhao
+% Atualizacao: agosto de 2026
+%=====================================================================
+
+%---------------------------------------------------------------------
+% Simbologia grafica reutilizavel
+%---------------------------------------------------------------------
+\newcommand{\SimLuz}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corAccent,thick] (0,0) circle (0.14);
+\draw[corAccent,thick] (-0.10,-0.10)--(0.10,0.10);
+\draw[corAccent,thick] (-0.10,0.10)--(0.10,-0.10);
+\end{scope}}
+\newcommand{\SimTUG}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corPrim,thick] (0,0) circle (0.13);
+\draw[corPrim,thick] (-0.16,0)--(0.16,0);
+\end{scope}}
+\newcommand{\SimTUGM}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corPrim,thick] (0,0) circle (0.13);
+\draw[corPrim,thick] (-0.16,0)--(0.16,0);
+\draw[corPrim,thick] (-0.16,0.065)--(0.16,0.065);
+\end{scope}}
+\newcommand{\SimTUE}[3]{\begin{scope}[shift={(#1,#2)}]
+\draw[corFix,thick] (0,0) circle (0.16);
+\node[font=\tiny\bfseries,corFix] at (0,0) {#3};
+\end{scope}}
+\newcommand{\SimInterruptor}[3]{\begin{scope}[shift={(#1,#2)}]
+\draw[corNorma,thick] (0,0) circle (0.11);
+\node[font=\tiny\bfseries,corNorma,anchor=west] at (0.14,0) {#3};
+\end{scope}}
+\newcommand{\SimQD}[3]{\begin{scope}[shift={(#1,#2)}]
+\draw[corPrim,fill=corDef!10,thick,rounded corners=1pt] (-0.32,-0.20) rectangle (0.32,0.20);
+\node[font=\tiny\bfseries] at (0,0) {#3};
+\end{scope}}
+\newcommand{\SimDados}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corDef,thick] (0,0.15)--(-0.14,-0.11)--(0.14,-0.11)--cycle;
+\node[font=\tiny\bfseries,corDef] at (0,-0.01) {D};
+\end{scope}}
+\newcommand{\SimMotor}[3]{\begin{scope}[shift={(#1,#2)}]
+\draw[corAt,thick] (0,0) circle (0.20);
+\node[font=\tiny\bfseries,corAt] at (0,0) {#3};
+\end{scope}}
+\newcommand{\SimVFD}[3]{\begin{scope}[shift={(#1,#2)}]
+\draw[corDef,fill=corDef!8,thick,rounded corners=1pt] (-0.28,-0.18) rectangle (0.28,0.18);
+\node[font=\tiny\bfseries,corDef] at (0,0) {#3};
+\end{scope}}
+\newcommand{\SimTomadaTri}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corFix,thick] (0,0) circle (0.16);
+\node[font=\tiny\bfseries,corFix] at (0,0) {$3\sim$};
+\end{scope}}
+\newcommand{\SimEmerg}[2]{\begin{scope}[shift={(#1,#2)}]
+\draw[corAt,fill=corAt!12,thick] (0,0) circle (0.16);
+\node[font=\tiny\bfseries,corAt] at (0,0) {!};
+\end{scope}}
+\newcommand{\RotaL}[4]{\draw[corAccent!80!black,dashed,thick] (#1,#2)--(#3,#4);}
+\newcommand{\RotaT}[4]{\draw[corPrim!75,dashed,thick] (#1,#2)--(#3,#4);}
+\newcommand{\RotaF}[4]{\draw[corFix!80,dashed,thick] (#1,#2)--(#3,#4);}
+
+\newcommand{\CotaH}[4]{%
+\draw[thin] (#1,#3)--(#1,#3+0.28);
+\draw[thin] (#2,#3)--(#2,#3+0.28);
+\draw[{Latex}-{Latex},thin] (#1,#3+0.20)--(#2,#3+0.20)
+node[midway,fill=white,inner sep=1pt,font=\tiny]{#4};}
+\newcommand{\CotaV}[4]{%
+\draw[thin] (#3,#1)--(#3+0.28,#1);
+\draw[thin] (#3,#2)--(#3+0.28,#2);
+\draw[{Latex}-{Latex},thin] (#3+0.20,#1)--(#3+0.20,#2)
+node[midway,fill=white,inner sep=1pt,font=\tiny,rotate=90]{#4};}
+
+%---------------------------------------------------------------------
+% Plantas-base arquitetonicamente coerentes
+%---------------------------------------------------------------------
+\newcommand{\CasaBase}{%
+\draw[line width=1.25pt] (0,0) rectangle (10,8);
+\draw[line width=0.9pt] (0,3.5)--(10,3.5);
+\draw[line width=0.9pt] (0,4.2)--(10,4.2);
+\draw[line width=0.9pt] (5,4.2)--(5,8);
+\draw[line width=0.9pt] (8,4.2)--(8,8);
+\draw[line width=0.9pt] (3.4,0)--(3.4,3.5);
+\draw[line width=0.9pt] (6.8,0)--(6.8,3.5);
+\draw[line width=0.9pt] (8.6,0)--(8.6,3.5);
+\node[font=\tiny\bfseries] at (2.5,6.95){SALA/JANTAR};
+\node[font=\tiny\bfseries] at (6.5,6.95){COZINHA};
+\node[font=\tiny\bfseries] at (9,6.95){SERVIÇO};
+\node[font=\tiny\bfseries] at (1.7,2.70){QUARTO 1};
+\node[font=\tiny\bfseries] at (5.1,2.70){QUARTO 2};
+\node[font=\tiny\bfseries] at (7.7,2.15){BANHO};
+\node[font=\tiny\bfseries] at (9.3,2.15){ESCRIT.};
+\node[font=\tiny\bfseries] at (3.55,3.84){CIRCULAÇÃO};
+\foreach \xa/\xb in {1.25/2.15,4.55/5.45,7.10/7.90,8.92/9.68}{\draw[white,line width=4pt] (\xa,3.5)--(\xb,3.5);}
+\draw[thin] (1.25,3.5)--(2.15,2.6);\draw[thin] (4.55,3.5)--(5.45,2.6);\draw[thin] (7.10,3.5)--(7.90,2.7);\draw[thin] (8.92,3.5)--(9.68,2.74);
+\draw[white,line width=4pt] (2.0,4.2)--(2.9,4.2);\draw[thin] (2.0,4.2)--(2.9,5.1);
+\draw[white,line width=4pt] (6.15,4.2)--(7.05,4.2);\draw[thin] (6.15,4.2)--(7.05,5.1);
+\draw[white,line width=4pt] (8,5.85)--(8,6.70);\draw[thin] (8,5.85)--(8.85,6.70);
+\draw[white,line width=4pt] (0,6.15)--(0,7.10);\draw[thin] (0,6.15)--(0.95,7.10);
+\draw[white,line width=4pt] (10,5.95)--(10,6.80);\draw[thin] (10,5.95)--(9.15,6.80);
+\CotaH{0}{10}{8.18}{10,00 m}\CotaV{0}{8}{10.18}{8,00 m}
+}
+
+\newcommand{\AptoBase}{%
+\draw[line width=1.25pt] (0,0) rectangle (9,7.5);
+\draw[line width=0.9pt] (0,3.2)--(9,3.2);
+\draw[line width=0.9pt] (0,3.9)--(9,3.9);
+\draw[line width=0.9pt] (4.5,3.9)--(4.5,7.5);
+\draw[line width=0.9pt] (7.0,3.9)--(7.0,7.5);
+\draw[line width=0.9pt] (3.2,0)--(3.2,3.2);
+\draw[line width=0.9pt] (6.4,0)--(6.4,3.2);
+\draw[line width=0.9pt] (8.0,0)--(8.0,3.2);
+\node[font=\tiny\bfseries] at (2.25,6.75){SALA/JANTAR};
+\node[font=\tiny\bfseries] at (5.75,6.75){COZINHA};
+\node[font=\tiny\bfseries] at (8.0,6.75){SERVIÇO};
+\node[font=\tiny\bfseries] at (1.6,2.45){QUARTO 1};
+\node[font=\tiny\bfseries] at (4.8,2.45){QUARTO 2};
+\node[font=\tiny\bfseries] at (7.2,2.05){BANHO};
+\node[font=\tiny\bfseries] at (8.5,2.05){ESCRIT.};
+\node[font=\tiny\bfseries] at (3.55,3.55){CIRCULAÇÃO};
+\foreach \xa/\xb in {0.95/1.75,4.00/4.80,6.75/7.45,8.15/8.75}{\draw[white,line width=3.8pt] (\xa,3.2)--(\xb,3.2);}
+\draw[thin] (0.95,3.2)--(1.75,2.4);\draw[thin] (4.0,3.2)--(4.8,2.4);\draw[thin] (6.75,3.2)--(7.45,2.5);\draw[thin] (8.15,3.2)--(8.75,2.6);
+\draw[white,line width=3.8pt] (1.55,3.9)--(2.35,3.9);\draw[thin] (1.55,3.9)--(2.35,4.7);
+\draw[white,line width=3.8pt] (5.20,3.9)--(6.0,3.9);\draw[thin] (5.20,3.9)--(6.0,4.7);
+\draw[white,line width=3.8pt] (7.0,5.4)--(7.0,6.2);\draw[thin] (7.0,5.4)--(7.8,6.2);
+\draw[white,line width=3.8pt] (0,5.35)--(0,6.25);\draw[thin] (0,5.35)--(0.9,6.25);
+\CotaH{0}{9}{7.68}{9,00 m}\CotaV{0}{7.5}{9.18}{7,50 m}
+}
+
+\newcommand{\ComercialBase}{%
+\draw[fill=black!3,draw=none] (8,0) rectangle (10,12);
+\draw[line width=1.25pt] (0,0) rectangle (18,12);
+\draw[line width=0.9pt] (8,0)--(8,12);
+\draw[line width=0.9pt] (10,0)--(10,12);
+\draw[line width=0.9pt] (0,6)--(8,6);
+\draw[line width=0.9pt] (10,6)--(18,6);
+\node[font=\tiny\bfseries] at (4,11.55){SALA COMERCIAL 01};
+\node[font=\tiny\bfseries] at (14,11.55){SALA COMERCIAL 02};
+\node[font=\tiny\bfseries] at (4,0.45){SALA COMERCIAL 03};
+\node[font=\tiny\bfseries] at (14,0.45){SALA COMERCIAL 04};
+% portas das unidades para o núcleo de circulação
+\draw[white,line width=4pt] (8,9.0)--(8,9.9);\draw[thin] (8,9.0)--(7.1,9.9);
+\draw[white,line width=4pt] (10,9.0)--(10,9.9);\draw[thin] (10,9.0)--(10.9,9.9);
+\draw[white,line width=4pt] (8,2.1)--(8,3.0);\draw[thin] (8,2.1)--(7.1,3.0);
+\draw[white,line width=4pt] (10,2.1)--(10,3.0);\draw[thin] (10,2.1)--(10.9,3.0);
+% equipamentos do núcleo, sem rótulo vertical sobreposto
+\draw[fill=white,line width=0.65pt] (8.22,5.00) rectangle (9.08,6.45);
+\node[font=\tiny\bfseries] at (8.65,5.72){EL};
+\draw[fill=white,line width=0.65pt] (9.15,5.00) rectangle (9.78,6.45);
+\node[font=\tiny\bfseries,rotate=90] at (9.47,5.72){ESC};
+\draw[fill=white,line width=0.65pt] (9.15,6.60) rectangle (9.78,7.35);
+\node[font=\tiny\bfseries] at (9.47,6.98){SH};
+\node[font=\tiny\bfseries,text=black!65] at (9,10.8){CIRC.};
+\node[font=\tiny\bfseries,text=black!65] at (9,1.2){CIRC.};
+\CotaH{0}{8}{12.18}{8,00 m}\CotaH{8}{10}{12.18}{2,00 m}\CotaH{10}{18}{12.18}{8,00 m}
+\CotaV{0}{6}{18.18}{6,00 m}\CotaV{6}{12}{18.18}{6,00 m}
+}
+
+\newcommand{\IndustrialBase}{%
+\draw[line width=1.25pt] (0,0) rectangle (30,20);
+\draw[dashed,black!45] (10,0)--(10,20);
+\draw[dashed,black!45] (20,0)--(20,20);
+\draw[fill=black!4] (0.7,15.3) rectangle (7.0,19.3);
+\node[font=\tiny\bfseries] at (3.85,18.85){SALA ELÉTRICA};
+\draw[fill=black!4] (23.0,15.3) rectangle (29.3,19.3);
+\node[font=\tiny\bfseries] at (26.15,18.85){AUTOMAÇÃO};
+\node[font=\tiny\bfseries] at (5,10){ÁREA A};
+\node[font=\tiny\bfseries] at (15,10){ÁREA B};
+\node[font=\tiny\bfseries] at (25,10){ÁREA C};
+\CotaH{0}{10}{20.35}{10 m}\CotaH{10}{20}{20.35}{10 m}\CotaH{20}{30}{20.35}{10 m}
+\CotaV{0}{20}{30.35}{20 m}
+}
+
+%=====================================================================
+\section{Simbologia e método de projeto}
+
+\begin{frame}[shrink=5]{Planta arquitetônica vem antes da planta elétrica}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Em cada projeto]
+\begin{itemize}
+\item planta arquitetônica \textbf{cotada e com acessos};
+\item planta de iluminação;
+\item planta de TUG/TUE/força;
+\item circuitos e rotas identificados;
+\item quadro de cargas;
+\item cálculo de $I_b$, $I_z$ e disjuntor;
+\item queda de tensão;
+\item alimentador e entrada;
+\item unifilar coerente com a planta.
+\end{itemize}
+\end{caixaProjeto}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Base usada]
+Instalação interna: ABNT NBR 5410 e normas específicas aplicáveis. Conexão no Maranhão: normas técnicas vigentes da Equatorial, especialmente NT.00001, NT.00004, NT.00020, NT.00030 e NT.00042.
+\end{caixaNorma}
+\begin{caixaAt}
+Uma planta sem portas, circulação e lógica de acesso não é base aceitável para ensinar projeto elétrico.
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Legenda usada nas plantas}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{tikzpicture}[every node/.style={font=\small}]
+\SimLuz{0.5}{3.8}\node[anchor=west] at (1.0,3.8){Luminária / ponto de luz};
+\SimInterruptor{0.5}{3.0}{S}\node[anchor=west] at (1.45,3.0){Interruptor};
+\SimTUG{0.5}{2.2}\node[anchor=west] at (1.0,2.2){TUG};
+\SimTUGM{0.5}{1.4}\node[anchor=west] at (1.0,1.4){TUG de bancada};
+\SimTUE{0.5}{0.6}{E}\node[anchor=west] at (1.0,0.6){TUE / equipamento};
+\end{tikzpicture}
+\column{0.48\textwidth}
+\begin{tikzpicture}[every node/.style={font=\small}]
+\SimQD{0.5}{3.8}{QD}\node[anchor=west] at (1.1,3.8){Quadro};
+\SimDados{0.5}{3.0}\node[anchor=west] at (1.0,3.0){Dados};
+\SimMotor{0.5}{2.2}{M}\node[anchor=west] at (1.0,2.2){Motor};
+\SimVFD{0.5}{1.4}{VFD}\node[anchor=west] at (1.1,1.4){Inversor};
+\SimTomadaTri{0.5}{0.6}\node[anchor=west] at (1.0,0.6){Tomada trifásica};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=10]{Critério de dimensionamento adotado nos exemplos}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{align*}
+I_b&=\frac{P}{V\,fp}\qquad (1\phi)\\
+I_b&=\frac{P}{\sqrt3\,V\,fp\,\eta}\qquad (3\phi)
+\end{align*}
+\begin{caixaEx}
+Coordenação básica:
+\[
+I_b\le I_n\le I_z
+\]
+e a proteção deve satisfazer também sobrecarga, curto-circuito e desligamento automático quando aplicável.
+\end{caixaEx}
+\column{0.48\textwidth}
+Para queda de tensão, no exemplo simplificado:
+\[
+\Delta V_{1\phi}\%=100\frac{2\rho L I}{SV}
+\]
+\[
+\Delta V_{3\phi}\%=100\frac{\sqrt3\rho L I}{SV}
+\]
+com $\rho=0{,}0225\,\Omega\,\mathrm{mm^2/m}$ como valor de projeto simplificado.
+\end{columns}
+\begin{caixaObs}
+Os exemplos devem ser recalculados quando método de instalação, temperatura, agrupamento, material, harmônicas ou condição de carga mudarem.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}[shrink=6]{Equatorial Maranhão — enquadramento usado}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.7cm}p{2.0cm}X}
+\toprule
+Documento & Revisão & Uso nos projetos \\
+\midrule
+NT.00001.EQTL & Rev. 09 / 2025 & Entrada individual em BT e tabela 220/380 V. \\
+NT.00004.EQTL & Rev. 08 / 2025 & Edificações com múltiplas unidades consumidoras. \\
+NT.00002.EQTL & Rev. 10 / 2025 & Atendimento em MT quando aplicável. \\
+NT.00020.EQTL & Rev. 06 / 2025 & Micro e minigeração distribuída. \\
+NT.00030.EQTL & Rev. 03 / 2025 & Caixas de medição e proteção. \\
+NT.00042.EQTL & Rev. 04 / 2025 & Recarga de veículos elétricos. \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\begin{caixaNorma}
+No Maranhão, os exemplos trifásicos em baixa tensão usam \textbf{380/220 V, 3F+N}. O enquadramento do padrão vem depois do cálculo da carga instalada.
+\end{caixaNorma}
+\end{frame}
+
+%=====================================================================

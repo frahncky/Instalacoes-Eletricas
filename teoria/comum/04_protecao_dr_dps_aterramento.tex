@@ -1,0 +1,212 @@
+\section{Proteção, DR, DPS e aterramento}
+
+\begin{frame}{Proteções: cada dispositivo resolve um problema}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.0cm}X}
+\toprule
+Dispositivo & Função principal \\
+\midrule
+Disjuntor/fusível & Sobrecarga e curto-circuito; deve ter capacidade de interrupção adequada. \\
+DR/IDR/RCBO & Corrente diferencial residual: choque/fuga conforme função, tipo e sensibilidade. \\
+DPS & Limita sobretensões transitórias; atua em coordenação com aterramento, equipotencialização e SPDA. \\
+Seccionadora & Isolação/manobra para operação e manutenção conforme aplicação. \\
+Contator & Manobra frequente; não substitui proteção de curto. \\
+Relé de motor & Sobrecarga, falta de fase, travamento e outras funções. \\
+Proteção eletrônica & Ajustes de longo/curto/instantâneo, falta à terra, comunicação etc. \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}{Proteção contra choque: camadas}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.31\textwidth}
+\begin{caixaDef}[title=Proteção básica]
+Evitar contato com partes vivas em condição normal: isolação, barreiras, invólucros etc.
+\end{caixaDef}
+\column{0.31\textwidth}
+\begin{caixaNorma}[title=Proteção supletiva]
+Limitar risco se ocorrer falha: PE, equipotencialização, desligamento automático etc.
+\end{caixaNorma}
+\column{0.34\textwidth}
+\begin{caixaAt}[title=Proteção adicional]
+DR de alta sensibilidade em situações previstas. É complemento, não substituto das medidas básicas.
+\end{caixaAt}
+\end{columns}
+\vspace{3mm}
+\begin{caixaObs}
+A proteção contra choque é um sistema de medidas coordenadas; não existe ``resolver tudo instalando um DR''.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{DR: princípio de funcionamento}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{caixaDef}
+O DR compara a soma vetorial das correntes dos condutores ativos que atravessam seu toroide. Uma fuga que não retorna por esses condutores produz corrente residual.
+\end{caixaDef}
+\[
+I_{\Delta}=\left|\sum I_k\right|.
+\]
+\begin{itemize}
+\item Neutros de circuitos protegidos não podem ser misturados a jusante.
+\item PE não atravessa o toroide como condutor ativo.
+\end{itemize}
+\column{0.48\textwidth}
+\begin{circuitikz}[scale=0.76,every node/.style={font=\scriptsize}]
+\draw (0,3) node[left]{F} -- (1,3) to[generic,l=DR] (2.4,3) -- (4.8,3) to[R,l=Carga] (4.8,1.2) -- (2.4,1.2) to[generic] (1,1.2) -- (0,1.2) node[left]{N};
+\draw[->,thick,corPrim] (2.6,3.2)--(3.6,3.2) node[midway,above]{$I_F$};
+\draw[->,thick,corPrim] (3.6,1.0)--(2.6,1.0) node[midway,below]{$I_N$};
+\draw[->,thick,corAt] (4.8,2.1)--(5.6,1.2) node[right]{fuga};
+\draw[corNorma,thick] (5.6,1.2)--(5.6,0.55)--(0.6,0.55) node[left]{PE};
+\end{circuitikz}
+\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=8]{Tipos de DR e eletrônica de potência}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{1.4cm}p{4.3cm}X}
+\toprule
+Tipo & Sensibilidade funcional & Aplicações/alertas \\
+\midrule
+AC & Corrente residual senoidal CA. & Cargas simples; pode ser inadequado para eletrônica moderna. \\
+A & CA senoidal + componentes pulsantes CC previstas. & Eletrodomésticos e muitas cargas eletrônicas. \\
+F & Inclui características para determinadas cargas monofásicas com conversores de frequência. & Alguns equipamentos inverter/velocidade variável. \\
+B & Detecta também correntes residuais CC lisas dentro do escopo do dispositivo. & VFD, FV, VE e conversores conforme arquitetura e fabricante. \\
+\bottomrule
+\end{tabularx}
+\vspace{2mm}
+\begin{caixaAt}
+A escolha não deve ser feita apenas por ``30 mA''. Verificar \textbf{tipo de forma de onda residual}, seletividade, imunidade, corrente de fuga normal, requisitos do equipamento e norma específica.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{DPS: parâmetros e topologia que importam}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.47\textwidth}
+\begin{itemize}
+\item $U_c$: máxima tensão contínua aplicável.
+\item $U_p$: nível de proteção de tensão.
+\item $I_n$: corrente nominal de descarga em ensaio aplicável.
+\item $I_{imp}$: corrente de impulso para DPS tipo 1.
+\item Esquema de conexão compatível com o aterramento da instalação.
+\end{itemize}
+\column{0.51\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.78,every node/.style={font=\scriptsize}]
+\draw[thick] (0,3.0)--(5.3,3.0); \node[left] at (0,3.0){F};
+\draw[thick] (0,2.1)--(5.3,2.1); \node[left] at (0,2.1){N};
+\draw[thick,corNorma] (0,0.7)--(5.3,0.7); \node[left,corNorma] at (0,0.7){PE};
+\node[draw=corAt,fill=corAt!8,rounded corners,minimum width=1.05cm,minimum height=0.55cm] (d1) at (2.0,1.55){DPS};
+\node[draw=corAt,fill=corAt!8,rounded corners,minimum width=1.05cm,minimum height=0.55cm] (d2) at (3.7,1.55){DPS};
+\draw[corAt,thick] (2.0,3.0)--(d1.north); \draw[corNorma,thick] (d1.south)--(2.0,0.7);
+\draw[corAt,thick] (3.7,2.1)--(d2.north); \draw[corNorma,thick] (d2.south)--(3.7,0.7);
+\node[font=\tiny,align=center] at (2.85,0.15){PE segue ao BEP / sistema\\de equipotencialização};
+\end{tikzpicture}
+\end{columns}
+\begin{caixaObs}
+O desenho é conceitual. A combinação F--PE, N--PE, F--N ou 3+1 depende do esquema de aterramento, do DPS selecionado e da coordenação requerida. Não se cria um ``terra local'' isolado para o DPS.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Coordenação de DPS em cascata}
+\small
+\centering
+\begin{tikzpicture}[scale=0.83,every node/.style={font=\scriptsize}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.5cm,minimum height=0.7cm,align=center}}
+\node[b] (a) at (0,2.2) {Entrada / QGBT\\DPS tipo 1 ou 1+2};
+\node[b] (b) at (4.0,2.2) {QD\\DPS tipo 2};
+\node[b] (c) at (8.0,2.2) {Equipamento\\proteção fina};
+\draw[-{Stealth},thick,corPrim] (a)--(b);
+\draw[-{Stealth},thick,corPrim] (b)--(c);
+\node[font=\tiny\bfseries,corPrim,fill=white,inner sep=1pt] at (2.0,2.82){alimentador};
+\node[font=\tiny\bfseries,corPrim,fill=white,inner sep=1pt] at (6.0,2.82){circuito};
+% PE/equipotencialização contínuos, sem eletrodos independentes
+\draw[corNorma,very thick] (-0.7,0.7)--(8.7,0.7);
+\node[left,corNorma] at (-0.7,0.7){PE/BEP};
+\draw[corNorma,thick] (0,1.85)--(0,0.7);
+\draw[corNorma,thick] (4,1.85)--(4,0.7);
+\draw[corNorma,thick] (8,1.85)--(8,0.7);
+\draw[corNorma,thick] (1.0,0.7)--(1.0,-0.1) node[ground]{};
+\node[font=\tiny,corNorma] at (2.35,0.25){sistema comum de equipotencialização/aterramento};
+\end{tikzpicture}
+\vspace{2mm}
+\begin{caixaNorma}[title=Coordenação]
+A cascata deve considerar categoria/local da proteção, tensão suportável do equipamento, distância, energia do surto, presença de SPDA, esquema de aterramento e instruções dos fabricantes.
+\end{caixaNorma}
+\end{frame}
+
+\begin{frame}{Funções do aterramento}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{itemize}
+\item Referência e caminho de corrente de falta conforme esquema.
+\item Limitação de tensões de toque e passo.
+\item Viabilização do desligamento automático.
+\item Equipotencialização de massas e elementos condutivos.
+\item Dissipação/controle de surtos em conjunto com DPS/SPDA.
+\item Compatibilidade eletromagnética e referência funcional quando aplicável.
+\end{itemize}
+\column{0.46\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.82,every node/.style={font=\scriptsize}]
+\draw[thick] (0,0) rectangle (3.8,2.0);
+\node at (1.9,1.0) {Quadro / BEP};
+\draw[thick,corNorma] (1.9,0) -- (1.9,-0.8) -- (0.6,-0.8) -- (0.6,-1.8);
+\draw[thick,corNorma] (1.9,-0.8) -- (3.2,-0.8) -- (3.2,-1.8);
+\foreach \x in {0.6,3.2}{\draw[thick,corNorma] (\x,-1.8)--(\x,-2.7);\draw[thick,corNorma] (\x-0.3,-2.7)--(\x+0.3,-2.7);}
+\draw[corNorma,thick] (0.6,-2.25)--(3.2,-2.25);
+\node[corNorma] at (1.9,-3.05) {eletrodos / malha};
+\end{tikzpicture}
+\end{columns}
+\begin{caixaAt}
+``Aterramento = uma haste'' é uma simplificação perigosa. O desempenho depende do esquema completo, impedâncias, equipotencialização e dispositivos de proteção.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Esquemas TN, TT e IT}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{1.5cm}p{3.5cm}X}
+\toprule
+Esquema & Característica & Pontos de projeto \\
+\midrule
+TN-S & N e PE separados. & Boa previsibilidade da corrente de falta; atenção a laços e EMC. \\
+TN-C & PEN combinado em parte permitida do sistema. & Restrições importantes; não é solução genérica para circuitos terminais. \\
+TN-C-S & PEN a montante e separação posterior de N/PE. & Ponto de separação deve ser controlado e não se recombina N com PE a jusante. \\
+TT & Massas com eletrodo local, distinto funcionalmente do aterramento da fonte. & DR costuma ser essencial para desligamento automático. \\
+IT & Fonte isolada da terra ou ligada por impedância. & Alta continuidade na primeira falta; exige monitoramento de isolamento e estratégia de localização. \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}{Equipotencialização principal e suplementar}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaDef}
+Equipotencializar é reduzir diferenças perigosas de potencial interligando, de forma planejada, massas e elementos condutivos relevantes ao sistema de equipotencialização.
+\end{caixaDef}
+\begin{itemize}
+\item BEP na origem apropriada.
+\item PE e eletrodo(s) de aterramento.
+\item Partes metálicas relevantes e serviços que ingressem na edificação.
+\item Ligações suplementares onde necessárias.
+\end{itemize}
+\column{0.49\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.78,every node/.style={font=\scriptsize}]
+\node[draw,fill=corDef!8] (bep) at (0,2) {BEP};
+\node[draw] (qd) at (4,2) {QD};
+\node[draw] (tub) at (0,0) {Tubulação};
+\node[draw] (maq) at (4,0) {Massa};
+\node[draw] (est) at (2,-1.2) {Estrutura};
+\foreach \x in {qd,tub,maq,est}{\draw[thick,corNorma] (bep)--(\x);}
+\draw[thick,corNorma] (bep)--(-1,1) node[ground]{};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+%=====================================================================

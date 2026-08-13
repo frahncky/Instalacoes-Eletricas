@@ -1,0 +1,89 @@
+% Comercial I - edificio corporativo com nucleo, acessos e SPDA
+\section{Projeto Comercial I — edifício corporativo com SPDA}
+
+\newcommand{\EdifComBase}{%
+\draw[arqExt] (0,0) rectangle (26,18);
+\ArqParedeInt{0}{8}{26}{8}\ArqParedeInt{0}{10}{26}{10}
+\foreach \x in {5.2,10.4,15.6,20.8}{\ArqParedeInt{\x}{10}{\x}{18}}
+\ArqParedeInt{5}{0}{5}{8}\ArqParedeInt{10}{0}{10}{8}\ArqParedeInt{18}{0}{18}{8}\ArqParedeInt{22}{0}{22}{8}
+% nucleo: escada, elevador, shaft e sanitarios com corredor lateral de 1,30 m
+\ArqParedeInt{13.3}{0}{13.3}{8}\ArqParedeInt{16.7}{0}{16.7}{8}
+\ArqParedeInt{14.3}{0}{14.3}{5.8}
+\ArqParedeInt{14.3}{1.8}{16.7}{1.8}\ArqParedeInt{14.3}{3.7}{16.7}{3.7}\ArqParedeInt{14.3}{5.8}{16.7}{5.8}
+% portas salas superiores e inferiores
+\foreach \x in {1.0,6.2,11.4,16.6,21.8}{\ArqPortaHUp{\x}{10}{0.90}}
+\foreach \x in {1.0,6.0,18.7,22.7}{\ArqPortaHDown{\x}{8}{0.90}}
+% escada, elevador e shaft acessados diretamente pelo corredor central
+\ArqPortaHDown{11.2}{8}{0.90}\ArqPortaCorrerH{13.75}{15.25}{8}\ArqPortaHDown{15.75}{8}{0.70}
+% corredor dos sanitarios: acesso independente do patamar da escada
+\ArqVaoH{16.85}{17.95}{8}
+\ArqPortaVLeft{16.7}{0.40}{0.75}\ArqPortaVLeft{16.7}{2.25}{0.75}\ArqPortaVLeft{16.7}{4.25}{0.90}
+% fachada
+\foreach \xa/\xb in {0.8/4.3,5.9/9.5,11.1/14.7,16.3/19.9,21.5/25.2}{\ArqJanH{\xa}{\xb}{18}}
+\foreach \xa/\xb in {0.8/4.2,5.8/9.2,18.5/21.4,22.5/25.2}{\ArqJanH{\xa}{\xb}{0}}
+% mobiliario salas superiores
+\foreach \x in {0.6,5.8,11.0,16.2,21.4}{\ArqDesk{\x}{12.0}{1.45}{0.60}\ArqDesk{\x+2.3}{12.0}{1.45}{0.60}\ArqDesk{\x}{15.2}{1.45}{0.60}\ArqDesk{\x+2.3}{15.2}{1.45}{0.60}}
+% salas inferiores
+\foreach \x in {0.5,5.5,18.4}{\ArqDesk{\x}{2.0}{1.25}{0.58}\ArqDesk{\x+2.0}{2.0}{1.25}{0.58}\ArqDesk{\x}{5.2}{1.25}{0.58}\ArqDesk{\x+2.0}{5.2}{1.25}{0.58}}
+\ArqMesa{22.5}{2.4}{2.8}{1.35}\ArqBancada{22.5}{6.6}{2.8}{0.45}
+% nucleo vertical e sanitarios
+\ArqEscada{10.25}{0.35}{2.75}{7.25}
+\ArqElevador{13.65}{6.05}{1.75}{1.70}
+\draw[arqEquip] (15.60,6.05) rectangle (16.55,7.75);\node[arqSub] at (16.08,6.90){SHAFT/IT};
+\ArqVaso{15.45}{0.65}\ArqPia{14.55}{1.18}{0.60}{0.35}\node[arqSub] at (15.45,1.55){WC-M};
+\ArqVaso{15.45}{2.55}\ArqPia{14.55}{3.05}{0.60}{0.35}\node[arqSub] at (15.45,3.42){WC-F};
+\ArqVaso{15.50}{4.55}\ArqPia{14.55}{5.15}{0.70}{0.38}\node[arqSub] at (15.45,5.55){WC-PCD};
+\node[arqSub,rotate=90] at (17.35,3.0){ACESSO WC};
+\node[arqSub] at (14.45,7.55){HALL ELEV.};
+% rotulos
+\foreach \x/\n in {2.6/01,7.6/02,13.0/03,18.2/04,23.4/05}{\node[arqLabel] at (\x,17.35){SALA \n};}
+\node[arqLabel] at (2.5,0.65){SALA 06};\node[arqLabel] at (7.5,0.65){SALA 07};\node[arqLabel] at (20.0,0.65){SALA 08};\node[arqLabel] at (24.0,0.65){REUNIÃO};
+\node[arqSub] at (5.0,9.0){CORREDOR - 2,00 m};\node[arqSub] at (20.5,9.0){CORREDOR};
+\CotaH{0}{26}{18.22}{26,00 m}\CotaV{0}{18}{26.22}{18,00 m}
+}
+
+\begin{frame}{Comercial I — pavimento típico refinado}
+\centering\begin{tikzpicture}[scale=0.37,every node/.style={font=\tiny}]\EdifComBase\end{tikzpicture}
+\vspace{0.4mm}\scriptsize Salas voltadas ao corredor central; escada, elevador e shaft com acessos próprios; sanitários atendidos por corredor lateral de 1,30 m, sem acesso pelo interior da escada.
+\end{frame}
+
+\begin{frame}{Comercial I — organização dos quatro pavimentos}
+\small\begin{columns}[T,onlytextwidth]
+\column{0.24\textwidth}\begin{caixaProjeto}[title=Térreo]\begin{itemize}\item lobby;\item 6 salas;\item reunião;\item WC M/F/PCD;\item elevador + escada.\end{itemize}\end{caixaProjeto}
+\column{0.24\textwidth}\begin{caixaProjeto}[title=1º pav.]\begin{itemize}\item 8 salas;\item reunião;\item WC M/F/PCD;\item shaft/IT.\end{itemize}\end{caixaProjeto}
+\column{0.24\textwidth}\begin{caixaProjeto}[title=2º pav.]\begin{itemize}\item 8 salas;\item reunião;\item WC M/F/PCD;\item shaft/IT.\end{itemize}\end{caixaProjeto}
+\column{0.24\textwidth}\begin{caixaProjeto}[title=3º pav.]\begin{itemize}\item 8 salas;\item reunião;\item WC M/F/PCD;\item acesso técnico.\end{itemize}\end{caixaProjeto}
+\end{columns}\end{frame}
+
+\begin{frame}{Comercial I — elétrica do pavimento típico}
+\centering\begin{tikzpicture}[scale=0.37,every node/.style={font=\tiny}]
+\EdifComBase\SimQD{16.05}{6.9}{QDP}
+\foreach \x in {1.3,3.9,6.5,9.1,11.7,14.3,16.9,19.5,22.1,24.7}{\SimLuz{\x}{14.0}}
+\foreach \x in {1.3,3.9,6.5,9.1,18.7,20.7,22.7,24.7}{\SimLuz{\x}{4.4}}
+\foreach \x in {1.5,4.5,7.5,10.5,13.5,16.5,19.5,22.5,25.0}{\SimLuz{\x}{9.0}}
+\foreach \x/\y in {0.4/11,4.8/11,5.6/11,9.8/11,10.8/11,15/11,16/11,20.2/11,21.2/11,25.6/11,0.4/7.2,4.6/7.2,5.4/7.2,9.6/7.2,18.4/7.2,21.5/7.2,22.3/7.2,25.6/7.2}{\SimTUG{\x}{\y}\SimDados{\x}{\y+0.35}}
+\foreach \x in {2.6,7.6,13,18.2,23.4}{\SimTUE{\x}{17.6}{AC}}\foreach \x in {2.5,7.5,20,24}{\SimTUE{\x}{0.4}{AC}}\SimTUE{14.5}{7.5}{EL}
+\draw[corPrim!70,dashed,thick] (16.05,6.9)--(16.05,9)--(2,9);\draw[corPrim!70,dashed,thick] (16.05,9)--(25,9);
+\end{tikzpicture}\end{frame}
+
+\begin{frame}{Comercial I — cargas e distribuição vertical}
+\small\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}\begin{caixaProjeto}[title=Cargas do estudo]\begin{itemize}\item iluminação/emergência: 18 kW;\item tomadas/TI: 32 kVA;\item climatização: 72 kW;\item elevador: 18 kW;\item serviços comuns: 20 kW.\end{itemize}\end{caixaProjeto}
+\column{0.49\textwidth}\begin{caixaNorma}[title=Distribuição]QDI, QDT/TI, QDAC, QD-ELEV e QD-SERV são alimentados pelo QGBT conforme demanda e seletividade. Em medição coletiva, aplicar a NT.00004.EQTL vigente.\end{caixaNorma}
+\end{columns}\end{frame}
+
+\begin{frame}{Comercial I — cobertura e SPDA}
+\centering\begin{tikzpicture}[scale=0.36,every node/.style={font=\tiny}]
+\draw[arqExt] (0,0) rectangle (26,18);\draw[arqEquip,line width=0.8pt] (10.2,5.2) rectangle (17.2,10.8);\node[arqLabel] at (13.7,8){CASA DE MÁQUINAS\\ACESSO À ESCADA};
+\draw[arqEquip] (19,12) rectangle (23.5,15);\node[arqSub] at (21.25,13.5){CONDENSADORAS};
+\foreach \y in {0,6,12,18}{\draw[corAt!80,thick] (0,\y)--(26,\y);}\foreach \x in {0,6.5,13,19.5,26}{\draw[corAt!80,thick] (\x,0)--(\x,18);}
+\foreach \x/\y in {0/0,6.5/0,13/0,19.5/0,26/0,26/6,26/12,26/18,19.5/18,13/18,6.5/18,0/18,0/12,0/6}{\fill[corNorma] (\x,\y) circle (0.14);}
+\end{tikzpicture}\vspace{0.3mm}\scriptsize Malha e descidas são conceituais; classe e espaçamentos finais decorrem da análise de risco e da série ABNT NBR 5419 aplicável.
+\end{frame}
+
+\begin{frame}{Comercial I — SPDA, DPS e aterramento integrados}
+\centering\begin{tikzpicture}[scale=0.70,every node/.style={font=\tiny}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.2cm,minimum height=0.58cm,align=center}}
+\node[b](r)at(-4,3.5){Rede Equatorial};\node[b](qg)at(-4,2.3){QGBT\\DPS origem};\node[b](qd)at(-4,1.1){QDs pavimentos};\node[b](sp)at(1,3.5){SPDA cobertura};\node[b](desc)at(1,2.3){Descidas};\node[b](bep)at(1,1.1){BEP / equipot.};\node[b](malha)at(1,-0.1){aterramento};
+\draw[-{Stealth},thick,corPrim](r)--(qg)--(qd);\draw[-{Stealth},thick,corAt](sp)--(desc)--(bep)--(malha);\draw[corNorma,thick](qg)--(bep);\draw[corNorma,thick](qd)--(bep);
+\end{tikzpicture}\end{frame}

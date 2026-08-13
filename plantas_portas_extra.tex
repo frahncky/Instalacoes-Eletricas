@@ -1,0 +1,17 @@
+% Portas e vaos complementares para as plantas realistas
+% Implementacao simples e robusta, sem aritmetica adicional nas coordenadas TikZ.
+\newcommand{\ArqVaoH}[3]{%
+  \draw[white,line width=5.2pt] (#1,#3)--(#2,#3);
+  \draw[black!20,thin] (#1,#3)--(#2,#3);}
+\newcommand{\ArqVaoV}[3]{%
+  \draw[white,line width=5.2pt] (#3,#1)--(#3,#2);
+  \draw[black!20,thin] (#3,#1)--(#3,#2);}
+\newcommand{\ArqPortaCorrerH}[3]{%
+  \draw[white,line width=5.4pt] (#1,#3)--(#2,#3);
+  \draw[black!55,thin,double=white,double distance=1.35pt] (#1,#3)--(#2,#3);}
+\newcommand{\ArqPortaCorrerV}[3]{%
+  \draw[white,line width=5.4pt] (#3,#1)--(#3,#2);
+  \draw[black!55,thin,double=white,double distance=1.35pt] (#3,#1)--(#3,#2);}
+\newcommand{\ArqPortaElevV}[3]{%
+  \draw[white,line width=5.0pt] (#3,#1)--(#3,#2);
+  \draw[black!65,thin,double=white,double distance=1.15pt] (#3,#1)--(#3,#2);}

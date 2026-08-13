@@ -1,0 +1,121 @@
+\section{Exemplos resolvidos}
+
+\begin{frame}{Exemplo 2 -- alimentador trifásico}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{caixaEx}
+$P=\SI{42}{kW}$, $V=\SI{380}{V}$, $fp=0{,}88$, $L=\SI{60}{m}$.
+\[
+I_b=\frac{42000}{\sqrt3\cdot380\cdot0{,}88}\approx\SI{72.5}{A}.
+\]
+\end{caixaEx}
+\column{0.48\textwidth}
+\begin{caixaProjeto}[title=Sequência]
+\begin{enumerate}
+\item selecionar seção por ampacidade corrigida;
+\item selecionar proteção;
+\item verificar $\Delta V$;
+\item verificar curto máximo/mínimo;
+\item verificar PE e neutro;
+\item revisar seletividade a montante/jusante.
+\end{enumerate}
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+\begin{frame}{Exemplo 3 -- banco de capacitores}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{caixaEx}
+$P=\SI{60}{kW}$, corrigir $fp$ de $0{,}80$ para $0{,}95$.
+\begin{align*}
+\varphi_1&=36{,}87^\circ,\quad \varphi_2=18{,}19^\circ\\
+Q_c&=60(\tg\varphi_1-\tg\varphi_2)\\
+&\approx\SI{25.3}{kvar}.
+\end{align*}
+\end{caixaEx}
+\column{0.48\textwidth}
+\begin{caixaAt}
+Antes de instalar $\SI{25}{kvar}$ ``puro'', avaliar:
+\begin{itemize}
+\item perfil de carga;
+\item risco de sobrecompensação;
+\item harmônicas;
+\item ressonância;
+\item número de estágios;
+\item local de compensação.
+\end{itemize}
+\end{caixaAt}
+\end{columns}
+\end{frame}
+\begin{frame}{Exemplo 4 -- motor de 22 kW em rede fraca}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{caixaEx}
+$P=\SI{22}{kW}$, $V=\SI{380}{V}$, $fp=0{,}86$, $\eta=0{,}93$.
+\[
+I_N\approx\frac{22000}{\sqrt3\cdot380\cdot0{,}86\cdot0{,}93}
+\approx\SI{41.8}{A}.
+\]
+\end{caixaEx}
+\column{0.48\textwidth}
+\begin{caixaProjeto}[title=Decisão]
+Se a rede não tolera inrush elevado:
+\begin{itemize}
+\item calcular queda durante partida;
+\item verificar torque requerido;
+\item comparar soft-starter e VFD;
+\item coordenar proteção;
+\item verificar harmônicas/EMC.
+\end{itemize}
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+\begin{frame}{Exemplo 5 -- curto no secundário do transformador}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.51\textwidth}
+\begin{caixaEx}
+Trafo $\SI{500}{kVA}$, $\SI{380}{V}$, $Z=5{,}5\%$.
+\[
+I_N=\frac{500000}{\sqrt3\cdot380}\approx\SI{760}{A}.
+\]
+\[
+I_{cc}\approx\frac{760}{0{,}055}\approx\SI{13.8}{kA}.
+\]
+\end{caixaEx}
+\column{0.47\textwidth}
+\begin{caixaObs}
+No QGBT real, incluir impedância da rede de MT, trafo, conexões e barramentos. Nos QDs a jusante, incluir cabos/alimentadores, reduzindo $I_{cc}$.
+\end{caixaObs}
+\end{columns}
+\end{frame}
+\begin{frame}{Exemplo 6 -- balanceamento de fases}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{caixaEx}
+Correntes medidas:
+\[
+I_A=\SI{52}{A},\quad I_B=\SI{38}{A},\quad I_C=\SI{44}{A}.
+\]
+\[
+I_{med}=\SI{44.7}{A}.
+\]
+A fase A está $\approx\SI{7.3}{A}$ acima da média.
+\end{caixaEx}
+\column{0.48\textwidth}
+\begin{caixaProjeto}[title=Ação]
+Mover circuitos monofásicos de A para B/C, mas respeitando:
+\begin{itemize}
+\item simultaneidade real;
+\item cargas críticas;
+\item sequência de fases;
+\item DRs e neutros independentes;
+\item harmônicas no neutro.
+\end{itemize}
+\end{caixaProjeto}
+\end{columns}
+\end{frame}

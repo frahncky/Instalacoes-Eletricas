@@ -1,0 +1,49 @@
+%=====================================================================
+% SIMBOLOGIA ARQUITETONICA PARA AS PLANTAS DIDATICAS
+% Unidades de desenho em metros; mobiliario em cinza para nao competir
+% com a simbologia eletrica.
+%=====================================================================
+
+\tikzset{
+  arqExt/.style={draw=black!85,line width=1.6pt},
+  arqInt/.style={draw=black!75,line width=0.9pt},
+  arqMob/.style={draw=black!50,fill=black!3,line width=0.45pt},
+  arqWet/.style={draw=corDef!75!black,fill=corDef!4,line width=0.5pt},
+  arqGlass/.style={draw=corPrim!85,line width=1.25pt},
+  arqEquip/.style={draw=black!55,fill=black!5,line width=0.5pt},
+  arqLabel/.style={font=\tiny\bfseries,text=black!75,align=center},
+  arqSub/.style={font=\tiny,text=black!55,align=center}
+}
+
+\newcommand{\ArqParedeExt}[4]{\draw[arqExt] (#1,#2)--(#3,#4);}
+\newcommand{\ArqParedeInt}[4]{\draw[arqInt] (#1,#2)--(#3,#4);}
+\newcommand{\ArqJanH}[3]{\draw[white,line width=4.6pt] (#1,#3)--(#2,#3);\draw[arqGlass] (#1,#3)--(#2,#3);}
+\newcommand{\ArqJanV}[3]{\draw[white,line width=4.6pt] (#3,#1)--(#3,#2);\draw[arqGlass] (#3,#1)--(#3,#2);}
+
+\newcommand{\ArqPortaHUp}[3]{\draw[white,line width=4.6pt] (#1,#2)--(#1+#3,#2);\draw[black!60,thin] (#1,#2)--(#1,#2+#3);\draw[black!30,thin] (#1+#3,#2) arc[start angle=0,end angle=90,radius=#3];}
+\newcommand{\ArqPortaHDown}[3]{\draw[white,line width=4.6pt] (#1,#2)--(#1+#3,#2);\draw[black!60,thin] (#1,#2)--(#1,#2-#3);\draw[black!30,thin] (#1+#3,#2) arc[start angle=0,end angle=-90,radius=#3];}
+\newcommand{\ArqPortaVRight}[3]{\draw[white,line width=4.6pt] (#1,#2)--(#1,#2+#3);\draw[black!60,thin] (#1,#2)--(#1+#3,#2);\draw[black!30,thin] (#1,#2+#3) arc[start angle=90,end angle=0,radius=#3];}
+\newcommand{\ArqPortaVLeft}[3]{\draw[white,line width=4.6pt] (#1,#2)--(#1,#2+#3);\draw[black!60,thin] (#1,#2)--(#1-#3,#2);\draw[black!30,thin] (#1,#2+#3) arc[start angle=90,end angle=180,radius=#3];}
+
+\newcommand{\ArqCama}[4]{\draw[arqMob,rounded corners=1pt] (#1,#2) rectangle (#1+#3,#2+#4);\draw[black!40,thin] (#1,#2+#4-0.48)--(#1+#3,#2+#4-0.48);\draw[black!35,fill=white] (#1+0.18,#2+#4-0.40) rectangle (#1+#3/2-0.08,#2+#4-0.12);\draw[black!35,fill=white] (#1+#3/2+0.08,#2+#4-0.40) rectangle (#1+#3-0.18,#2+#4-0.12);}
+\newcommand{\ArqSofa}[4]{\draw[arqMob,rounded corners=2pt] (#1,#2) rectangle (#1+#3,#2+#4);\draw[black!35,thin] (#1+0.18,#2+0.18)--(#1+#3-0.18,#2+0.18);\draw[black!35,thin] (#1+0.18,#2+#4-0.18)--(#1+#3-0.18,#2+#4-0.18);}
+\newcommand{\ArqMesa}[4]{\draw[arqMob,rounded corners=1pt] (#1,#2) rectangle (#1+#3,#2+#4);\foreach \x in {0.25,0.75}{\draw[black!35] (#1+#3*\x,#2-0.18) circle (0.12);\draw[black!35] (#1+#3*\x,#2+#4+0.18) circle (0.12);}\draw[black!35] (#1-0.18,#2+#4/2) circle (0.12);\draw[black!35] (#1+#3+0.18,#2+#4/2) circle (0.12);}
+\newcommand{\ArqDesk}[4]{\draw[arqMob] (#1,#2) rectangle (#1+#3,#2+#4);\draw[black!35] (#1+#3/2,#2-0.22) circle (0.14);}
+\newcommand{\ArqArmario}[4]{\draw[arqMob] (#1,#2) rectangle (#1+#3,#2+#4);\draw[black!30,thin] (#1+#3/2,#2)--(#1+#3/2,#2+#4);}
+\newcommand{\ArqVaso}[2]{\draw[arqWet] (#1,#2) ellipse (0.24 and 0.34);\draw[arqWet] (#1-0.25,#2+0.28) rectangle (#1+0.25,#2+0.50);}
+\newcommand{\ArqChuveiro}[4]{\draw[arqWet] (#1,#2) rectangle (#1+#3,#2+#4);\draw[black!30,thin] (#1,#2)--(#1+#3,#2+#4);\draw[black!30,thin] (#1+#3,#2)--(#1,#2+#4);}
+\newcommand{\ArqPia}[4]{\draw[arqWet] (#1,#2) rectangle (#1+#3,#2+#4);\draw[black!40] (#1+#3/2,#2+#4/2) ellipse (#3*0.22 and #4*0.28);}
+\newcommand{\ArqBancada}[4]{\draw[arqEquip] (#1,#2) rectangle (#1+#3,#2+#4);}
+\newcommand{\ArqFogao}[2]{\draw[arqEquip] (#1,#2) rectangle (#1+0.70,#2+0.65);\foreach \x/\y in {0.18/0.18,0.52/0.18,0.18/0.47,0.52/0.47}{\draw[black!35] (#1+\x,#2+\y) circle (0.08);}}
+\newcommand{\ArqGeladeira}[2]{\draw[arqEquip] (#1,#2) rectangle (#1+0.75,#2+0.75);\draw[black!35] (#1,#2+0.38)--(#1+0.75,#2+0.38);}
+\newcommand{\ArqLavadora}[2]{\draw[arqEquip] (#1,#2) rectangle (#1+0.70,#2+0.70);\draw[black!35] (#1+0.35,#2+0.35) circle (0.22);}
+\newcommand{\ArqCarro}[4]{\draw[arqMob,rounded corners=3pt] (#1,#2) rectangle (#1+#3,#2+#4);\draw[black!35] (#1+0.35,#2+0.25) rectangle (#1+#3-0.35,#2+#4-0.25);\foreach \y in {0.35,#4-0.35}{\draw[black!45,line width=1.2pt] (#1-0.06,#2+\y)--(#1+0.18,#2+\y);\draw[black!45,line width=1.2pt] (#1+#3-0.18,#2+\y)--(#1+#3+0.06,#2+\y);}}
+\newcommand{\ArqElevador}[4]{\draw[arqEquip,line width=0.8pt] (#1,#2) rectangle (#1+#3,#2+#4);\draw[black!35] (#1+#3/2,#2)--(#1+#3/2,#2+#4);\node[arqLabel] at (#1+#3/2,#2+#4/2){ELEV.};}
+\newcommand{\ArqEscada}[4]{\draw[arqEquip,line width=0.8pt] (#1,#2) rectangle (#1+#3,#2+#4);\foreach \i in {1,...,8}{\draw[black!35,thin] (#1,#2+#4*\i/9)--(#1+#3,#2+#4*\i/9);}\draw[-{Stealth[length=2mm]},black!45] (#1+#3/2,#2+0.45)--(#1+#3/2,#2+#4-0.45);}
+\newcommand{\ArqMaquina}[5]{\draw[arqEquip,rounded corners=1pt] (#1,#2) rectangle (#1+#3,#2+#4);\node[arqSub] at (#1+#3/2,#2+#4/2){#5};}
+\newcommand{\ArqBancadaLab}[4]{\draw[arqWet] (#1,#2) rectangle (#1+#3,#2+#4);\foreach \x in {0.25,0.75}{\draw[black!35] (#1+#3*\x,#2+#4/2) circle (0.10);}}
+
+% As cotas já existem no caderno de projetos; providecommand mantém compatibilidade
+% com o PDF predial, que carrega apenas esta base.
+\providecommand{\CotaH}[4]{\draw[thin] (#1,#3)--(#1,#3+0.28);\draw[thin] (#2,#3)--(#2,#3+0.28);\draw[{Latex}-{Latex},thin] (#1,#3+0.20)--(#2,#3+0.20) node[midway,fill=white,inner sep=1pt,font=\tiny]{#4};}
+\providecommand{\CotaV}[4]{\draw[thin] (#3,#1)--(#3+0.28,#1);\draw[thin] (#3,#2)--(#3+0.28,#2);\draw[{Latex}-{Latex},thin] (#3+0.20,#1)--(#3+0.20,#2) node[midway,fill=white,inner sep=1pt,font=\tiny,rotate=90]{#4};}

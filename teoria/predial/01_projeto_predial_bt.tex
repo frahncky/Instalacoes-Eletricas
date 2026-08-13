@@ -1,0 +1,173 @@
+\section{Projeto predial de baixa tensão}
+
+\begin{frame}{Projeto predial: sequência correta}
+\small
+\centering
+\begin{tikzpicture}[node distance=0.32cm,every node/.style={font=\scriptsize}]
+\tikzset{et/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.55cm,minimum height=0.72cm,align=center}}
+\node[et] (a) {1. Planta e uso\\dos ambientes};
+\node[et,right=of a] (b) {2. Pontos e\\cargas};
+\node[et,right=of b] (c) {3. Circuitos\\terminais};
+\node[et,below=of c] (d) {4. Condutores e\\eletrodutos};
+\node[et,left=of d] (e) {5. Proteções\\e aterramento};
+\node[et,left=of e] (f) {6. Quadro e\\balanceamento};
+\node[et,below=of f] (g) {7. Entrada da\\concessionária};
+\node[et,right=of g] (h) {8. Unifilar e\\memorial};
+\node[et,right=of h] (i) {9. Verificação\\e as built};
+\foreach \u/\v in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i}{\draw[-{Stealth},thick,corPrim] (\u)--(\v);}
+\end{tikzpicture}
+\vspace{2mm}
+\begin{caixaAt}
+Não se começa o projeto escolhendo disjuntor, cabo ou padrão de entrada. Esses elementos são consequência da arquitetura, das cargas, dos critérios normativos e das condições reais de instalação.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Da arquitetura para os pontos elétricos}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{caixaDef}[title=Levantamento]
+Antes de lançar símbolos elétricos, identificar:
+\begin{itemize}
+\item dimensões e perímetros dos ambientes;
+\item portas, janelas e circulação;
+\item bancadas, mobiliário e equipamentos fixos;
+\item áreas molhadas, externas e sujeitas a lavagem;
+\item posição tecnicamente adequada do QD.
+\end{itemize}
+\end{caixaDef}
+\column{0.48\textwidth}
+\begin{caixaProjeto}[title=Depois]
+\begin{itemize}
+\item calcular os mínimos normativos;
+\item acrescentar pontos necessários ao uso real;
+\item definir TUE pelas cargas previstas;
+\item posicionar interruptores junto aos acessos;
+\item lançar rotas compatíveis com a construção.
+\end{itemize}
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Iluminação e tomadas: mínimo não é projeto final}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Previsão mínima de iluminação]
+Em habitações, a previsão de carga parte de:
+\begin{itemize}
+\item 100 VA para os primeiros 6 m$^2$ ou fração;
+\item 60 VA para cada acréscimo de 4 m$^2$ inteiros ou em fração.
+\end{itemize}
+A quantidade real de luminárias decorre do projeto luminotécnico, não dessa potência de previsão.
+\end{caixaNorma}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=TUG]
+A quantidade mínima depende do tipo e do perímetro do ambiente. Cozinha, copa, lavanderia e área de serviço possuem critérios mais exigentes que salas, dormitórios e outros cômodos.
+\end{caixaNorma}
+\begin{caixaAt}
+Não desenhar tomadas apenas para atingir uma contagem: conferir portas, móveis, bancadas, eletrodomésticos e acessibilidade de uso.
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Divisão de circuitos: critérios defensáveis}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{itemize}
+\item separar iluminação e tomadas quando tecnicamente adequado;
+\item separar cargas de potência elevada ou uso específico;
+\item prever circuitos exclusivos para TUE quando requerido;
+\item limitar a consequência de uma falha a uma área razoável;
+\item facilitar identificação, manutenção e expansão.
+\end{itemize}
+\column{0.49\textwidth}
+\begin{itemize}
+\item respeitar ambientes molhados e externos;
+\item evitar compartilhamento indevido de neutros;
+\item considerar DR/DDR e sua seletividade funcional;
+\item distribuir circuitos monofásicos entre as fases;
+\item revisar simultaneidade e perfil das cargas.
+\end{itemize}
+\end{columns}
+\begin{caixaObs}
+A divisão de circuitos deve aparecer de forma idêntica na planta, no quadro de cargas, no diagrama unifilar e na identificação física do QD.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Quadro de cargas: não usar números soltos}
+\scriptsize
+\begin{tabularx}{\textwidth}{c p{2.25cm} c c c c c c X}
+\toprule
+Circ. & Descrição & Fase & $P$ & $I_b$ & Cabo & DJ & DR & Verificações \\
+ & & & W/VA & A & mm$^2$ & A & mA & \\
+\midrule
+C1 & Iluminação social & C & 720 & 3,27 & 1,5 & 10 & -- & $I_z$, queda, curto \\
+C2 & Iluminação íntima & B & 860 & 3,91 & 1,5 & 10 & -- & $I_z$, queda, curto \\
+C3 & TUG áreas secas & A & 1100 & 5,00 & 2,5 & 16 & conf. & uso e extensão \\
+C4 & TUG cozinha & B & 1900 & 8,64 & 2,5 & 16 & 30 & ambiente molhado \\
+C7 & Chuveiro & A & 5500 & 25,0 & 6 & 32 & 30 & dedicado \\
+\bottomrule
+\end{tabularx}
+\vspace{2mm}
+\begin{caixaAt}
+Os valores acima pertencem ao projeto residencial desenvolvido adiante. Eles não são uma tabela universal para copiar em qualquer residência.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Planta elétrica: o que precisa existir no desenho}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.47\textwidth}
+\begin{itemize}
+\item paredes, portas, janelas e nomes dos ambientes;
+\item cotas ou referência dimensional confiável;
+\item luminárias, interruptores e comandos;
+\item TUG, TUE, dados e demais sistemas;
+\item número do circuito junto aos pontos/rotas;
+\item QD em local acessível e coerente.
+\end{itemize}
+\column{0.51\textwidth}
+\begin{itemize}
+\item eletrodutos ou rotas com leitura construtiva;
+\item seção/quantidade de condutores quando pertinente;
+\item alturas e observações de montagem;
+\item legenda de símbolos;
+\item compatibilização com hidráulica, estrutura, HVAC e dados;
+\item detalhes dos locais especiais.
+\end{itemize}
+\begin{caixaProjeto}
+Uma planta elétrica não é um diagrama abstrato colocado sobre retângulos. Ela deve permitir compreender \textbf{onde} instalar, \textbf{o que} instalar e \textbf{a qual circuito} cada ponto pertence.
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Unifilar: fechar a lógica elétrica}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{itemize}
+\item origem e tensão de fornecimento;
+\item medição e proteção de entrada;
+\item alimentador e número de condutores;
+\item DG e barramentos do QD;
+\item DPS e conexão ao sistema de equipotencialização;
+\item DR/DDR/RCBO conforme circuitos protegidos.
+\end{itemize}
+\column{0.50\textwidth}
+\begin{itemize}
+\item disjuntores terminais;
+\item fases atribuídas aos circuitos;
+\item neutros corretamente segregados a jusante dos DR;
+\item barramento PE contínuo e identificado;
+\item seções e correntes nominais;
+\item identificação coerente com planta e quadro de cargas.
+\end{itemize}
+\end{columns}
+\begin{caixaAt}
+O símbolo de terra isolado não substitui o desenho do PE, do BEP e da equipotencialização. Em projeto didático, esconder essa topologia ensina errado.
+\end{caixaAt}
+\end{frame}
+
+%=====================================================================

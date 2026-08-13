@@ -1,0 +1,49 @@
+name: Compila Instalações Elétricas
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.tex'
+      - 'Makefile'
+      - '.github/workflows/compila-instalacoes-eletricas.yml'
+  pull_request:
+    paths:
+      - '**/*.tex'
+      - 'Makefile'
+      - '.github/workflows/compila-instalacoes-eletricas.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instala LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            latexmk \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-pictures \
+            texlive-science \
+            texlive-lang-portuguese \
+            lmodern
+
+      - name: Compila PDFs
+        run: make all
+
+      - name: Publica PDFs da execução
+        uses: actions/upload-artifact@v4
+        with:
+          name: instalacoes-eletricas-pdfs
+          path: |
+            instalacoes_eletricas_material3.pdf
+            instalacoes_eletricas_prediais.pdf
+            instalacoes_eletricas_industriais.pdf
+            instalacoes_eletricas_simbologia_projetos_equatorial_ma.pdf
+          if-no-files-found: error

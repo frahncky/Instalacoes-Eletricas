@@ -1,0 +1,59 @@
+\section{Comparação e entrega executiva}
+
+\begin{frame}[shrink=6]{Os seis projetos do caderno}
+\scriptsize
+\begin{tabularx}{\textwidth}{c p{3.0cm} p{3.1cm} X}
+\toprule
+ID & Projeto & Diferencial de arquitetura & Foco elétrico \\
+\midrule
+R1 & Casa térrea & 2 suítes, quarto 3, garagem, hall interno & entrada BT, balanceamento, dois chuveiros \\
+R2 & Apartamento & 2 suítes, varanda, lavabo e serviço & unidade em EMUC, prumada e QD trifásico \\
+C1 & Edifício corporativo & 3 pavimentos, 8 salas/tipo, WC M/F/PCD, elevador, escada & QGBT, elevador, SPDA, DPS \\
+C2 & Clínica/serviços & recepção, 6 consultórios, procedimento, laboratório e esterilização & circuitos essenciais, UPS e locais médicos \\
+I1 & Indústria leve & produção A/B, manutenção, almoxarifado, vestiários & motores/VFD/CCM com atendimento em BT \\
+I2 & Indústria com SE & processo, embalagem, expedição, utilidades e refrigeração & MT, trafo 500 kVA, QGBT 1.000 A e SPDA \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+\begin{frame}{O que muda de um projeto para outro}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Não são a mesma planta reciclada]
+\begin{itemize}
+\item geometrias e circulações diferentes;
+\item usos e cargas próprios;
+\item quadros em posições coerentes;
+\item rotas compatíveis com cada arquitetura;
+\item distribuição e unifilares diferentes.
+\end{itemize}
+\end{caixaProjeto}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Norma conforme o caso]
+\begin{itemize}
+\item BT individual: NT.00001.EQTL;
+\item múltiplas unidades: NT.00004.EQTL;
+\item MT/subestação: NT.00002 e NT.00026;
+\item SPDA: série ABNT NBR 5419;
+\item MT interna: ABNT NBR 14039.
+\end{itemize}
+\end{caixaNorma}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Checklist de projeto executivo}
+\small
+\begin{enumerate}
+\item Usar a planta arquitetônica real, com cotas, níveis, layout e equipamentos.
+\item Calcular iluminação/TUG e levantar TUE por dados de placa.
+\item Dividir circuitos e definir fases.
+\item Calcular $I_b$, escolher seção por $I_z$ e fatores de correção.
+\item Verificar $I_b\le I_n\le I_z$ e condições de proteção.
+\item Calcular queda de tensão, curto máximo/mínimo e seletividade.
+\item Dimensionar N, PE, eletrodutos, bandejas, quadros e barramentos.
+\item Integrar DR, DPS, aterramento e SPDA sem criar aterramentos independentes artificiais.
+\item Em MT, solicitar dados de rede e coordenar proteção da Equatorial com a instalação interna.
+\item Emitir memorial, documentação de responsabilidade técnica, comissionamento e as built.
+\end{enumerate}
+\end{frame}

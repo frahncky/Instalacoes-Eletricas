@@ -1,0 +1,208 @@
+%=====================================================================
+% PROJETO RESIDENCIAL I — CASA TERREA COM DUAS SUITES
+% Base eletrica: ABNT NBR 5410 + NT.00001.EQTL Rev.09
+% Planta-base didatica com logica arquitetonica e mobiliario.
+% Atualizacao: agosto de 2026
+%=====================================================================
+
+\ifdefined\ArqParedeExt\else\input{plantas_realistas_base.tex}\fi
+
+\section{Projeto Residencial I — casa térrea com duas suítes}
+
+% Símbolos elétricos locais
+\providecommand{\PRLuz}[2]{\begin{scope}[shift={(#1,#2)}]\draw[corAccent,thick] (0,0) circle (0.14);\draw[corAccent,thick] (-0.10,-0.10)--(0.10,0.10);\draw[corAccent,thick] (-0.10,0.10)--(0.10,-0.10);\end{scope}}
+\providecommand{\PRTUG}[2]{\begin{scope}[shift={(#1,#2)}]\draw[corPrim,thick] (0,0) circle (0.13);\draw[corPrim,thick] (-0.16,0)--(0.16,0);\end{scope}}
+\providecommand{\PRTUE}[3]{\begin{scope}[shift={(#1,#2)}]\draw[corAt,thick] (0,0) circle (0.17);\node[font=\tiny\bfseries,corAt] at (0,0){#3};\end{scope}}
+\providecommand{\PRQD}[3]{\begin{scope}[shift={(#1,#2)}]\draw[corPrim,fill=corDef!10,thick,rounded corners=1pt] (-0.38,-0.22) rectangle (0.38,0.22);\node[font=\tiny\bfseries] at (0,0){#3};\end{scope}}
+
+%---------------------------------------------------------------------
+% Planta 15,00 x 11,00 m. Frente em y=0.
+% Ala íntima à esquerda; social ao centro; garagem/serviço à direita.
+%---------------------------------------------------------------------
+\newcommand{\CasaResidencialBase}{%
+  % contorno
+  \draw[arqExt] (0,0) rectangle (15,11);
+  % ala íntima e hall
+  \ArqParedeInt{5.2}{0}{5.2}{11}
+  \ArqParedeInt{6.4}{0}{6.4}{11}
+  \ArqParedeInt{0}{3.6}{5.2}{3.6}
+  \ArqParedeInt{0}{7.2}{5.2}{7.2}
+  % banheiros internos / social
+  \ArqParedeInt{3.5}{0}{3.5}{2.0}
+  \ArqParedeInt{3.5}{2.0}{5.2}{2.0}
+  \ArqParedeInt{3.5}{4.8}{5.2}{4.8}
+  \ArqParedeInt{3.5}{4.8}{3.5}{7.2}
+  \ArqParedeInt{3.5}{8.4}{5.2}{8.4}
+  \ArqParedeInt{3.5}{8.4}{3.5}{11}
+  % social/cozinha
+  \ArqParedeInt{6.4}{6.4}{11.2}{6.4}
+  % garagem / serviço / varanda gourmet
+  \ArqParedeInt{11.2}{0}{11.2}{11}
+  \ArqParedeInt{11.2}{5.6}{15}{5.6}
+  \ArqParedeInt{11.2}{8.2}{15}{8.2}
+
+  % acessos: principal diretamente na sala; garagem para sala; serviço externo
+  \ArqPortaHUp{7.25}{0}{1.10}
+  \draw[white,line width=5pt] (11.2,2.2)--(11.2,3.2);\draw[black!60,thin] (11.2,2.2)--(10.2,2.2);
+  \ArqPortaVLeft{15}{6.25}{0.90}
+  \draw[white,line width=5pt] (11.2,9.1)--(11.2,10.7);\draw[arqGlass] (11.2,9.1)--(11.2,10.7);
+  % hall interno aberto para a sala
+  \draw[white,line width=5pt] (6.4,2.45)--(6.4,3.65);
+  % portas dos quartos/banheiros para hall
+  \ArqPortaVLeft{5.2}{2.45}{0.90}
+  \ArqPortaVLeft{5.2}{3.85}{0.90}
+  \ArqPortaVLeft{5.2}{7.45}{0.90}
+  \ArqPortaVLeft{5.2}{0.55}{0.80}
+  % banheiros das suítes: acesso exclusivo por dentro do quarto
+  \ArqPortaVLeft{3.5}{5.05}{0.80}
+  \ArqPortaVLeft{3.5}{8.65}{0.80}
+  % cozinha -> serviço
+  \ArqPortaVRight{11.2}{6.75}{0.85}
+  % vão de garagem
+  \draw[white,line width=5.5pt] (11.55,0)--(14.70,0);\draw[black!30,very thin] (11.55,0.10)--(14.70,0.10);
+
+  % janelas
+  \ArqJanV{0.45}{2.75}{0}
+  \ArqJanV{4.15}{6.55}{0}
+  \ArqJanV{7.75}{10.20}{0}
+  \ArqJanH{8.0}{10.2}{0}
+  \ArqJanH{7.3}{9.8}{11}
+  \ArqJanH{0.7}{2.6}{11}
+  \ArqJanH{12.0}{14.1}{11}
+
+  % mobiliário - quarto 3
+  \ArqCama{0.55}{0.45}{2.15}{2.65}
+  \ArqArmario{2.85}{2.45}{0.55}{0.95}
+  \node[arqLabel] at (1.75,3.25){QUARTO 3};
+  % banho social
+  \ArqChuveiro{3.65}{0.15}{1.25}{0.85}\ArqVaso{4.55}{1.35}\ArqPia{3.62}{1.20}{0.65}{0.45}
+  \node[arqSub] at (4.30,1.82){BANHO SOCIAL};
+
+  % suíte 2
+  \ArqCama{0.55}{4.05}{2.20}{2.65}\ArqArmario{2.85}{3.95}{0.50}{1.05}
+  \ArqChuveiro{3.65}{6.05}{1.25}{0.95}\ArqVaso{4.55}{5.35}\ArqPia{3.62}{5.05}{0.65}{0.45}
+  \node[arqLabel] at (1.75,6.85){SUÍTE 2};\node[arqSub] at (4.35,6.90){B2};
+
+  % suíte master
+  \ArqCama{0.55}{7.75}{2.35}{2.70}\ArqArmario{2.95}{7.45}{0.45}{0.85}
+  \ArqChuveiro{3.65}{10.00}{1.25}{0.85}\ArqVaso{4.55}{9.20}\ArqPia{3.62}{8.65}{0.65}{0.45}
+  \node[arqLabel] at (1.85,10.65){SUÍTE MASTER};\node[arqSub] at (4.35,10.70){B1};
+  \node[arqSub,rotate=90] at (5.80,5.50){HALL ÍNTIMO};
+
+  % sala/jantar
+  \ArqSofa{7.00}{0.85}{3.10}{1.05}\ArqBancada{10.50}{0.95}{0.35}{2.25}
+  \ArqMesa{7.25}{4.20}{2.55}{1.10}
+  \node[arqLabel] at (8.80,3.20){SALA / JANTAR};
+  % cozinha
+  \ArqBancada{6.75}{10.15}{3.50}{0.55}\ArqBancada{10.35}{7.05}{0.55}{3.65}
+  \ArqFogao{9.25}{10.05}\ArqGeladeira{10.15}{6.65}\ArqBancada{7.40}{7.55}{2.30}{0.80}
+  \node[arqLabel] at (8.60,9.45){COZINHA};
+  % garagem
+  \ArqCarro{12.00}{0.65}{2.15}{4.25}\node[arqLabel] at (13.10,5.20){GARAGEM};
+  % serviço
+  \ArqLavadora{12.00}{6.05}\ArqBancada{13.0}{6.0}{1.45}{0.55}\node[arqLabel] at (13.10,7.65){SERVIÇO};
+  % gourmet / quintal coberto
+  \ArqBancada{12.0}{9.85}{2.35}{0.55}\ArqMesa{12.20}{8.70}{1.55}{0.75}\node[arqLabel] at (13.10,10.75){VARANDA GOURMET};
+
+  \CotaH{0}{15}{11.18}{15,00 m}\CotaV{0}{11}{15.18}{11,00 m}
+}
+
+\begin{frame}{Residencial I — planta arquitetônica funcional}
+\centering
+\begin{tikzpicture}[scale=0.49,every node/.style={font=\tiny}]
+\CasaResidencialBase
+\end{tikzpicture}
+\vspace{0.5mm}
+\scriptsize A entrada principal chega à sala. O hall é somente interno. B1 e B2 são acessados por dentro das suítes; mobiliário e equipamentos deixam explícita a circulação disponível.
+\end{frame}
+
+\begin{frame}{Residencial I — iluminação lançada sobre a arquitetura}
+\centering
+\begin{tikzpicture}[scale=0.49,every node/.style={font=\tiny}]
+\CasaResidencialBase
+\PRQD{6.10}{3.10}{QD1}
+\foreach \x/\y in {1.7/2.1,4.25/1.0,1.75/5.4,4.25/5.9,1.8/9.2,4.25/9.6,5.8/5.5,8.8/2.8,8.7/5.2,8.6/8.8,13.1/3.0,13.1/6.9,13.1/9.6}{\PRLuz{\x}{\y}}
+\draw[corAccent!80!black,dashed,thick] (6.10,3.10)--(8.8,2.8)--(8.7,5.2)--(8.6,8.8);
+\draw[corAccent!80!black,dashed,thick] (6.10,3.10)--(5.8,5.5)--(1.75,5.4)--(1.8,9.2);
+\draw[corAccent!80!black,dashed,thick] (6.10,3.10)--(1.7,2.1);
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Residencial I — TUG, TUE e equipamentos reais}
+\centering
+\begin{tikzpicture}[scale=0.49,every node/.style={font=\tiny}]
+\CasaResidencialBase
+\PRQD{6.10}{3.10}{QD1}
+% TUG sociais e quartos
+\foreach \x/\y in {6.7/0.7,10.8/3.7,7.0/5.9,9.9/5.9,0.35/0.7,0.35/3.1,3.0/3.1,0.35/4.1,0.35/6.7,3.0/6.8,0.35/7.7,0.35/10.5,3.0/10.5}{\PRTUG{\x}{\y}}
+% cozinha/serviço/gourmet
+\foreach \x/\y in {6.8/10.6,8.0/10.6,10.3/9.0,10.3/7.8,11.6/6.0,14.5/6.0,11.6/10.5,14.5/10.5}{\PRTUG{\x}{\y}}
+% TUE
+\PRTUE{4.35}{6.55}{CH}\PRTUE{4.35}{10.45}{CH}\PRTUE{9.60}{10.45}{FO}\PRTUE{12.35}{6.40}{LR}
+\PRTUE{0.45}{6.25}{AC}\PRTUE{0.45}{9.95}{AC}\PRTUE{0.45}{2.55}{AC}
+\draw[corFix!80,dashed,thick] (6.10,3.10)--(4.35,6.55);
+\draw[corFix!80,dashed,thick] (6.10,3.10)--(4.35,10.45);
+\draw[corFix!80,dashed,thick] (6.10,3.10)--(9.60,10.45)--(12.35,6.40);
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[shrink=5]{Residencial I — quadro de circuitos do estudo}
+\scriptsize
+\begin{tabularx}{\textwidth}{c p{3.0cm} c c c c X}
+\toprule
+C & Uso & $P$ & $I_b$ 220 V & Cabo Cu & DJ & Proteção/observação\\
+\midrule
+C1 & Iluminação social/cozinha/serviço & 0,90 kVA & 4,1 A & 1,5 mm$^2$ & 10 A & DR conforme abrangência do circuito\\
+C2 & Iluminação íntima/banhos/garagem & 0,70 kVA & 3,2 A & 1,5 mm$^2$ & 10 A & DDR/RCBO 30 mA nos locais requeridos\\
+C3 & TUG sala e quartos & 1,40 kVA & 6,4 A & 2,5 mm$^2$ & 16 A & uso geral\\
+C4 & TUG cozinha & 1,80 kVA & 8,2 A & 2,5 mm$^2$ & 16 A & DDR/RCBO 30 mA\\
+C5 & TUG serviço/gourmet & 1,20 kVA & 5,5 A & 2,5 mm$^2$ & 16 A & DDR/RCBO 30 mA\\
+C6 & TUG banheiros & 0,60 kVA & 2,7 A & 2,5 mm$^2$ & 16 A & DDR/RCBO 30 mA\\
+C7--C8 & Chuveiros das suítes & 2$\times$4,50 kW & 20,5 A & 4 mm$^2$ & 25 A & dedicados + DDR/RCBO 30 mA\\
+C9 & Forno elétrico & 3,50 kW & 15,9 A & 4 mm$^2$ & 20 A & dedicado\\
+C10 & Lavadora & 1,20 kW & 5,5 A & 2,5 mm$^2$ & 16 A & dedicado\\
+C11--C13 & Ar-condicionado quartos & 3$\times$1,00 kW & 4,5 A & 2,5 mm$^2$ & 16 A & dedicados; fabricante\\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\begin{caixaObs}
+Carga instalada do caso: aproximadamente 23,3 kW. Seções e disjuntores são didáticos; no executivo, recalcular método de instalação, agrupamento, temperatura, curto-circuito e queda de tensão.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Residencial I — entrada e balanceamento}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.48\textwidth}
+\begin{caixaNorma}[title=Equatorial Maranhão]
+Para o caso-base, rede secundária 380/220 V, 3F+N. A carga instalada de 23,3 kW permanece na faixa de 12,1 a 24 kW da tabela verificada da NT.00001.EQTL Rev.09, associada ao atendimento trifásico de 40 A no padrão de entrada.
+\end{caixaNorma}
+\column{0.50\textwidth}
+\begin{caixaProjeto}[title=Fases]
+Distribuir os dois chuveiros em fases diferentes e usar forno, cozinha, lavanderia, iluminação e climatização para reduzir o desequilíbrio. O balanceamento final deve considerar simultaneidade e demanda, não apenas soma de potência instalada.
+\end{caixaProjeto}
+\end{columns}
+\vspace{1mm}
+\begin{caixaAt}
+Os 6 mm$^2$ de cobre indicados na tabela do padrão da concessionária são mínimo do padrão de entrada para a faixa; não substituem o dimensionamento do alimentador interno pela NBR 5410.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Residencial I — unifilar coerente}
+\centering
+\begin{tikzpicture}[scale=0.76,every node/.style={font=\tiny}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=1.9cm,minimum height=0.55cm,align=center}}
+\node[b](r)at(0,4.4){Rede EQTL\\380/220 V};
+\node[b](m)at(0,3.55){Medição\\padrão entrada};
+\node[b](dg)at(0,2.70){DG + DPS};
+\node[b](qd)at(0,1.80){QD1\\3F+N+PE};
+\node[b](g1)at(-4,0.55){C1--C6\\luz/TUG};
+\node[b](g2)at(-1.35,0.55){C7--C8\\chuveiros};
+\node[b](g3)at(1.35,0.55){C9--C10\\forno/lavadora};
+\node[b](g4)at(4,0.55){C11--C13\\ar-cond.};
+\draw[-{Stealth},thick,corPrim](r)--(m)--(dg)--(qd);
+\foreach \x in {g1,g2,g3,g4}{\draw[-{Stealth},thick](qd)--(\x);}
+\draw[corNorma,thick](qd.east)--(5.5,1.8)--(5.5,-0.35)node[ground]{};
+\node[corNorma,anchor=west] at (5.55,0.6){BEP / PE / aterramento};
+\end{tikzpicture}
+\end{frame}

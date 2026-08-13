@@ -1,0 +1,141 @@
+\section{Veículos elétricos e cargas modernas}
+
+\begin{frame}{Recarga de VE: por que não é uma tomada comum}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{itemize}
+\item Potência elevada durante longos períodos.
+\item Carga eletrônica com requisitos próprios de proteção.
+\item Possibilidade de corrente residual CC conforme arquitetura.
+\item Expansão simultânea de vários carregadores.
+\item Aumento de carga pode alterar o padrão de entrada.
+\item Gestão de demanda pode se tornar parte do projeto.
+\end{itemize}
+\column{0.48\textwidth}
+\begin{caixaNorma}[title=Referências]
+\begin{itemize}
+\item ABNT NBR 17019:2022 — instalação fixa para alimentação/recepção de energia de VE;
+\item NT.00042.EQTL Rev.04 — conexão de estações de recarga na área da Equatorial;
+\item NT.00001/NT.00004 — entrada individual ou empreendimento com múltiplas UCs, conforme o caso.
+\end{itemize}
+\end{caixaNorma}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Arquitetura correta de um ponto de recarga}
+\small
+\centering
+\begin{tikzpicture}[scale=0.78,every node/.style={font=\scriptsize}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.25cm,minimum height=0.68cm,align=center}}
+\node[b] (q) at (0,2.1) {QD};
+\node[b] (p) at (3.0,2.1) {Proteção dedicada\\sobrecorrente + DR};
+\node[b] (e) at (6.0,2.1) {SAVE / EVSE};
+\node[b] (v) at (9.0,2.1) {Veículo};
+\node[b] (pe) at (4.5,0.35) {Barramento PE / BEP\\equipotencialização};
+\draw[-{Stealth},thick,corPrim] (q)--(p)--(e)--(v);
+\draw[corNorma,thick] (q.south)--(pe.west);
+\draw[corNorma,thick] (p.south)--(pe);
+\draw[corNorma,thick] (e.south)--(pe.east);
+\draw[corNorma,thick] (pe.south)--(4.5,-0.45) node[ground]{};
+\end{tikzpicture}
+\vspace{2mm}
+\begin{caixaAt}
+O PE é contínuo e integrado ao sistema de equipotencialização. Não se desenha um eletrodo de terra independente para cada equipamento. O tipo de DR deve ser compatível com a corrente residual possível, a detecção CC incorporada ao SAVE e as instruções normativas/do fabricante.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Exemplo: SAVE monofásico de 7,4 kW}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{align*}
+P&=\SI{7.4}{kW},\quad V=\SI{220}{V}\\
+I_b&\approx\frac{7400}{220}=\SI{33.6}{A}
+\end{align*}
+\begin{itemize}
+\item circuito dedicado;
+\item cabo por ampacidade + queda + método;
+\item proteção contra sobrecorrente;
+\item proteção diferencial compatível;
+\item PE e DPS conforme o sistema.
+\end{itemize}
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Impacto no projeto residencial]
+No exemplo-base deste material:
+\[
+19{,}88+7{,}40=\SI{27.28}{kW}.
+\]
+Logo, a inclusão do SAVE não é apenas ``mais um circuito'': exige reavaliar a carga instalada, o QD, o alimentador e o enquadramento da entrada perante a Equatorial.
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Gestão dinâmica de recarga}
+\small
+\centering
+\begin{tikzpicture}[scale=0.80,every node/.style={font=\scriptsize}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.25cm,minimum height=0.65cm,align=center}}
+\node[b] (med) at (0,2.2) {Medição da demanda\\da instalação};
+\node[b] (ctrl) at (3.2,2.2) {Controlador\\de carga};
+\node[b] (ev1) at (6.4,3.2) {SAVE 1};
+\node[b] (ev2) at (6.4,2.2) {SAVE 2};
+\node[b] (ev3) at (6.4,1.2) {SAVE 3};
+\node[b] (pred) at (0,0.5) {Demais cargas\\da edificação};
+\draw[-{Stealth},thick,corPrim] (med)--(ctrl);
+\foreach \x in {ev1,ev2,ev3}{\draw[-{Stealth},thick,corAccent] (ctrl)--(\x);}
+\draw[-{Stealth},thick,corPrim] (med)--(pred);
+\node[align=center] at (3.2,0.45) {limite disponível\\+ prioridades};
+\end{tikzpicture}
+\vspace{1mm}
+\begin{caixaObs}
+Gestão de carga reduz simultaneidade dos carregadores, mas não elimina as verificações de capacidade térmica, proteção, qualidade de energia e requisitos da distribuidora.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Geração distribuída: interface com a instalação}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{itemize}
+\item Corrente pode fluir em sentido diferente do projeto tradicional.
+\item Proteções e seccionamento existem nos lados CC e CA.
+\item DPS e equipotencialização precisam ser compatíveis com o SPDA.
+\item Verificar capacidade de barramentos e condutores no ponto de conexão.
+\item O estudo interno deve fechar com a solicitação de conexão à distribuidora.
+\end{itemize}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Equatorial]
+A conexão de micro e minigeração distribuída é tratada pela \textbf{NT.00020.EQTL Rev.06}. Para unidades do Grupo B, usar também os formulários e anexos atuais disponibilizados pela distribuidora.
+\end{caixaNorma}
+\begin{caixaAt}
+Geração distribuída não autoriza reduzir proteção, seção de condutor ou capacidade de barramento apenas porque parte da energia é produzida localmente.
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{UPS, geradores e transferência}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{itemize}
+\item Definir cargas essenciais e não essenciais.
+\item Analisar curto-circuito em modo rede e modo fonte alternativa.
+\item A proteção que atua bem na rede pode não atuar igual com fonte limitada eletronicamente.
+\item Verificar neutro, aterramento e chaveamento conforme a topologia.
+\end{itemize}
+\column{0.49\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.78,every node/.style={font=\scriptsize}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.1cm,minimum height=0.62cm,align=center}}
+\node[b] (r) at (0,2.6) {Rede};
+\node[b] (g) at (0,0.8) {Gerador};
+\node[b] (ats) at (3.2,1.7) {ATS};
+\node[b] (ups) at (6.0,1.7) {UPS};
+\node[b] (crit) at (8.8,1.7) {Cargas críticas};
+\draw[-{Stealth},thick,corPrim] (r)--(ats);\draw[-{Stealth},thick,corAccent] (g)--(ats);\draw[-{Stealth},thick,corPrim] (ats)--(ups)--(crit);
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+%=====================================================================

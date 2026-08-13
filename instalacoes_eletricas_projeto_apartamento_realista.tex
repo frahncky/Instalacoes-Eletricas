@@ -1,0 +1,66 @@
+% Residencial II - apartamento com varanda, duas suites e acessos coerentes
+\section{Projeto Residencial II — apartamento com varanda}
+
+\newcommand{\AptoFinalBase}{%
+\draw[arqExt] (0,0) rectangle (12,9);\draw[arqExt] (12,4) rectangle (14,9);
+\ArqParedeInt{4.2}{0}{4.2}{9}\ArqParedeInt{5.2}{2}{5.2}{6.2}\ArqParedeInt{0}{4.4}{4.2}{4.4}
+\ArqParedeInt{2.6}{0}{2.6}{2.1}\ArqParedeInt{2.6}{2.1}{4.2}{2.1}
+\ArqParedeInt{2.6}{6.8}{4.2}{6.8}\ArqParedeInt{2.6}{6.8}{2.6}{9}
+\ArqParedeInt{5.2}{3.8}{12}{3.8}\ArqParedeInt{7.2}{0}{7.2}{3.8}\ArqParedeInt{10}{0}{10}{3.8}
+\ArqParedeInt{5.2}{2.2}{6.6}{2.2}\ArqParedeInt{6.6}{2.2}{6.6}{3.8}
+% entrada e acessos
+\ArqPortaHUp{5.7}{0}{1.0}\node[arqSub] at (6.2,0.45){ENTRADA / HALL COMUM};
+\ArqVaoH{5.65}{7.05}{3.8} % foyer -> sala
+\ArqVaoH{7.65}{9.45}{3.8} % cozinha -> sala
+\ArqPortaVLeft{5.2}{2.45}{0.85} % foyer -> hall intimo
+\ArqPortaVLeft{4.2}{2.55}{0.85}\ArqPortaVLeft{4.2}{4.90}{0.85} % suites
+% banhos compactos: portas de correr evitam conflito com loucas e box
+\ArqPortaCorrerH{2.95}{3.75}{2.1}\ArqPortaCorrerH{2.95}{3.75}{6.8}
+\ArqPortaHUp{5.45}{2.2}{0.75} % lavabo abre para o foyer
+\ArqPortaVRight{10}{1.10}{0.80} % cozinha -> servico
+\ArqPortaCorrerV{5.0}{8.2}{12} % sala -> varanda
+% janelas
+\ArqJanV{0.55}{3.4}{0}\ArqJanV{5.25}{8.35}{0}\ArqJanH{7.65}{9.4}{0}\ArqJanH{10.35}{11.6}{0}\ArqJanH{0.6}{2.3}{9}
+% suite 2
+\ArqCama{0.45}{0.50}{1.95}{2.55}\ArqArmario{0.4}{3.45}{2.8}{0.5}\ArqChuveiro{2.78}{0.15}{1.15}{0.78}\ArqVaso{3.55}{1.35}\ArqPia{2.72}{1.15}{0.55}{0.4}\node[arqLabel] at (1.55,3.9){SUÍTE 2};\node[arqSub] at (3.45,1.92){B2};
+% suite master
+\ArqCama{0.45}{4.95}{2.05}{2.70}\ArqArmario{0.45}{8.05}{1.85}{0.5}\ArqChuveiro{2.78}{8.05}{1.15}{0.78}\ArqVaso{3.55}{7.35}\ArqPia{2.72}{7}{0.55}{0.4}\node[arqLabel] at (1.5,8.55){SUÍTE MASTER};\node[arqSub] at (3.45,8.72){B1};
+\node[arqSub,rotate=90] at (4.70,4.25){HALL ÍNTIMO};
+% foyer e lavabo
+\node[arqSub] at (6.2,1.45){FOYER};\ArqVaso{5.75}{2.85}\ArqPia{5.35}{3.25}{0.55}{0.38}\node[arqSub] at (5.9,3.6){LAVABO};
+% cozinha e servico
+\ArqBancada{7.45}{0.25}{2.15}{0.55}\ArqBancada{9.35}{0.8}{0.55}{2.5}\ArqFogao{8.55}{0.18}\ArqGeladeira{7.35}{2.7}\node[arqLabel] at (8.55,3.35){COZINHA};
+\ArqLavadora{10.35}{0.35}\ArqBancada{11.1}{0.3}{0.55}{2.65}\node[arqLabel] at (11.05,3.35){SERVIÇO};
+% estar e varanda
+\ArqSofa{5.8}{4.55}{3.2}{1.05}\ArqBancada{5.55}{7.75}{0.38}{1.0}\ArqMesa{8.65}{6.35}{2.15}{1.0}\node[arqLabel] at (8.65,5.95){ESTAR / JANTAR};
+\ArqSofa{12.45}{5.05}{1.1}{2.2}\ArqMesa{12.55}{7.65}{0.85}{0.7}\node[arqLabel,rotate=90] at (13.55,6.5){VARANDA};
+\CotaH{0}{12}{9.18}{12,00 m}\CotaV{0}{9}{14.18}{9,00 m}
+}
+
+\begin{frame}{Residencial II — acessos refinados}
+\centering\begin{tikzpicture}[scale=0.53,every node/.style={font=\tiny}]\AptoFinalBase\end{tikzpicture}
+\vspace{0.4mm}\scriptsize Entrada pelo hall comum; lavabo voltado ao foyer; cozinha integrada à sala; serviço acessado pela cozinha; B1/B2 por dentro das suítes, com portas de correr; varanda pela sala.
+\end{frame}
+
+\begin{frame}{Residencial II — elétrica sobre a planta refinada}
+\centering\begin{tikzpicture}[scale=0.53,every node/.style={font=\tiny}]
+\AptoFinalBase\SimQD{6.85}{3.30}{QD-A}
+\foreach \x/\y in {1.45/2.8,3.35/1,1.5/6,3.35/8,4.7/4.3,5.9/2.9,8.5/1.9,11/1.9,8/5.1,10.1/6.5,13/6.6}{\SimLuz{\x}{\y}}
+\foreach \x/\y in {0.25/0.55,0.25/3.65,3.85/3.65,0.25/4.85,0.25/8.55,3.85/8.55,5.55/4.15,7.3/4.15,9.5/4.15,11.6/4.4,11.6/8.5,12.35/4.5,13.65/8.6}{\SimTUG{\x}{\y}}
+\foreach \x/\y in {7.65/0.25,8.65/0.25,9.55/1.5,10.25/0.35,11.55/1.5}{\SimTUGM{\x}{\y}}
+\SimTUE{3.4}{0.4}{CH}\SimTUE{3.4}{8.55}{CH}\SimTUE{8.9}{0.35}{FO}\SimTUE{10.7}{0.45}{LR}\SimTUE{0.3}{3.1}{AC}\SimTUE{0.3}{7.95}{AC}\SimTUE{11.55}{7.8}{AC}
+\end{tikzpicture}\end{frame}
+
+\begin{frame}{Residencial II — cargas e interface EMUC}
+\small\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}\begin{caixaProjeto}[title=Unidade do estudo]\begin{itemize}\item iluminação: 1,4 kVA;\item TUG: 4,6 kVA;\item 2 chuveiros: 9 kW;\item forno: 3,5 kW;\item lavadora: 1,2 kW;\item 3 ar-cond.: 3 kW.\end{itemize}\end{caixaProjeto}
+\column{0.49\textwidth}\begin{caixaNorma}[title=Edifício multifamiliar]Centro de medição, prumadas e proteção geral são definidos conforme a NT.00004.EQTL vigente. O QD-A fica próximo à entrada e fora dos banheiros.\end{caixaNorma}
+\end{columns}\end{frame}
+
+\begin{frame}{Residencial II — unifilar da unidade}
+\centering\begin{tikzpicture}[scale=0.74,every node/.style={font=\tiny}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!8,rounded corners,minimum width=2cm,minimum height=0.56cm,align=center}}
+\node[b](cm)at(0,4.2){Centro de medição\\EMUC};\node[b](pr)at(0,3.3){Prumada / alimentador};\node[b](qd)at(0,2.4){QD-A\\DG + DPS + DR/RCBO};
+\node[b](l)at(-3.6,0.9){luz/TUG};\node[b](ch)at(-1.2,0.9){chuveiros};\node[b](co)at(1.2,0.9){cozinha/serviço};\node[b](ac)at(3.6,0.9){climatização};
+\draw[-{Stealth},thick,corPrim](cm)--(pr)--(qd);\foreach \x in {l,ch,co,ac}{\draw[-{Stealth},thick](qd)--(\x);}\draw[corNorma,thick](qd.east)--(5,2.4)--(5,-0.2)node[ground]{};
+\end{tikzpicture}\end{frame}

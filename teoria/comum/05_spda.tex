@@ -1,0 +1,66 @@
+\section{SPDA e proteção contra descargas atmosféricas}
+
+\begin{frame}{NBR 5419: atualização confirmada em 2026}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{caixaNorma}[title=ABNT NBR 5419-1:2026]
+A edição 2026 da \textbf{Parte 1} está publicada e estabelece os requisitos para a determinação da necessidade de proteção contra descargas atmosféricas.
+\end{caixaNorma}
+\begin{itemize}
+\item não assumir automaticamente que todas as partes da série mudaram de edição na mesma data;
+\item no projeto, registrar a edição efetivamente adotada de cada parte aplicável;
+\item verificar requisitos do órgão licenciador, Corpo de Bombeiros e contratante.
+\end{itemize}
+\column{0.46\textwidth}
+\begin{caixaAt}[title=Regra para este material]
+A referência ``NBR 5419:2015'' não é mais usada de forma genérica. Quando a Parte 1 for citada, o material indica explicitamente \textbf{ABNT NBR 5419-1:2026}; para as demais partes, exige-se conferência da edição vigente antes do projeto executivo.
+\end{caixaAt}
+\end{columns}
+\end{frame}
+
+\begin{frame}{PDA não é apenas o captor no telhado}
+\small
+\centering
+\begin{tikzpicture}[scale=0.82,every node/.style={font=\scriptsize}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=3.0cm,minimum height=0.7cm,align=center}}
+\node[b] (r) at (0,2.6) {Avaliação da necessidade\\e análise de risco};
+\node[b] (s) at (-3.4,1.1) {SPDA externo\\captação/descida/terra};
+\node[b] (e) at (0,1.1) {Equipotencialização\\para descargas};
+\node[b] (m) at (3.4,1.1) {MPS\\DPS, roteamento, blindagem};
+\node[b] (i) at (0,-0.5) {Sistemas internos\\energia, dados e automação};
+\draw[-{Stealth},thick,corPrim] (r)--(s);\draw[-{Stealth},thick,corPrim] (r)--(e);\draw[-{Stealth},thick,corPrim] (r)--(m);
+\draw[-{Stealth},thick,corNorma] (s)--(i);\draw[-{Stealth},thick,corNorma] (e)--(i);\draw[-{Stealth},thick,corNorma] (m)--(i);
+\end{tikzpicture}
+\vspace{2mm}
+\begin{caixaObs}
+A interface entre SPDA, equipotencialização e DPS precisa ser projetada conjuntamente. Separar esses projetos em ``ilhas'' cria lacunas de proteção.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Zonas de proteção e roteamento}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{itemize}
+\item A energia do surto deve ser reduzida progressivamente entre zonas.
+\item Entradas metálicas e cabos são pontos críticos de acoplamento.
+\item Roteamento, blindagem, equipotencialização e DPS trabalham em conjunto.
+\item Cabos sensíveis não devem percorrer rotas inadequadas junto a condutores de descida sem análise.
+\end{itemize}
+\column{0.49\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.82,every node/.style={font=\scriptsize}]
+\draw[thick,corAt] (0,0) rectangle (5.3,3.4);
+\draw[thick,corAccent] (0.7,0.6) rectangle (4.6,2.8);
+\draw[thick,corNorma] (1.5,1.2) rectangle (3.8,2.2);
+\node[corAt] at (4.65,3.1) {ZPR externa};
+\node[corAccent] at (3.9,2.55) {zona interna};
+\node[corNorma] at (2.65,1.7) {equipamento sensível};
+\draw[-{Stealth},thick,corPrim] (-0.6,1.7)--(1.4,1.7) node[midway,above]{linha};
+\node at (0.7,1.35) {DPS};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+%=====================================================================

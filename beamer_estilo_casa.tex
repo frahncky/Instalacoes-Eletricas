@@ -1,0 +1,240 @@
+%=====================================================================
+% ESTILO DA CASA -- TEMPLATE BEAMER (padrao da colecao)
+% Arquivo central de identidade visual para todos os materiais.
+% Azul-petroleo + ambar | tcolorbox | TikZ/pgfplots/circuitikz
+%=====================================================================
+
+% Dependencias minimas do proprio estilo.
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\RequirePackage{listings}
+\RequirePackage{xparse}
+\RequirePackage{etoolbox}
+
+\makeatletter
+
+%====================== PALETA OFICIAL ================================
+\definecolor{corPrim}{RGB}{13,48,82}      % azul-petroleo
+\definecolor{corAccent}{RGB}{222,138,28}  % ambar
+\definecolor{corDef}{RGB}{31,111,168}     % azul medio
+\definecolor{corNorma}{RGB}{0,121,107}    % verde-petroleo
+\definecolor{corEx}{RGB}{46,125,50}       % verde
+\definecolor{corFix}{RGB}{204,102,0}      % laranja
+\definecolor{corAt}{RGB}{176,58,46}       % vermelho
+\definecolor{codBg}{RGB}{252,250,245}
+\definecolor{codKw}{RGB}{13,48,82}
+\definecolor{codStr}{RGB}{46,125,50}
+\definecolor{codCom}{RGB}{120,130,138}
+
+% Compatibilidade com nomes usados historicamente nos materiais.
+\colorlet{Petroleo}{corPrim}
+\colorlet{PetroleoEscuro}{corPrim!82!black}
+\colorlet{PetroleoMedio}{corDef!82!corPrim}
+\colorlet{PetroleoClaro}{corDef!7}
+\colorlet{Ambar}{corAccent}
+\colorlet{AmbarEscuro}{corAccent!72!black}
+\colorlet{AmbarClaro}{corAccent!16}
+\colorlet{AzulPetroleo}{corPrim}
+\colorlet{AzulPetroleoEscuro}{corPrim!82!black}
+\colorlet{AzulPetroleoClaro}{corDef!7}
+\colorlet{AzulMedio}{corDef}
+\colorlet{AzulClaro}{corDef!7}
+\colorlet{CinzaEscuro}{black!82}
+\colorlet{CinzaClaro}{black!5}
+\colorlet{CinzaSuave}{black!3}
+\colorlet{CinzaMedio}{black!55}
+\colorlet{CinzaTexto}{black!82}
+\colorlet{CinzaBox}{black!3}
+\colorlet{Verde}{corEx}
+\colorlet{Vermelho}{corAt}
+\colorlet{Turquesa}{corNorma!70!corDef}
+\colorlet{Roxo}{corDef!58!corAt}
+\colorlet{ifmagreen}{corPrim}
+\colorlet{ifmagreen2}{corDef}
+\colorlet{ifmalight}{corDef!7}
+\colorlet{accent}{corAccent}
+\colorlet{warn}{corAt}
+\colorlet{ok}{corEx}
+\colorlet{bluex}{corDef}
+\colorlet{grayx}{black!58}
+
+% Variantes em minusculas presentes em materiais antigos.
+\colorlet{azulPetroleo}{corPrim}
+\colorlet{azulPetroleoEscuro}{corPrim!82!black}
+\colorlet{azulPetroleoClaro}{corDef!7}
+\colorlet{azulMedio}{corDef}
+\colorlet{azulClaro}{corDef!7}
+\colorlet{azulEscuro}{corPrim!82!black}
+\colorlet{azul}{corPrim}
+\colorlet{azul2}{corDef}
+\colorlet{ambar}{corAccent}
+\colorlet{ambarClaro}{corAccent!16}
+\colorlet{cinza}{black!5}
+\colorlet{cinzaClaro}{black!5}
+\colorlet{cinzaMedio}{black!55}
+\colorlet{cinzaEscuro}{black!82}
+\colorlet{cinzaTexto}{black!82}
+\colorlet{verde}{corEx}
+\colorlet{verdeclaro}{corEx!10}
+\colorlet{vermelho}{corAt}
+\colorlet{vermelhoclaro}{corAt!9}
+\colorlet{laranja}{corFix}
+\colorlet{roxo}{corDef!58!corAt}
+
+%====================== TEMA BEAMER ==================================
+\usetheme{default}
+\usefonttheme{professionalfonts}
+\setbeamercolor{normal text}{fg=black!85,bg=white}
+\setbeamercolor{structure}{fg=corPrim}
+\setbeamercolor{frametitle}{bg=corPrim,fg=white}
+\setbeamercolor{footsec}{bg=corPrim,fg=white!92!corPrim}
+\setbeamercolor{alerted text}{fg=corAccent!85!black}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+\setbeamerfont{footline}{size=\tiny}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\setbeamersize{text margin left=0.55cm,text margin right=0.55cm}
+
+\setbeamertemplate{itemize item}{\raise0.35ex\hbox{\color{corAccent}\rule{0.62ex}{0.62ex}}}
+\setbeamertemplate{itemize subitem}{\color{corDef}\raise0.5pt\hbox{--}}
+\setbeamertemplate{itemize subsubitem}{\color{corPrim}\tiny$\circ$}
+\setbeamertemplate{enumerate item}{\color{corPrim}\textbf{\insertenumlabel.}}
+\setbeamertemplate{section in toc}{%
+  \leavevmode\textcolor{corAccent}{\textbf{\inserttocsectionnumber.}}~\inserttocsection\par\vskip1.5pt}
+\setbeamertemplate{subsection in toc}{%
+  \leavevmode\leftskip=0.95cm\textcolor{corDef}{\textbullet}~\inserttocsubsection\par}
+
+%====================== TITULO DO SLIDE ==============================
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.7ex,dp=1.3ex,leftskip=0.55cm,rightskip=0.55cm]{frametitle}%
+    \usebeamerfont{frametitle}\insertframetitle%
+  \end{beamercolorbox}%
+  {\color{corAccent}\rule{\paperwidth}{1.3pt}}\par\vskip2pt%
+}
+
+%====================== RODAPE DUPLO ================================
+\newcommand{\CasaRodapeEsq}{%
+  \ifcsname Disciplina\endcsname\Disciplina\else\insertshorttitle\fi}
+\newcommand{\CasaRodapeDir}{%
+  \ifcsname TituloCurto\endcsname\TituloCurto\else\insertshorttitle\fi}
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.4ex,dp=1ex,leftskip=0.5cm]{footsec}%
+      \usebeamerfont{footline}\CasaRodapeEsq%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.4ex,dp=1ex,rightskip=0.5cm]{footsec}%
+      \hfill\usebeamerfont{footline}\CasaRodapeDir\quad\textbar\quad\insertframenumber%
+    \end{beamercolorbox}%
+  }\vskip0pt%
+}
+
+%====================== DIVISORIAS DE SECAO =========================
+\newcommand{\CasaSecNum}{\ifnum\value{section}<10 0\fi\arabic{section}}
+\newcommand{\CasaDivisoriaManual}[2]{%
+  \begin{frame}[plain,noframenumbering]
+    \makebox[0pt][l]{%
+      \raisebox{0pt}[0pt][0pt]{%
+        \begin{tikzpicture}[remember picture,overlay]
+          \fill[corPrim] (current page.south west) rectangle (current page.north east);
+          \if\relax\detokenize{#1}\relax\else
+            \node[anchor=west,text=corAccent,font=\bfseries\fontsize{40}{40}\selectfont]
+              at ([xshift=1.6cm,yshift=1.1cm]current page.west) {#1};
+          \fi
+          \fill[corAccent] ([xshift=1.7cm,yshift=0.35cm]current page.west)
+            rectangle ++(2.4,0.09);
+          \node[anchor=west,text=white,font=\bfseries\LARGE,text width=0.75\paperwidth]
+            at ([xshift=1.6cm,yshift=-0.5cm]current page.west) {#2};
+        \end{tikzpicture}%
+      }%
+    }%
+  \end{frame}%
+}
+\AtBeginSection[]{\CasaDivisoriaManual{\CasaSecNum}{\insertsection}}
+
+% Alguns materiais antigos usam \secslide{titulo}; outros, \secslide{numero}{titulo}.
+\@ifundefined{secslide}
+  {\NewDocumentCommand{\secslide}{m g}{\IfNoValueTF{#2}{\CasaDivisoriaManual{}{#1}}{\CasaDivisoriaManual{#1}{#2}}}}
+  {\RenewDocumentCommand{\secslide}{m g}{\IfNoValueTF{#2}{\CasaDivisoriaManual{}{#1}}{\CasaDivisoriaManual{#1}{#2}}}}
+\@ifundefined{Divisoria}
+  {\NewDocumentCommand{\Divisoria}{m g}{\IfNoValueTF{#2}{\CasaDivisoriaManual{}{#1}}{\CasaDivisoriaManual{#1}{#2}}}}
+  {\RenewDocumentCommand{\Divisoria}{m g}{\IfNoValueTF{#2}{\CasaDivisoriaManual{}{#1}}{\CasaDivisoriaManual{#1}{#2}}}}
+
+%====================== CAPA ========================================
+\defbeamertemplate*{title page}{estilo da casa}{%
+  \vspace{0.8cm}%
+  {\color{white}\bfseries\huge\inserttitle\par}%
+  \vspace{2mm}%
+  {\color{corAccent}\rule{3.2cm}{2.2pt}\par}%
+  \vspace{4mm}%
+  {\color{white!85}\large\insertsubtitle\par}%
+  \vspace{8mm}%
+  {\color{white}\normalsize\insertauthor\par}%
+  \vspace{1mm}%
+  {\color{white!70}\small\CasaRodapeEsq\ \textbullet\ \insertdate\par}%
+}
+\setbeamertemplate{title page}[estilo da casa]
+
+%====================== CAIXAS =======================================
+% Materiais antigos usam convencoes diferentes para o argumento opcional
+% das caixas. Para preservar a semantica, caixas existentes nao sao
+% redefinidas; apenas sua paleta historica e recolorida acima.
+\tcbset{
+  caixabase/.style={
+    enhanced,sharp corners=downhill,boxrule=0.6pt,left=2mm,right=2mm,
+    top=1.2mm,bottom=1.2mm,fonttitle=\bfseries\small,
+    attach boxed title to top left={xshift=3mm,yshift=-2.4mm},
+    boxed title style={sharp corners,boxrule=0pt},
+    before skip=3pt,after skip=3pt
+  }
+}
+\@ifundefined{caixaDef}{\newtcolorbox{caixaDef}[1][]{caixabase,colback=corDef!5,colframe=corDef,coltitle=white,colbacktitle=corDef,title=Definição,#1}}{}
+\@ifundefined{caixaNorma}{\newtcolorbox{caixaNorma}[1][]{caixabase,colback=corNorma!5,colframe=corNorma,coltitle=white,colbacktitle=corNorma,title=Norma / Método,#1}}{}
+\@ifundefined{caixaEx}{\newtcolorbox{caixaEx}[1][]{caixabase,colback=corEx!5,colframe=corEx,coltitle=white,colbacktitle=corEx,title=Exemplo resolvido,#1}}{}
+\@ifundefined{caixaFix}{\newtcolorbox{caixaFix}[1][]{caixabase,colback=corFix!5,colframe=corFix,coltitle=white,colbacktitle=corFix,title=Fixação,#1}}{}
+\@ifundefined{caixaAt}{\newtcolorbox{caixaAt}[1][]{caixabase,colback=corAt!5,colframe=corAt,coltitle=white,colbacktitle=corAt,title=Atenção,#1}}{}
+\@ifundefined{caixaForm}{\newtcolorbox{caixaForm}[1][]{caixabase,colback=corPrim!4,colframe=corPrim,coltitle=white,colbacktitle=corPrim,title=Formulário,#1}}{}
+\@ifundefined{caixaObs}{\newtcolorbox{caixaObs}[1][]{caixabase,colback=black!3,colframe=corPrim,coltitle=white,colbacktitle=corPrim,title=Observação,#1}}{}
+\@ifundefined{caixaAlerta}{\newtcolorbox{caixaAlerta}[1][]{caixabase,colback=corAt!5,colframe=corAt,coltitle=white,colbacktitle=corAt,title=Atenção,#1}}{}
+\@ifundefined{caixaProjeto}{\newtcolorbox{caixaProjeto}[1][]{caixabase,colback=corNorma!5,colframe=corNorma,coltitle=white,colbacktitle=corNorma,title=Projeto prático,#1}}{}
+\@ifundefined{caixaProj}{\newtcolorbox{caixaProj}[1][]{caixabase,colback=corNorma!5,colframe=corNorma,coltitle=white,colbacktitle=corNorma,title=Projeto prático,#1}}{}
+
+%====================== CODIGO =======================================
+\lstdefinestyle{codCasa}{
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{codKw}\bfseries,
+  stringstyle=\color{codStr},commentstyle=\color{codCom}\itshape,
+  numbers=left,numberstyle=\tiny\color{codCom},numbersep=5pt,
+  frame=single,rulecolor=\color{corPrim!25},backgroundcolor=\color{codBg},
+  breaklines=true,showstringspaces=false,tabsize=2,columns=fullflexible
+}
+\lstdefinestyle{codC}{style=codCasa,language=C}
+\lstdefinestyle{codPy}{style=codCasa,language=Python}
+\lstdefinestyle{py}{style=codCasa,language=Python}
+
+%====================== EXTENSOES MODULARES ==========================
+% Se existir <jobname>_antes_laboratorios.tex, o arquivo e carregado uma
+% unica vez imediatamente antes da secao de laboratorios. Isso permite
+% ampliar um material sem duplicar o arquivo principal.
+\newif\ifCasaExtensaoAntesLabsInserida
+\CasaExtensaoAntesLabsInseridafalse
+\AtBeginDocument{%
+  \IfFileExists{\jobname_antes_laboratorios.tex}{%
+    \let\CasaSectionOriginal\section
+    \renewcommand{\section}[1]{%
+      \ifCasaExtensaoAntesLabsInserida\else
+        \ifstrequal{##1}{Laboratórios, projetos e comissionamento}{%
+          \global\CasaExtensaoAntesLabsInseridatrue
+          \input{\jobname_antes_laboratorios.tex}%
+        }{}%
+      \fi
+      \CasaSectionOriginal{##1}%
+    }%
+  }{}%
+}
+
+\makeatother

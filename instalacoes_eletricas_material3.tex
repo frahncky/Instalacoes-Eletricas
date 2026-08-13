@@ -1,0 +1,113 @@
+%=====================================================================
+% MATERIAL 03 - INSTALACOES ELETRICAS PREDIAIS E INDUSTRIAIS
+% Versao modular: evita duplicacao e divergencia entre os materiais
+% Atualizacao tecnica: agosto de 2026
+%=====================================================================
+\documentclass[11pt,aspectratio=169]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{siunitx}
+\usepackage{booktabs,array,tabularx,multirow}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[european,american currents]{circuitikz}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,shapes.geometric,patterns,decorations.pathmorphing,decorations.markings}
+\pgfplotsset{compat=1.18}
+\sisetup{locale=DE,per-mode=symbol,detect-all}
+
+\newcommand{\Disciplina}{Instalações Elétricas Prediais e Industriais}
+\newcommand{\TituloCurto}{Material 03}
+\newcommand{\sen}{\operatorname{sen}}
+\newcommand{\tg}{\operatorname{tg}}
+\newcommand{\fase}[1]{\textcolor{corPrim}{\textbf{#1}}}
+\newcommand{\alerta}[1]{\textcolor{corAt}{\textbf{#1}}}
+
+\input{beamer_estilo_casa.tex}
+
+\title{Instalações Elétricas Prediais e Industriais}
+\subtitle{Projeto, dimensionamento, proteção, normas atuais e aplicações no Maranhão}
+\author{Coleção de Engenharia Elétrica}
+\institute{Material 03 — versão combinada modular}
+\date{Atualização: agosto de 2026}
+
+\begin{document}
+
+{\setbeamercolor{background canvas}{bg=corPrim}
+\setbeamertemplate{footline}{}
+\begin{frame}[plain,noframenumbering]
+  \titlepage
+\end{frame}}
+
+\begin{frame}{Estrutura desta edição}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Predial]
+\begin{itemize}
+\item planta arquitetônica antes do lançamento elétrico;
+\item previsão de iluminação, TUG e TUE;
+\item circuitos, quadro, DR/DDR, DPS e aterramento;
+\item projeto residencial completo para o Maranhão;
+\item padrões atuais da Equatorial Energia.
+\end{itemize}
+\end{caixaNorma}
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Industrial]
+\begin{itemize}
+\item alimentadores, QGBT, CCM e motores;
+\item curto-circuito e seletividade;
+\item segurança, qualidade de energia e eficiência;
+\item documentação, exemplos e exercícios.
+\end{itemize}
+\end{caixaProjeto}
+\end{columns}
+\vspace{1mm}
+\begin{caixaObs}
+Este arquivo não mantém mais uma cópia paralela dos capítulos. Ele importa os mesmos módulos usados nos materiais Predial e Industrial, evitando conteúdo desatualizado ou contraditório.
+\end{caixaObs}
+\end{frame}
+
+% Base comum
+\input{teoria/comum/01_normas_escopo.tex}
+\input{teoria/comum/02_fundamentos_potencia_demanda.tex}
+
+% Projeto predial
+\input{teoria/predial/01_projeto_predial_bt.tex}
+
+% Dimensionamento e proteção comuns
+\input{teoria/comum/03_condutores_infraestrutura.tex}
+\input{teoria/comum/04_protecao_dr_dps_aterramento.tex}
+\input{teoria/comum/05_spda.tex}
+
+% Núcleo industrial
+\input{teoria/industrial/01_qgbt_ccm_motores.tex}
+\input{teoria/industrial/02_curto_seletividade_arco.tex}
+
+% Segurança e desempenho comuns
+\input{teoria/comum/06_seguranca_nr10_manutencao.tex}
+\input{teoria/comum/07_qualidade_energia_eficiencia.tex}
+
+% Cargas modernas prediais e documentação
+\input{teoria/predial/02_ve_cargas_modernas.tex}
+\input{teoria/comum/08_cad_bim_documentacao.tex}
+
+% Projeto residencial completo + exemplos
+\input{teoria/predial/05_projeto_residencial_equatorial_ma.tex}
+\input{teoria/predial/03_exemplos_prediais.tex}
+\input{teoria/industrial/03_exemplos_industriais.tex}
+
+% Exercícios
+\input{teoria/predial/04_exercicios_prediais.tex}
+\input{teoria/industrial/04_exercicios_industriais.tex}
+
+\input{teoria/comum/09_fechamento.tex}
+
+\end{document}

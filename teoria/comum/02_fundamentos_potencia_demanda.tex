@@ -1,0 +1,147 @@
+\section{Fundamentos, potência, energia e demanda}
+
+\begin{frame}{Grandezas em corrente alternada}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.54\textwidth}
+\begin{align*}
+v(t)&=V_m\sen(\omega t+\theta_v)\\
+i(t)&=I_m\sen(\omega t+\theta_i)\\
+V&=\frac{V_m}{\sqrt{2}},\qquad I=\frac{I_m}{\sqrt{2}}\\
+\varphi&=\theta_v-\theta_i
+\end{align*}
+\begin{itemize}
+\item RMS relaciona a grandeza CA ao efeito térmico equivalente em CC.
+\item Em carga indutiva, corrente tende a atrasar a tensão.
+\item Em carga capacitiva, corrente tende a adiantar a tensão.
+\end{itemize}
+\column{0.44\textwidth}
+\begin{tikzpicture}
+\begin{axis}[width=5.5cm,height=3.7cm,axis lines=middle,xlabel={$\omega t$},xtick={0,90,180,270,360},xticklabels={$0$,$90$,$180$,$270$,$360$},ytick=\empty,domain=0:360,samples=120,ymin=-1.3,ymax=1.3,grid=both]
+\addplot[corPrim,thick] {sin(x)};
+\addplot[corAccent,thick,dashed] {0.85*sin(x-35)};
+\end{axis}
+\node[corPrim,font=\scriptsize] at (1.25,3.25) {$v(t)$};
+\node[corAccent,font=\scriptsize] at (4.25,2.45) {$i(t)$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Potência ativa, reativa e aparente}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{align*}
+S &= VI \quad [\si{VA}]\\
+P &= VI\cos\varphi \quad [\si{W}]\\
+Q &= VI\sen\varphi \quad [\si{var}]\\
+S^2 &= P^2+Q^2,\qquad fp=\frac{P}{S}
+\end{align*}
+\begin{itemize}
+\item $P$: potência convertida em trabalho, calor, luz etc.
+\item $Q$: intercâmbio de energia reativa.
+\item $S$: capacidade elétrica exigida de cabos, quadros e transformadores.
+\end{itemize}
+\column{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.9]
+\draw[->,thick] (0,0)--(4.1,0) node[right]{$P$};
+\draw[->,thick] (4.1,0)--(4.1,2.4) node[above]{$Q$};
+\draw[->,thick,corPrim] (0,0)--(4.1,2.4) node[midway,above left]{$S$};
+\draw (0.8,0) arc (0:30:0.8);
+\node at (1.15,0.28) {$\varphi$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Sistemas trifásicos}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.52\textwidth}
+\begin{align*}
+P_{3\phi}&=\sqrt3\,V_{LL}I_L fp\\
+Q_{3\phi}&=\sqrt3\,V_{LL}I_L\sen\varphi\\
+S_{3\phi}&=\sqrt3\,V_{LL}I_L
+\end{align*}
+\begin{itemize}
+\item Cargas equilibradas reduzem corrente de neutro fundamental.
+\item Cargas monofásicas devem ser distribuídas entre as fases.
+\item Harmônicas triplas podem somar no neutro mesmo com correntes eficazes semelhantes nas fases.
+\end{itemize}
+\column{0.46\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.95]
+\draw[->,thick,corPrim] (0,0)--(2,0) node[right]{$V_A$};
+\draw[->,thick,corDef] (0,0)--({2*cos(120)},{2*sin(120)}) node[left]{$V_B$};
+\draw[->,thick,corAccent] (0,0)--({2*cos(240)},{2*sin(240)}) node[left]{$V_C$};
+\draw[thin,black!25] (0,0) circle (2);
+\node at (0,-2.35) {defasagem de $120^\circ$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Corrente de projeto}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.53\textwidth}
+\begin{caixaDef}
+A corrente de projeto $I_b$ é a corrente prevista no circuito considerando potência, tensão, rendimento, fator de potência e regime de funcionamento.
+\end{caixaDef}
+\begin{align*}
+I_{1\phi}&=\frac{P}{V\,fp\,\eta}\\
+I_{3\phi}&=\frac{P}{\sqrt3\,V_{LL}\,fp\,\eta}
+\end{align*}
+\column{0.45\textwidth}
+\begin{caixaEx}
+Motor de $\SI{15}{kW}$, $\SI{380}{V}$, $fp=0{,}85$, $\eta=0{,}92$:
+\[
+I_b=\frac{15000}{\sqrt3\cdot380\cdot0{,}85\cdot0{,}92}\approx\SI{29.2}{A}.
+\]
+Esse valor ainda não resolve partida, cabo, disjuntor ou queda de tensão.
+\end{caixaEx}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Carga instalada, demanda e diversidade}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.50\textwidth}
+\begin{align*}
+P_{inst}&=\sum P_k\\
+D_{max}&=\max_t P(t)\\
+F_d&=\frac{D_{max}}{P_{inst}}\\
+F_{div}&=\frac{\sum D_{max,k}}{D_{max,grupo}}
+\end{align*}
+\begin{itemize}
+\item A entrada não deve ser dimensionada supondo simultaneidade total sem justificativa.
+\item Fator de demanda deve vir de regra aplicável, histórico, processo ou critério documentado.
+\end{itemize}
+\column{0.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[width=5.7cm,height=3.6cm,xlabel={hora},ylabel={$P$ (kW)},xmin=0,xmax=24,ymin=0,ymax=100,grid=both,xtick={0,6,12,18,24}]
+\addplot[corPrim,thick,smooth] coordinates {(0,18)(3,15)(6,30)(9,54)(12,71)(15,63)(18,90)(21,50)(24,26)};
+\addplot[corAccent,dashed,thick] coordinates {(0,90)(24,90)};
+\end{axis}
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Levantamento de cargas moderno}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.6cm}p{3.1cm}X}
+\toprule
+Carga & Dados mínimos & O que acrescentar ao projeto \\
+\midrule
+Iluminação & Potência, comando, ambiente & Iluminância, emergência, automação e eficiência. \\
+TUG/TUE & Potência, tensão, uso & Circuitos, DR, simultaneidade, expansão. \\
+Motores & kW, regime, partida & $I_N$, inrush, torque, proteção, VFD/soft-starter. \\
+TI/eletrônica & W/VA, UPS & Harmônicas, DPS, continuidade, aterramento funcional. \\
+Ar-condicionado & Potência e tecnologia & Inverter, corrente máxima, diversidade e partida. \\
+VE & Potência de recarga, modo & Circuito dedicado, DR, gestão de carga, expansão. \\
+FV/armazenamento & Potência, inversor & Proteções CA/CC, anti-ilhamento, fluxos bidirecionais. \\
+Processo industrial & Ciclo e criticidade & Continuidade, redundância, seletividade, produção. \\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+%=====================================================================
