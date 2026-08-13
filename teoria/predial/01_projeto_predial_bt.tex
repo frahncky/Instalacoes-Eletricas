@@ -49,36 +49,60 @@ Antes de lançar símbolos elétricos, identificar:
 \end{columns}
 \end{frame}
 
-\begin{frame}{Iluminação e tomadas: mínimo não é projeto final}
+\begin{frame}[shrink=12]{Iluminação: carga de previsão não é potência da lâmpada}
 \small
 \begin{columns}[T,onlytextwidth]
 \column{0.49\textwidth}
 \begin{caixaNorma}[title=Previsão mínima de iluminação]
 Em habitações, a previsão de carga parte de:
 \begin{itemize}
-\item 100 VA para os primeiros 6 m$^2$ ou fração;
-\item 60 VA para cada acréscimo de 4 m$^2$ inteiros ou em fração.
+\item 100 VA em cômodos ou dependências com área de até 6 m$^2$;
+\item acima de 6 m$^2$, 100 VA para os primeiros 6 m$^2$ e 60 VA para cada acréscimo de 4 m$^2$ \textbf{inteiros}.
 \end{itemize}
 A quantidade real de luminárias decorre do projeto luminotécnico, não dessa potência de previsão.
 \end{caixaNorma}
 \column{0.49\textwidth}
-\begin{caixaNorma}[title=TUG]
-A quantidade mínima depende do tipo e do perímetro do ambiente. Cozinha, copa, lavanderia e área de serviço possuem critérios mais exigentes que salas, dormitórios e outros cômodos.
-\end{caixaNorma}
+\begin{caixaProjeto}[title=Aplicação correta]
+\begin{itemize}
+\item calcular ambiente por ambiente;
+\item arredondar cada fração dentro do próprio ambiente;
+\item somar os VA para dimensionar os circuitos;
+\item definir luminárias por iluminância, uso, manutenção e eficiência;
+\item não converter automaticamente VA de previsão em W de luminária.
+\end{itemize}
+\end{caixaProjeto}
 \begin{caixaAt}
-Não desenhar tomadas apenas para atingir uma contagem: conferir portas, móveis, bancadas, eletrodomésticos e acessibilidade de uso.
+Uma sala de \SI{30.7}{m^2}, por exemplo, tem seis acréscimos completos de 4 m$^2$ após os primeiros 6 m$^2$: $100+6\times60=\SI{460}{VA}$. Isso não significa instalar uma única luminária de \SI{460}{W}.
 \end{caixaAt}
 \end{columns}
 \end{frame}
 
-\begin{frame}{Divisão de circuitos: critérios defensáveis}
+\begin{frame}[shrink=8]{TUG em habitações: contagem e potência de previsão}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.2cm}p{4.35cm}X}
+\toprule
+Ambiente & Quantidade mínima & Potência atribuída \\
+\midrule
+Banheiro & Ao menos uma TUG junto ao lavatório, respeitadas as restrições do local. & \SI{600}{VA} por ponto previsto. \\
+Cozinha, copa, serviço, lavanderia e análogos & Uma TUG a cada \SI{3.5}{m} de perímetro ou fração; sobre a bancada da pia, ao menos duas tomadas, no mesmo ponto ou em pontos distintos. & \SI{600}{VA} por ponto até três; \SI{100}{VA} por ponto excedente, em cada ambiente. \\
+Sala e dormitório & Uma TUG a cada \SI{5}{m} de perímetro ou fração, distribuídas tão uniformemente quanto praticável. & \SI{100}{VA} por ponto. \\
+Varanda & Ao menos uma TUG, com solução compatível com exposição e uso. & \SI{100}{VA} por ponto. \\
+Outros cômodos & Até \SI{2.25}{m^2}: um ponto, admitido externamente até \SI{0.80}{m} do acesso; acima de \SI{2.25}{m^2} e até \SI{6}{m^2}: um ponto; acima de \SI{6}{m^2}: um ponto a cada \SI{5}{m} de perímetro ou fração. & \SI{100}{VA} por ponto. \\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+O mínimo normativo é o ponto de partida. Portas, móveis, bancadas e equipamentos podem exigir pontos adicionais; qualquer adicional também entra no quadro de cargas.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}[shrink=8]{Divisão de circuitos: critérios defensáveis}
 \small
 \begin{columns}[T,onlytextwidth]
 \column{0.49\textwidth}
 \begin{itemize}
-\item separar iluminação e tomadas quando tecnicamente adequado;
-\item separar cargas de potência elevada ou uso específico;
-\item prever circuitos exclusivos para TUE quando requerido;
+\item separar iluminação e tomadas como regra, admitindo circuito comum apenas nas condições normativas;
+\item prever circuito independente para ponto de uso exclusivo ou equipamento com corrente nominal superior a 10 A;
+\item separar outras cargas específicas quando o uso ou o fabricante exigir;
 \item limitar a consequência de uma falha a uma área razoável;
 \item facilitar identificação, manutenção e expansão.
 \end{itemize}
@@ -103,20 +127,20 @@ A divisão de circuitos deve aparecer de forma idêntica na planta, no quadro de
 Circ. & Descrição & Fase & $P$ & $I_b$ & Cabo & DJ & DR & Verificações \\
  & & & W/VA & A & mm$^2$ & A & mA & \\
 \midrule
-C1 & Iluminação social & C & 720 & 3,27 & 1,5 & 10 & -- & $I_z$, queda, curto \\
-C2 & Iluminação íntima & B & 860 & 3,91 & 1,5 & 10 & -- & $I_z$, queda, curto \\
-C3 & TUG áreas secas & A & 1100 & 5,00 & 2,5 & 16 & conf. & uso e extensão \\
-C4 & TUG cozinha & B & 1900 & 8,64 & 2,5 & 16 & 30 & ambiente molhado \\
-C7 & Chuveiro & A & 5500 & 25,0 & 6 & 32 & 30 & dedicado \\
+C1 & Luz social/apoio & A & 1060 & 4,82 & 1,5 & 10 & 30 & $I_z$, queda, curto \\
+C3 & TUG sala/quartos & A & 1700 & 7,73 & 2,5 & 16 & 30 & 17 pontos \\
+C5 & TUG cozinha & C & 2100 & 9,55 & 2,5 & 16 & 30 & 6 pontos \\
+C8 & TUG banheiros & C & 1800 & 8,18 & 2,5 & 16 & 30 & 3 pontos \\
+C9 & Chuveiro social & A & 4500 & 20,5 & 4 & 25 & 30 & dedicado \\
 \bottomrule
 \end{tabularx}
 \vspace{2mm}
 \begin{caixaAt}
-Os valores acima pertencem ao projeto residencial desenvolvido adiante. Eles não são uma tabela universal para copiar em qualquer residência.
+Os valores acima pertencem ao projeto residencial revisado adiante. Cabos e disjuntores são seleções iniciais: o fechamento depende de método de instalação, fatores de correção, queda, curto e instruções do equipamento.
 \end{caixaAt}
 \end{frame}
 
-\begin{frame}{Planta elétrica: o que precisa existir no desenho}
+\begin{frame}[shrink=2]{Planta elétrica: o que precisa existir no desenho}
 \small
 \begin{columns}[T,onlytextwidth]
 \column{0.47\textwidth}

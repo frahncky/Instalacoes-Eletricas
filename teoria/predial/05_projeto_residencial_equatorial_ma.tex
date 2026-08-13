@@ -14,6 +14,7 @@
 \providecommand{\PRTUG}[2]{\begin{scope}[shift={(#1,#2)}]\draw[corPrim,thick] (0,0) circle (0.13);\draw[corPrim,thick] (-0.16,0)--(0.16,0);\end{scope}}
 \providecommand{\PRTUE}[3]{\begin{scope}[shift={(#1,#2)}]\draw[corAt,thick] (0,0) circle (0.17);\node[font=\tiny\bfseries,corAt] at (0,0){#3};\end{scope}}
 \providecommand{\PRQD}[3]{\begin{scope}[shift={(#1,#2)}]\draw[corPrim,fill=corDef!10,thick,rounded corners=1pt] (-0.38,-0.22) rectangle (0.38,0.22);\node[font=\tiny\bfseries] at (0,0){#3};\end{scope}}
+\providecommand{\PRInt}[2]{\begin{scope}[shift={(#1,#2)}]\draw[corNorma,thick] (0,0) circle (0.11);\node[font=\tiny\bfseries,corNorma,anchor=west] at (0.14,0){S};\end{scope}}
 
 %---------------------------------------------------------------------
 % Planta 15,00 x 11,00 m. Frente em y=0.
@@ -36,6 +37,7 @@
   \ArqParedeInt{3.5}{8.4}{3.5}{11}
   % social/cozinha
   \ArqParedeInt{6.4}{6.4}{11.2}{6.4}
+  \draw[white,line width=5pt] (7.8,6.4)--(9.6,6.4);\draw[black!20,thin] (7.8,6.4)--(9.6,6.4);
   % garagem / serviço / varanda gourmet
   \ArqParedeInt{11.2}{0}{11.2}{11}
   \ArqParedeInt{11.2}{5.6}{15}{5.6}
@@ -113,96 +115,167 @@
 \CasaResidencialBase
 \end{tikzpicture}
 \vspace{0.5mm}
-\scriptsize A entrada principal chega à sala. O hall é somente interno. B1 e B2 são acessados por dentro das suítes; mobiliário e equipamentos deixam explícita a circulação disponível.
+\scriptsize A entrada principal chega à sala. O hall é interno. A casa possui três banheiros completos: banho social, B2 e B1; estes dois últimos são acessados exclusivamente pelas suítes.
 \end{frame}
 
-\begin{frame}{Residencial I — iluminação lançada sobre a arquitetura}
+\begin{frame}{Residencial I — iluminação e circuitos C1/C2}
 \centering
 \begin{tikzpicture}[scale=0.49,every node/.style={font=\tiny}]
 \CasaResidencialBase
 \PRQD{6.10}{3.10}{QD1}
 \foreach \x/\y in {1.7/2.1,4.25/1.0,1.75/5.4,4.25/5.9,1.8/9.2,4.25/9.6,5.8/5.5,8.8/2.8,8.7/5.2,8.6/8.8,13.1/3.0,13.1/6.9,13.1/9.6}{\PRLuz{\x}{\y}}
-\draw[corAccent!80!black,dashed,thick] (6.10,3.10)--(8.8,2.8)--(8.7,5.2)--(8.6,8.8);
-\draw[corAccent!80!black,dashed,thick] (6.10,3.10)--(5.8,5.5)--(1.75,5.4)--(1.8,9.2);
-\draw[corAccent!80!black,dashed,thick] (6.10,3.10)--(1.7,2.1);
+\foreach \x/\y in {4.92/2.75,4.92/0.78,4.92/4.15,3.72/5.18,4.92/7.75,3.72/8.88,6.15/2.85,7.48/0.38,10.92/2.45,8.05/6.68,11.48/6.85,11.48/9.35}{\PRInt{\x}{\y}}
+% C1: sala, cozinha, servico e gourmet
+\draw[corAccent!80!black,dashed,thick] (6.10,3.10)--(8.8,2.8)--(8.7,5.2)--(8.6,8.8)--(13.1,9.6);
+\draw[corAccent!80!black,dashed,thick] (8.6,8.8)--(13.1,6.9);
+% C2: ala intima, banheiros, hall e garagem
+\draw[corAccent!55!black,dashed,thick] (6.10,3.10)--(5.8,5.5)--(1.75,5.4)--(4.25,5.9)--(1.8,9.2)--(4.25,9.6);
+\draw[corAccent!55!black,dashed,thick] (6.10,3.10)--(1.7,2.1)--(4.25,1.0);
+\draw[corAccent!55!black,dashed,thick] (6.10,3.10)--(13.1,3.0);
+\node[font=\tiny\bfseries,fill=white,inner sep=1pt,corAccent!80!black] at (9.5,7.4){C1};
+\node[font=\tiny\bfseries,fill=white,inner sep=1pt,corAccent!55!black] at (3.0,5.4){C2};
 \end{tikzpicture}
+\vspace{0.4mm}
+\scriptsize Previsão calculada: C1 = 1,06 kVA e C2 = 1,40 kVA. Os círculos ``S'' marcam comandos junto aos acessos; os 2,46 kVA resultam das áreas e dos acréscimos completos de 4 m$^2$, não da quantidade de luminárias.
 \end{frame}
 
-\begin{frame}{Residencial I — TUG, TUE e equipamentos reais}
+\begin{frame}{Residencial I — 43 TUG e oito cargas específicas}
 \centering
 \begin{tikzpicture}[scale=0.49,every node/.style={font=\tiny}]
 \CasaResidencialBase
 \PRQD{6.10}{3.10}{QD1}
-% TUG sociais e quartos
-\foreach \x/\y in {6.7/0.7,10.8/3.7,7.0/5.9,9.9/5.9,0.35/0.7,0.35/3.1,3.0/3.1,0.35/4.1,0.35/6.7,3.0/6.8,0.35/7.7,0.35/10.5,3.0/10.5}{\PRTUG{\x}{\y}}
-% cozinha/serviço/gourmet
-\foreach \x/\y in {6.8/10.6,8.0/10.6,10.3/9.0,10.3/7.8,11.6/6.0,14.5/6.0,11.6/10.5,14.5/10.5}{\PRTUG{\x}{\y}}
-% TUE
-\PRTUE{4.35}{6.55}{CH}\PRTUE{4.35}{10.45}{CH}\PRTUE{9.60}{10.45}{FO}\PRTUE{12.35}{6.40}{LR}
-\PRTUE{0.45}{6.25}{AC}\PRTUE{0.45}{9.95}{AC}\PRTUE{0.45}{2.55}{AC}
-\draw[corFix!80,dashed,thick] (6.10,3.10)--(4.35,6.55);
-\draw[corFix!80,dashed,thick] (6.10,3.10)--(4.35,10.45);
-\draw[corFix!80,dashed,thick] (6.10,3.10)--(9.60,10.45)--(12.35,6.40);
+% C3: sala e dormitorios — 17 pontos
+\foreach \x/\y in {0.25/0.35,0.25/3.30,3.25/0.35,3.25/3.30,0.25/3.85,0.25/6.95,3.25/3.85,3.25/6.95,0.25/7.45,0.25/10.75,3.25/7.45,3.25/10.75,6.65/0.35,10.95/0.35,10.95/3.60,10.95/6.15,6.65/6.15}{\PRTUG{\x}{\y}}
+% C4: hall e garagem — 9 pontos
+\foreach \x/\y in {6.25/0.70,6.25/2.10,6.25/4.20,6.25/7.80,6.25/10.20,11.35/0.80,11.35/4.80,14.65/1.50,14.65/4.80}{\PRTUG{\x}{\y}}
+% C5 cozinha; C6 servico; C7 gourmet; C8 banheiros
+\foreach \x/\y in {6.70/10.75,8.00/10.75,9.30/10.75,10.95/7.00,10.95/8.50,10.95/10.00}{\PRTUG{\x}{\y}}
+\foreach \x/\y in {11.35/5.85,14.65/5.85,11.35/7.95,14.65/7.95}{\PRTUG{\x}{\y}}
+\foreach \x/\y in {11.35/8.45,14.65/8.45,11.35/10.75,14.65/10.75}{\PRTUG{\x}{\y}}
+\foreach \x/\y in {5.00/1.80,4.95/5.00,4.95/8.65}{\PRTUG{\x}{\y}}
+% TUE C9--C16
+\PRTUE{4.35}{0.55}{C9}\PRTUE{4.35}{6.55}{C10}\PRTUE{4.35}{10.45}{C11}
+\PRTUE{9.60}{10.45}{C12}\PRTUE{12.35}{6.40}{C13}
+\PRTUE{0.45}{2.55}{C14}\PRTUE{0.45}{6.25}{C15}\PRTUE{0.45}{9.95}{C16}
 \end{tikzpicture}
+\vspace{0.3mm}
+\tiny C3 sala/quartos (17) · C4 hall/garagem (9) · C5 cozinha (6) · C6 serviço (4) · C7 gourmet (4) · C8 banheiros (3) · C9--C11 chuveiros · C12 forno · C13 lavadora · C14--C16 ar-condicionado.
 \end{frame}
 
-\begin{frame}[shrink=5]{Residencial I — quadro de circuitos do estudo}
+\begin{frame}[shrink=7]{Residencial I — memória dos mínimos por ambiente}
 \scriptsize
-\begin{tabularx}{\textwidth}{c p{3.0cm} c c c c X}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.55cm}c c c c >{\centering\arraybackslash}X}
 \toprule
-C & Uso & $P$ & $I_b$ 220 V & Cabo Cu & DJ & Proteção/observação\\
+Ambiente & Área (m$^2$) & Perím. (m) & Luz (VA) & TUG & TUG (VA)\\
 \midrule
-C1 & Iluminação social/cozinha/serviço & 0,90 kVA & 4,1 A & 1,5 mm$^2$ & 10 A & DR conforme abrangência do circuito\\
-C2 & Iluminação íntima/banhos/garagem & 0,70 kVA & 3,2 A & 1,5 mm$^2$ & 10 A & DDR/RCBO 30 mA nos locais requeridos\\
-C3 & TUG sala e quartos & 1,40 kVA & 6,4 A & 2,5 mm$^2$ & 16 A & uso geral\\
-C4 & TUG cozinha & 1,80 kVA & 8,2 A & 2,5 mm$^2$ & 16 A & DDR/RCBO 30 mA\\
-C5 & TUG serviço/gourmet & 1,20 kVA & 5,5 A & 2,5 mm$^2$ & 16 A & DDR/RCBO 30 mA\\
-C6 & TUG banheiros & 0,60 kVA & 2,7 A & 2,5 mm$^2$ & 16 A & DDR/RCBO 30 mA\\
-C7--C8 & Chuveiros das suítes & 2$\times$4,50 kW & 20,5 A & 4 mm$^2$ & 25 A & dedicados + DDR/RCBO 30 mA\\
-C9 & Forno elétrico & 3,50 kW & 15,9 A & 4 mm$^2$ & 20 A & dedicado\\
-C10 & Lavadora & 1,20 kW & 5,5 A & 2,5 mm$^2$ & 16 A & dedicado\\
-C11--C13 & Ar-condicionado quartos & 3$\times$1,00 kW & 4,5 A & 2,5 mm$^2$ & 16 A & dedicados; fabricante\\
+Quarto 3 & 15,3 & 17,6 & 220 & 4 & 400\\
+Suíte 2 & 14,6 & 17,6 & 220 & 4 & 400\\
+Suíte master & 15,3 & 18,0 & 220 & 4 & 400\\
+Banheiros (3) & 3,4/4,1/4,4 & critério próprio & 300 & 3 & 1.800\\
+Hall íntimo & 13,2 & 24,4 & 160 & 5 & 500\\
+Sala/jantar & 30,7 & 22,4 & 460 & 5 & 500\\
+Cozinha & 22,1 & 18,8 & 340 & 6 & 2.100\\
+Garagem & 21,3 & 18,8 & 280 & 4 & 400\\
+Serviço & 9,9 & 12,8 & 100 & 4 & 1.900\\
+Varanda gourmet$^*$ & 10,6 & 13,2 & 160 & 4 & 1.900\\
+\midrule
+\textbf{Total} & -- & -- & \textbf{2.460} & \textbf{43} & \textbf{10.300}\\
 \bottomrule
 \end{tabularx}
-\vspace{1mm}
 \begin{caixaObs}
-Carga instalada do caso: aproximadamente 23,3 kW. Seções e disjuntores são didáticos; no executivo, recalcular método de instalação, agrupamento, temperatura, curto-circuito e queda de tensão.
+Áreas e perímetros seguem a geometria interna desenhada; os dormitórios têm forma em L. $^*$A varanda gourmet foi tratada como ambiente análogo a cozinha por possuir bancada de preparo.
 \end{caixaObs}
 \end{frame}
 
-\begin{frame}{Residencial I — entrada e balanceamento}
-\small
-\begin{columns}[T,onlytextwidth]
-\column{0.48\textwidth}
-\begin{caixaNorma}[title=Equatorial Maranhão]
-Para o caso-base, rede secundária 380/220 V, 3F+N. A carga instalada de 23,3 kW permanece na faixa de 12,1 a 24 kW da tabela verificada da NT.00001.EQTL Rev.09, associada ao atendimento trifásico de 40 A no padrão de entrada.
-\end{caixaNorma}
-\column{0.50\textwidth}
-\begin{caixaProjeto}[title=Fases]
-Distribuir os dois chuveiros em fases diferentes e usar forno, cozinha, lavanderia, iluminação e climatização para reduzir o desequilíbrio. O balanceamento final deve considerar simultaneidade e demanda, não apenas soma de potência instalada.
-\end{caixaProjeto}
-\end{columns}
-\vspace{1mm}
+\begin{frame}[shrink=6]{Residencial I — circuitos C1 a C8}
+\scriptsize
+\begin{tabularx}{\textwidth}{c p{3.25cm} c c c c c X}
+\toprule
+C & Uso & $S$ & $I_b$ & Cu & DJ & Fase & Solução adotada\\
+\midrule
+C1 & Luz social/cozinha/serviço/gourmet & 1,06 kVA & 4,8 A & 1,5 mm$^2$ & 10 A & A & RCBO 30 mA\\
+C2 & Luz íntima/banhos/hall/garagem & 1,40 kVA & 6,4 A & 1,5 mm$^2$ & 10 A & B & RCBO 30 mA\\
+C3 & TUG sala e dormitórios & 1,70 kVA & 7,7 A & 2,5 mm$^2$ & 16 A & A & RCBO 30 mA\\
+C4 & TUG hall e garagem & 0,90 kVA & 4,1 A & 2,5 mm$^2$ & 16 A & B & RCBO 30 mA\\
+C5 & TUG cozinha & 2,10 kVA & 9,5 A & 2,5 mm$^2$ & 16 A & C & RCBO 30 mA\\
+C6 & TUG serviço & 1,90 kVA & 8,6 A & 2,5 mm$^2$ & 16 A & C & RCBO 30 mA\\
+C7 & TUG gourmet & 1,90 kVA & 8,6 A & 2,5 mm$^2$ & 16 A & A & RCBO 30 mA\\
+C8 & TUG banheiros & 1,80 kVA & 8,2 A & 2,5 mm$^2$ & 16 A & C & RCBO 30 mA\\
+\bottomrule
+\end{tabularx}
+\begin{caixaObs}
+RCBO individuais evitam neutros compartilhados a jusante e limitam a área afetada. Tipo A é a premissa inicial; confirmar forma de onda residual, corrente de fuga e fabricante.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}[shrink=6]{Residencial I — circuitos C9 a C16}
+\scriptsize
+\begin{tabularx}{\textwidth}{c p{3.15cm} c c c c c X}
+\toprule
+C & Equipamento & $P$ & $I_b$ & Cu & DJ & Fase & Proteção/observação\\
+\midrule
+C9 & Chuveiro banho social & 4,50 kW & 20,5 A & 4 mm$^2$ & 25 A & A & dedicado; RCBO 30 mA\\
+C10 & Chuveiro suíte 2 & 4,50 kW & 20,5 A & 4 mm$^2$ & 25 A & B & dedicado; RCBO 30 mA\\
+C11 & Chuveiro suíte master & 4,50 kW & 20,5 A & 4 mm$^2$ & 25 A & C & dedicado; RCBO 30 mA\\
+C12 & Forno elétrico & 3,50 kW & 15,9 A & 4 mm$^2$ & 20 A & B & dedicado; RCBO 30 mA\\
+C13 & Lavadora & 1,20 kW & 5,5 A & 2,5 mm$^2$ & 16 A & A & dedicado; RCBO 30 mA\\
+C14--C16 & Ar-condicionado quartos & 3$\times$1,00 kW & 4,5 A cada & 2,5 mm$^2$ & 16 A & C/B/A & dedicados; fabricante\\
+\bottomrule
+\end{tabularx}
 \begin{caixaAt}
-Os 6 mm$^2$ de cobre indicados na tabela do padrão da concessionária são mínimo do padrão de entrada para a faixa; não substituem o dimensionamento do alimentador interno pela NBR 5410.
+As seções e proteções são seleções iniciais. Antes do executivo: método de instalação, agrupamento, temperatura, $I_z$, queda, curto máximo/mínimo, capacidade de interrupção e manual de cada equipamento.
 \end{caixaAt}
 \end{frame}
 
-\begin{frame}{Residencial I — unifilar coerente}
+\begin{frame}[shrink=4]{Residencial I — entrada e balanceamento fechados}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Balanceamento por valores instalados]
+\begin{align*}
+S_A&=\SI{11.36}{kVA}\quad (\SI{51.6}{A})\\
+S_B&=\SI{11.30}{kVA}\quad (\SI{51.4}{A})\\
+S_C&=\SI{11.30}{kVA}\quad (\SI{51.4}{A})
+\end{align*}
+\scriptsize A: C1+C3+C7+C9+C13+C16\\
+B: C2+C4+C10+C12+C15\\
+C: C5+C6+C8+C11+C14
+\end{caixaProjeto}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Equatorial Maranhão]
+Hipótese declarada do estudo: \SI{33.96}{kW} equivalentes. Na Tabela 1 da NT.00001.EQTL Rev.09:
+\begin{itemize}
+\item faixa 24,1--38 kW;
+\item atendimento 380/220 V, 3F+N;
+\item disjuntor de entrada 63 A;
+\item condutor Cu do cliente no padrão: mínimo 10 mm$^2$.
+\end{itemize}
+\end{caixaNorma}
+\end{columns}
+\begin{caixaAt}
+Para ilustrar o enquadramento, os VA mínimos de luz/TUG foram tomados numericamente como W. Na ligação real, declarar as potências ativas nominais efetivamente instaladas conforme a definição da NT.00001; demanda não substitui carga instalada nessa tabela. O alimentador interno é recalculado pela NBR 5410.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Residencial I — unifilar coerente com 16 circuitos}
 \centering
-\begin{tikzpicture}[scale=0.76,every node/.style={font=\tiny}]
-\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=1.9cm,minimum height=0.55cm,align=center}}
-\node[b](r)at(0,4.4){Rede EQTL\\380/220 V};
-\node[b](m)at(0,3.55){Medição\\padrão entrada};
-\node[b](dg)at(0,2.70){DG + DPS};
-\node[b](qd)at(0,1.80){QD1\\3F+N+PE};
-\node[b](g1)at(-4,0.55){C1--C6\\luz/TUG};
-\node[b](g2)at(-1.35,0.55){C7--C8\\chuveiros};
-\node[b](g3)at(1.35,0.55){C9--C10\\forno/lavadora};
-\node[b](g4)at(4,0.55){C11--C13\\ar-cond.};
+\begin{tikzpicture}[scale=0.88,every node/.style={font=\scriptsize}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.05cm,minimum height=0.58cm,align=center}}
+\node[b](r)at(0,4.6){Rede EQTL\\380/220 V};
+\node[b](m)at(0,3.70){Medição\\padrão de entrada};
+\node[b](dg)at(0,2.80){DG 3P 63 A\\+ DPS coordenado};
+\node[b](qd)at(0,1.85){QD1\\barras N e PE separadas};
+\node[b](g1)at(-4.2,0.45){C1--C8\\luz/TUG + RCBO};
+\node[b](g2)at(-1.4,0.45){C9--C11\\chuveiros + RCBO};
+\node[b](g3)at(1.4,0.45){C12--C13\\forno/lavadora};
+\node[b](g4)at(4.2,0.45){C14--C16\\ar-condicionado};
+\node[b,draw=corNorma,fill=corNorma!7](bep)at(5.0,2.65){BEP\\PE + equipot.};
 \draw[-{Stealth},thick,corPrim](r)--(m)--(dg)--(qd);
 \foreach \x in {g1,g2,g3,g4}{\draw[-{Stealth},thick](qd)--(\x);}
-\draw[corNorma,thick](qd.east)--(5.5,1.8)--(5.5,-0.35)node[ground]{};
-\node[corNorma,anchor=west] at (5.55,0.6){BEP / PE / aterramento};
+\draw[corNorma,thick](qd)--(bep);
+\draw[corNorma,thick](bep.south)--(5.0,1.35)node[ground]{};
+\node[font=\tiny,corNorma,anchor=west] at (5.15,1.35){eletrodo(s)};
 \end{tikzpicture}
+\vspace{1mm}
+\scriptsize O PE não é um ``terra isolado'' por circuito; todos os circuitos retornam ao barramento PE, ligado ao BEP e ao sistema comum de aterramento/equipotencialização.
 \end{frame}

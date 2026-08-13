@@ -1,5 +1,6 @@
 # Saída de compilação
 build/
+tmp/
 
 # Arquivos auxiliares do LaTeX
 *.aux

@@ -1,0 +1,113 @@
+% Comercial II - centro empresarial e de treinamento com dez salas
+\section{Projeto Comercial II — centro empresarial e de treinamento}
+\newcommand{\CentroServicosBase}{%
+\draw[arqExt] (0,0) rectangle (32,20);
+\ArqParedeInt{28}{0}{28}{20}\ArqParedeInt{27}{6}{27}{16}
+\ArqParedeInt{0}{6}{27}{6}\ArqParedeInt{0}{8}{27}{8}\ArqParedeInt{0}{14}{27}{14}\ArqParedeInt{0}{16}{27}{16}
+\ArqParedeInt{13}{0}{13}{6}\ArqParedeInt{19}{0}{19}{6}\ArqParedeInt{23}{0}{23}{6}
+% sanitarios lado a lado e lobby proprio
+\ArqParedeInt{15}{0}{15}{4.8}\ArqParedeInt{17}{0}{17}{4.8}\ArqParedeInt{13}{4.8}{19}{4.8}
+\foreach \x in {4.5,9,13.5,18,22.5}{\ArqParedeInt{\x}{8}{\x}{14}}
+\foreach \x in {4,8,12,16,22}{\ArqParedeInt{\x}{16}{\x}{20}}
+\ArqParedeInt{28}{7}{32}{7}\ArqParedeInt{28}{12}{32}{12}\ArqParedeInt{30.1}{7}{30.1}{12}
+% acessos externos e internos
+\ArqPortaCorrerH{4.8}{7.6}{0}\ArqVaoH{10.4}{12.2}{6}\ArqVaoH{15.5}{16.5}{6}
+\ArqPortaHDown{13.35}{4.8}{0.80}\ArqPortaHDown{15.35}{4.8}{0.80}\ArqPortaHDown{17.25}{4.8}{0.95}
+\ArqPortaHDown{20}{6}{0.90}\ArqPortaHDown{24.3}{6}{0.90}
+\foreach \x in {0.7,5.2,9.7,14.2,18.7,23.2}{\ArqPortaHUp{\x}{8}{0.90}}
+\foreach \x in {0.6,4.6,8.6,12.6,17.1,23.1}{\ArqPortaHUp{\x}{16}{0.90}}
+% corredor vertical liga os dois corredores ao nucleo; escada e elevador abrem para ele
+\ArqVaoV{6.35}{7.65}{27}\ArqVaoV{14.35}{15.65}{27}\ArqPortaVRight{28}{6.00}{0.90}\ArqPortaElevV{8.05}{9.05}{28}
+% frente
+\ArqDesk{9.4}{1.1}{2.5}{0.65}\ArqDesk{9.4}{2.3}{2.5}{0.65}\foreach \x in {1,2.4,3.8,5.2,6.6}{\draw[arqMob] (\x,2) circle (0.28);\draw[arqMob] (\x,3.5) circle (0.28);}\node[arqLabel] at (6.5,5.45){RECEPÇÃO / ESPERA};
+\ArqVaso{14}{1.2}\ArqPia{13.25}{3.5}{0.60}{0.38}\node[arqSub] at (14,4.45){WC-M};
+\ArqVaso{16}{1.2}\ArqPia{15.25}{3.5}{0.60}{0.38}\node[arqSub] at (16,4.45){WC-F};
+\ArqVaso{18}{1.3}\ArqPia{17.25}{3.5}{0.70}{0.40}\node[arqSub] at (18,4.45){WC-PCD};\node[arqSub] at (16,5.45){LOBBY WC};
+\ArqDesk{19.6}{1.2}{1.35}{0.58}\node[arqLabel] at (21,5.45){ADMIN.};\ArqBancada{23.5}{0.5}{3.2}{0.55}\ArqMesa{24}{2.5}{2.2}{0.9}\node[arqLabel] at (25,5.45){COPA / APOIO};
+% salas 01--10: escritorios/salas de atendimento, sem mobiliario de uso medico
+\foreach \x/\n in {0/01,4.5/02,9/03,13.5/04,18/05,22.5/06}{\ArqDesk{\x+0.35}{8.65}{1.35}{0.55}\ArqDesk{\x+2.35}{10.35}{1.35}{0.55}\node[arqLabel] at (\x+2.25,13.55){SALA \n};}
+\foreach \x/\n in {0/07,4/08,8/09,12/10}{\ArqDesk{\x+0.25}{16.45}{1.2}{0.5}\ArqDesk{\x+2.15}{18.0}{1.2}{0.5}\node[arqLabel] at (\x+2,19.55){SALA \n};}
+\ArqDesk{17.0}{17.0}{1.5}{0.55}\ArqDesk{19.2}{17.0}{1.5}{0.55}\node[arqLabel] at (19,19.55){SALA DE PROJETOS};
+\ArqMesa{22.7}{17.0}{3.4}{1.1}\node[arqLabel] at (24.5,19.55){TREINAMENTO / INOVAÇÃO};
+% nucleo vertical
+\ArqEscada{28.25}{0.35}{3.45}{6.25}\ArqElevador{28.25}{7.35}{1.60}{2.40}\draw[arqEquip] (30.35,7.35) rectangle (31.75,9.75);\node[arqSub] at (31.05,8.55){SHAFT};\node[arqSub,rotate=90] at (27.5,11){CIRC. VERTICAL};
+\CotaH{0}{32}{20.22}{32,00 m}\CotaV{0}{20}{32.22}{20,00 m}}
+
+\begin{frame}{Comercial II — centro empresarial com circulação clara}
+\centering\begin{tikzpicture}[scale=0.30,every node/.style={font=\tiny}]\CentroServicosBase\end{tikzpicture}
+\vspace{0.4mm}\scriptsize Salas de trabalho, recepção, apoio e treinamento têm acessos próprios. O lobby dos sanitários é separado, e a circulação vertical conecta diretamente os corredores à escada e ao elevador. O caso não é tratado como estabelecimento assistencial de saúde.
+\end{frame}
+
+\begin{frame}{Comercial II — iluminação normal e de emergência}
+\centering\begin{tikzpicture}[scale=0.30,every node/.style={font=\tiny}]
+\CentroServicosBase\SimQD{27.25}{7.20}{QDC}
+\foreach \x in {2,5,8,11,14,17,20,23,26}{\SimLuz{\x}{7}\SimLuz{\x}{15}}
+\foreach \x/\y in {3/3,7/3,11/3,2.25/11,6.75/11,11.25/11,15.75/11,20.25/11,24.75/11,2/18,6/18,10/18,14/18,19/18,24.5/18}{\SimLuz{\x}{\y}}
+\foreach \x in {2,7,12,17,22,26}{\SimEmerg{\x}{7.0}\SimEmerg{\x}{15.0}}\SimEmerg{29.8}{3.0}\SimEmerg{29.0}{8.5}
+\draw[corAccent!75!black,dashed,thick] (27.25,7.20)--(2,7);\draw[corAccent!75!black,dashed,thick] (27.25,7.20)--(27.25,15)--(2,15);
+\end{tikzpicture}
+\vspace{0.3mm}\scriptsize Circuitos independentes para iluminação normal, emergência/rotas de fuga e áreas comuns; autonomia e níveis finais dependem do projeto de segurança contra incêndio aplicável.
+\end{frame}
+
+\begin{frame}{Comercial II — TUG, dados, climatização e serviços}
+\centering\begin{tikzpicture}[scale=0.30,every node/.style={font=\tiny}]
+\CentroServicosBase\SimQD{27.25}{7.20}{QDC}
+% duas estações TUG+dados por sala 01--06
+\foreach \x in {0.55,5.05,9.55,14.05,18.55,23.05}{\SimTUG{\x}{9.0}\SimDados{\x}{9.45}\SimTUG{\x+3.35}{12.8}\SimDados{\x+3.35}{12.35}}
+% salas 07--10, projetos e treinamento
+\foreach \x in {0.45,4.45,8.45,12.45}{\SimTUG{\x}{16.6}\SimDados{\x}{17.05}\SimTUG{\x+3.1}{19.2}\SimDados{\x+3.1}{18.75}}
+\foreach \x/\y in {17.2/16.6,20.8/19.2,22.8/16.6,26.4/19.2,1.0/1.0,6.5/4.8,10.0/1.0,20.0/1.0}{\SimTUG{\x}{\y}\SimDados{\x}{\y+0.45}}
+\foreach \x/\y in {23.7/0.45,24.8/0.45,26.0/0.45,26.6/3.5}{\SimTUGM{\x}{\y}}
+\foreach \x in {2.25,6.75,11.25,15.75,20.25,24.75}{\SimTUE{\x}{13.7}{AC}}
+\foreach \x in {2,6,10,14,19,24.5}{\SimTUE{\x}{19.7}{AC}}
+\SimTUE{8}{0.45}{AC}\SimTUE{21}{0.45}{AC}\SimTUE{29.0}{8.5}{EL}
+\draw[corPrim!70,dashed,thick] (27.25,7.20)--(2,7);\draw[corPrim!70,dashed,thick] (27.25,7.20)--(27.25,15)--(2,15);
+\end{tikzpicture}
+\vspace{0.2mm}\tiny Os símbolos representam conjuntos funcionais; quantidade de tomadas e portas de dados deve fechar com postos de trabalho, salas de treinamento, copa e reserva de expansão.
+\end{frame}
+
+\begin{frame}[shrink=5]{Comercial II — carga e demanda do estudo}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.0cm}c c c c X}
+\toprule
+Grupo & Dado instalado & $fp$ & $P_{inst}$ & $f_d$ & $P_{dem}$\\
+\midrule
+Iluminação/emergência & 14,0 kW & 0,95 & 14,0 kW & 0,90 & 12,6 kW\\
+TUG/dados/TI & 36,0 kVA & 0,90 & 32,4 kW & 0,65 & 21,1 kW\\
+Climatização & 64,0 kW & 0,92 & 64,0 kW & 0,80 & 51,2 kW\\
+Elevador & 18,0 kW & 0,85 & 18,0 kW & 0,80 & 14,4 kW\\
+Copa e serviços & 16,0 kW & 0,90 & 16,0 kW & 0,60 & 9,6 kW\\
+\midrule
+\textbf{Total} & -- & -- & \textbf{144,4 kW} & -- & \textbf{108,9 kW}\\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Valores e fatores são hipóteses didáticas rastreáveis. O executivo substitui todos eles por equipamentos, ocupação, simultaneidade e método aceito pela distribuidora.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Comercial II — distribuição e enquadramento correto}
+\small\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Distribuição]
+\[
+S_{dem}\approx\SI{120}{kVA},\qquad I_{dem}\approx\SI{182}{A}\ @\ \SI{380}{V}.
+\]
+Separar QDL, QDT/TI, QDAC, QD-ELEV e QD-SERV; verificar queda, curto, seletividade, reserva e continuidade requerida.
+\end{caixaProjeto}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Conexão]
+Como a carga instalada supera 75 kW, não usar a tabela de unidade individual da NT.00001. Se houver uma única UC, solicitar estudo e aplicar a NT.00002 quando o atendimento for em MT; se o prédio for subdividido em várias UCs, aplicar a NT.00004 ao EMUC.
+\end{caixaNorma}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Comercial II — unifilar funcional}
+\centering\begin{tikzpicture}[scale=0.90,every node/.style={font=\scriptsize}]
+\tikzset{b/.style={draw=corPrim,fill=corDef!8,rounded corners,minimum width=2.15cm,minimum height=0.58cm,align=center}}
+\node[b](orig)at(0,4.2){Origem definida\\pela Equatorial};\node[b](qg)at(0,3.2){QGBT\\DG + DPS};
+\node[b](l)at(-4,1.4){QDL\\normal/emergência};\node[b](t)at(-2,0.2){QDT/TI\\TUG + dados};\node[b](ac)at(0,1.4){QDAC\\climatização};\node[b](el)at(2,0.2){QD-ELEV\\elevador};\node[b](sv)at(4,1.4){QD-SERV\\copa/serviços};
+\node[b,draw=corNorma,fill=corNorma!7](bep)at(4.4,3.2){BEP\\PE/equipot.};
+\draw[-{Stealth},thick,corPrim](orig)--(qg);\foreach \x in {l,t,ac,el,sv}{\draw[-{Stealth},thick](qg)--(\x);}\draw[corNorma,thick](qg)--(bep);\draw[corNorma,thick](bep.south)--(4.4,2.1)node[ground]{};
+\end{tikzpicture}
+\end{frame}

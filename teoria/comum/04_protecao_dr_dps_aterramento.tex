@@ -73,16 +73,16 @@ Tipo & Sensibilidade funcional & Aplicações/alertas \\
 AC & Corrente residual senoidal CA. & Cargas simples; pode ser inadequado para eletrônica moderna. \\
 A & CA senoidal + componentes pulsantes CC previstas. & Eletrodomésticos e muitas cargas eletrônicas. \\
 F & Inclui características para determinadas cargas monofásicas com conversores de frequência. & Alguns equipamentos inverter/velocidade variável. \\
-B & Detecta também correntes residuais CC lisas dentro do escopo do dispositivo. & VFD, FV, VE e conversores conforme arquitetura e fabricante. \\
+B & Detecta também correntes residuais CC lisas dentro do escopo do dispositivo. & Pode ser requerido em VFD, FV, VE e outros conversores; não é escolha automática sem analisar o equipamento e a norma específica. \\
 \bottomrule
 \end{tabularx}
 \vspace{2mm}
 \begin{caixaAt}
-A escolha não deve ser feita apenas por ``30 mA''. Verificar \textbf{tipo de forma de onda residual}, seletividade, imunidade, corrente de fuga normal, requisitos do equipamento e norma específica.
+A escolha não deve ser feita apenas por ``30 mA''. Verificar \textbf{tipo de forma de onda residual}, seletividade, imunidade, corrente de fuga normal, detecção de CC incorporada ao equipamento e norma específica. Em VE, por exemplo, uma solução com detecção de \SI{6}{mA} CC incorporada não é equivalente a instalar indiscriminadamente qualquer DR tipo A.
 \end{caixaAt}
 \end{frame}
 
-\begin{frame}{DPS: parâmetros e topologia que importam}
+\begin{frame}[shrink=4]{DPS: parâmetros e topologia que importam}
 \small
 \begin{columns}[T,onlytextwidth]
 \column{0.47\textwidth}
@@ -92,6 +92,8 @@ A escolha não deve ser feita apenas por ``30 mA''. Verificar \textbf{tipo de fo
 \item $I_n$: corrente nominal de descarga em ensaio aplicável.
 \item $I_{imp}$: corrente de impulso para DPS tipo 1.
 \item Esquema de conexão compatível com o aterramento da instalação.
+\item Proteção de retaguarda e capacidade de curto conforme fabricante.
+\item Condutores de conexão tão curtos e retilíneos quanto praticável.
 \end{itemize}
 \column{0.51\textwidth}
 \centering
@@ -138,7 +140,7 @@ A cascata deve considerar categoria/local da proteção, tensão suportável do 
 \end{caixaNorma}
 \end{frame}
 
-\begin{frame}{Funções do aterramento}
+\begin{frame}[shrink=2]{Funções do aterramento}
 \small
 \begin{columns}[T,onlytextwidth]
 \column{0.52\textwidth}

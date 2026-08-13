@@ -29,7 +29,7 @@
 % nucleo vertical e sanitarios
 \ArqEscada{10.25}{0.35}{2.75}{7.25}
 \ArqElevador{13.65}{6.05}{1.75}{1.70}
-\draw[arqEquip] (15.60,6.05) rectangle (16.55,7.75);\node[arqSub] at (16.08,6.90){SHAFT/IT};
+\draw[arqEquip] (15.60,6.05) rectangle (16.55,7.75);\node[arqSub,align=center] at (16.08,6.90){SHAFT\\TÉCN.};
 \ArqVaso{15.45}{0.65}\ArqPia{14.55}{1.18}{0.60}{0.35}\node[arqSub] at (15.45,1.55){WC-M};
 \ArqVaso{15.45}{2.55}\ArqPia{14.55}{3.05}{0.60}{0.35}\node[arqSub] at (15.45,3.42){WC-F};
 \ArqVaso{15.50}{4.55}\ArqPia{14.55}{5.15}{0.70}{0.38}\node[arqSub] at (15.45,5.55){WC-PCD};
@@ -42,9 +42,9 @@
 \CotaH{0}{26}{18.22}{26,00 m}\CotaV{0}{18}{26.22}{18,00 m}
 }
 
-\begin{frame}{Comercial I — pavimento típico refinado}
+\begin{frame}[shrink=5]{Comercial I — pavimento típico refinado}
 \centering\begin{tikzpicture}[scale=0.37,every node/.style={font=\tiny}]\EdifComBase\end{tikzpicture}
-\vspace{0.4mm}\scriptsize Salas voltadas ao corredor central; escada, elevador e shaft com acessos próprios; sanitários atendidos por corredor lateral de 1,30 m, sem acesso pelo interior da escada.
+\vspace{0.4mm}\scriptsize Salas voltadas ao corredor central; escada, elevador e shaft técnico com acessos próprios; sanitários atendidos por corredor lateral de 1,30 m. Potência e telecom usam compartimentação/segregação compatível no shaft.
 \end{frame}
 
 \begin{frame}{Comercial I — organização dos quatro pavimentos}
@@ -57,19 +57,51 @@
 
 \begin{frame}{Comercial I — elétrica do pavimento típico}
 \centering\begin{tikzpicture}[scale=0.37,every node/.style={font=\tiny}]
-\EdifComBase\SimQD{16.05}{6.9}{QDP}
+\EdifComBase\SimQD{16.05}{9.65}{QDP}
 \foreach \x in {1.3,3.9,6.5,9.1,11.7,14.3,16.9,19.5,22.1,24.7}{\SimLuz{\x}{14.0}}
 \foreach \x in {1.3,3.9,6.5,9.1,18.7,20.7,22.7,24.7}{\SimLuz{\x}{4.4}}
 \foreach \x in {1.5,4.5,7.5,10.5,13.5,16.5,19.5,22.5,25.0}{\SimLuz{\x}{9.0}}
 \foreach \x/\y in {0.4/11,4.8/11,5.6/11,9.8/11,10.8/11,15/11,16/11,20.2/11,21.2/11,25.6/11,0.4/7.2,4.6/7.2,5.4/7.2,9.6/7.2,18.4/7.2,21.5/7.2,22.3/7.2,25.6/7.2}{\SimTUG{\x}{\y}\SimDados{\x}{\y+0.35}}
 \foreach \x in {2.6,7.6,13,18.2,23.4}{\SimTUE{\x}{17.6}{AC}}\foreach \x in {2.5,7.5,20,24}{\SimTUE{\x}{0.4}{AC}}\SimTUE{14.5}{7.5}{EL}
-\draw[corPrim!70,dashed,thick] (16.05,6.9)--(16.05,9)--(2,9);\draw[corPrim!70,dashed,thick] (16.05,9)--(25,9);
+\foreach \x in {2,7,12,17,22}{\SimEmerg{\x}{9.0}}\SimEmerg{11.6}{7.55}\SimEmerg{14.5}{7.55}
+\draw[corPrim!70,dashed,thick] (16.05,9.65)--(16.05,9)--(2,9);\draw[corPrim!70,dashed,thick] (16.05,9)--(25,9);
 \end{tikzpicture}\end{frame}
 
-\begin{frame}{Comercial I — cargas e distribuição vertical}
+\begin{frame}[shrink=5]{Comercial I — carga e demanda do estudo}
+\scriptsize
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.0cm}c c c c X}
+\toprule
+Grupo & Dado instalado & $fp$ & $P_{inst}$ & $f_d$ & $P_{dem}$\\
+\midrule
+Iluminação/emergência & 18,0 kW & 0,95 & 18,0 kW & 0,90 & 16,2 kW\\
+TUG/TI & 32,0 kVA & 0,90 & 28,8 kW & 0,70 & 20,2 kW\\
+Climatização & 72,0 kW & 0,92 & 72,0 kW & 0,80 & 57,6 kW\\
+Elevador & 18,0 kW & 0,85 & 18,0 kW & 0,80 & 14,4 kW\\
+Serviços comuns & 20,0 kW & 0,90 & 20,0 kW & 0,60 & 12,0 kW\\
+\midrule
+\textbf{Total} & -- & -- & \textbf{156,8 kW} & -- & \textbf{120,4 kW}\\
+\bottomrule
+\end{tabularx}
+\begin{caixaAt}
+Os fatores de demanda e de potência são \textbf{premissas didáticas}, não uma tabela universal. No executivo, usar ocupação, simultaneidade, dados de placa, estratégia do elevador/HVAC e método aceito pela Equatorial.
+\end{caixaAt}
+\end{frame}
+
+\begin{frame}{Comercial I — distribuição vertical e conexão}
 \small\begin{columns}[T,onlytextwidth]
-\column{0.49\textwidth}\begin{caixaProjeto}[title=Cargas do estudo]\begin{itemize}\item iluminação/emergência: 18 kW;\item tomadas/TI: 32 kVA;\item climatização: 72 kW;\item elevador: 18 kW;\item serviços comuns: 20 kW.\end{itemize}\end{caixaProjeto}
-\column{0.49\textwidth}\begin{caixaNorma}[title=Distribuição]QDI, QDT/TI, QDAC, QD-ELEV e QD-SERV são alimentados pelo QGBT conforme demanda e seletividade. Em medição coletiva, aplicar a NT.00004.EQTL vigente.\end{caixaNorma}
+\column{0.49\textwidth}
+\begin{caixaProjeto}[title=Ordem de grandeza]
+Pelas premissas do estudo:
+\[
+S_{dem}\approx\SI{132}{kVA},\qquad
+I_{dem}\approx\frac{132000}{\sqrt3\,380}=\SI{201}{A}.
+\]
+QDI, QDT/TI, QDAC, QD-ELEV e QD-SERV partem do QGBT com alimentadores, proteção e seletividade próprios.
+\end{caixaProjeto}
+\column{0.49\textwidth}
+\begin{caixaNorma}[title=Interface correta]
+O empreendimento não pode ser enquadrado pela tabela de unidade individual da NT.00001. Medição coletiva, demanda do conjunto e prumadas seguem a \textbf{NT.00004.EQTL Rev.08}; se a solução de conexão for em MT, aplicar também a \textbf{NT.00002.EQTL Rev.10} e os dados fornecidos pela distribuidora.
+\end{caixaNorma}
 \end{columns}\end{frame}
 
 \begin{frame}{Comercial I — cobertura e SPDA}
@@ -82,7 +114,7 @@
 \end{frame}
 
 \begin{frame}{Comercial I — SPDA, DPS e aterramento integrados}
-\centering\begin{tikzpicture}[scale=0.70,every node/.style={font=\tiny}]
+\centering\begin{tikzpicture}[scale=0.95,every node/.style={font=\scriptsize}]
 \tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.2cm,minimum height=0.58cm,align=center}}
 \node[b](r)at(-4,3.5){Rede Equatorial};\node[b](qg)at(-4,2.3){QGBT\\DPS origem};\node[b](qd)at(-4,1.1){QDs pavimentos};\node[b](sp)at(1,3.5){SPDA cobertura};\node[b](desc)at(1,2.3){Descidas};\node[b](bep)at(1,1.1){BEP / equipot.};\node[b](malha)at(1,-0.1){aterramento};
 \draw[-{Stealth},thick,corPrim](r)--(qg)--(qd);\draw[-{Stealth},thick,corAt](sp)--(desc)--(bep)--(malha);\draw[corNorma,thick](qg)--(bep);\draw[corNorma,thick](qd)--(bep);
