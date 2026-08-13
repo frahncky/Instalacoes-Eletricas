@@ -46,6 +46,7 @@
 \centering\begin{tikzpicture}[scale=0.53,every node/.style={font=\tiny}]
 \AptoFinalBase\SimQD{6.85}{3.30}{QD-A}
 \foreach \x/\y in {1.45/2.8,3.35/1,1.5/6,3.35/8,4.7/4.3,6.2/1.2,5.9/2.9,8.5/1.9,11/1.9,8/5.1,10.1/6.5,13/6.6}{\SimLuz{\x}{\y}}
+\foreach \x/\y in {3.92/2.82,3.12/2.32,3.92/5.12,3.12/6.58,5.42/0.42,5.42/2.55,6.82/3.52,9.82/1.28,5.42/4.18,11.72/5.18}{\SimInterruptor{\x}{\y}{S}}
 \draw[corAccent!80!black,dashed,thick] (6.85,3.30)--(8.0,5.1)--(10.1,6.5)--(13,6.6);
 \draw[corAccent!80!black,dashed,thick] (6.85,3.30)--(8.5,1.9)--(11,1.9);
 \draw[corAccent!55!black,dashed,thick] (6.85,3.30)--(6.2,1.2)--(5.9,2.9)--(4.7,4.3)--(1.5,6)--(3.35,8);
@@ -53,7 +54,7 @@
 \node[font=\tiny\bfseries,fill=white,inner sep=1pt,corAccent!80!black] at (9.5,4.8){A1};
 \node[font=\tiny\bfseries,fill=white,inner sep=1pt,corAccent!55!black] at (3.2,4.3){A2};
 \end{tikzpicture}
-\vspace{0.3mm}\scriptsize Previsão: A1 = 0,94 kVA e A2 = 0,94 kVA. A potência mínima total é 1,88 kVA, calculada pelas áreas e pelos acréscimos completos de 4 m$^2$.
+\vspace{0.3mm}\scriptsize Previsão: A1 = 0,94 kVA e A2 = 0,94 kVA. Os comandos estão junto aos acessos; a potência mínima total é 1,88 kVA, calculada pelas áreas e pelos acréscimos completos de 4 m$^2$.
 \end{frame}
 
 \begin{frame}{Residencial II — 27 TUG e sete cargas específicas}
