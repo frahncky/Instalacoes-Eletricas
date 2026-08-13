@@ -108,6 +108,6 @@ Como a carga instalada supera 75 kW, não usar a tabela de unidade individual da
 \node[b](orig)at(0,4.2){Origem definida\\pela Equatorial};\node[b](qg)at(0,3.2){QGBT\\DG + DPS};
 \node[b](l)at(-4,1.4){QDL\\normal/emergência};\node[b](t)at(-2,0.2){QDT/TI\\TUG + dados};\node[b](ac)at(0,1.4){QDAC\\climatização};\node[b](el)at(2,0.2){QD-ELEV\\elevador};\node[b](sv)at(4,1.4){QD-SERV\\copa/serviços};
 \node[b,draw=corNorma,fill=corNorma!7](bep)at(4.4,3.2){BEP\\PE/equipot.};
-\draw[-{Stealth},thick,corPrim](orig)--(qg);\foreach \x in {l,t,ac,el,sv}{\draw[-{Stealth},thick](qg)--(\x);}\draw[corNorma,thick](qg)--(bep);\draw[corNorma,thick](bep.south)--(4.4,2.1)node[ground]{};
+\draw[-{Stealth},thick,corPrim](orig)--(qg);\foreach \x in {l,t,ac,el,sv}{\draw[-{Stealth},thick](qg)--(\x);}\draw[corNorma,thick](qg)--(bep);\draw[corNorma,thick](bep.south)--(4.4,2.45)node[ground]{};
 \end{tikzpicture}
 \end{frame}

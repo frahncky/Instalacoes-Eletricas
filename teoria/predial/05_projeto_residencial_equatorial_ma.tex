@@ -261,20 +261,22 @@ Para ilustrar o enquadramento, os VA mínimos de luz/TUG foram tomados numericam
 \centering
 \begin{tikzpicture}[scale=0.88,every node/.style={font=\scriptsize}]
 \tikzset{b/.style={draw=corPrim,fill=corDef!7,rounded corners,minimum width=2.05cm,minimum height=0.58cm,align=center}}
-\node[b](r)at(0,4.6){Rede EQTL\\380/220 V};
-\node[b](m)at(0,3.70){Medição\\padrão de entrada};
-\node[b](dg)at(0,2.80){DG 3P 63 A\\+ DPS coordenado};
-\node[b](qd)at(0,1.85){QD1\\barras N e PE separadas};
-\node[b](g1)at(-4.2,0.45){C1--C8\\luz/TUG + RCBO};
-\node[b](g2)at(-1.4,0.45){C9--C11\\chuveiros + RCBO};
-\node[b](g3)at(1.4,0.45){C12--C13\\forno/lavadora};
-\node[b](g4)at(4.2,0.45){C14--C16\\ar-condicionado};
+\node[b](r)at(0,5.45){Rede EQTL\\380/220 V};
+\node[b](m)at(0,4.25){Medição\\padrão de entrada};
+\node[b](dg)at(0,3.05){DG 3P 63 A\\+ DPS coordenado};
+\node[b,inner ysep=3pt](qd)at(0,1.85){QD1\\barras N e PE separadas};
+\node[b,font=\tiny](g1)at(-4.35,0.45){C1--C8\\luz/TUG + RCBO};
+\node[b,font=\tiny](g2)at(-1.45,0.45){C9--C11\\chuveiros + RCBO};
+\node[b,font=\tiny](g3)at(1.45,0.45){C12--C13\\forno/lavadora};
+\node[b,font=\tiny](g4)at(4.35,0.45){C14--C16\\ar-condicionado};
 \node[b,draw=corNorma,fill=corNorma!7](bep)at(5.0,2.65){BEP\\PE + equipot.};
-\draw[-{Stealth},thick,corPrim](r)--(m)--(dg)--(qd);
+\draw[-{Stealth},thick,corPrim,shorten >=3pt](r.south)--(m.north);
+\draw[-{Stealth},thick,corPrim,shorten >=3pt](m.south)--(dg.north);
+\draw[-{Stealth},thick,corPrim,shorten >=3pt](dg.south)--(qd.north);
 \foreach \x in {g1,g2,g3,g4}{\draw[-{Stealth},thick](qd)--(\x);}
 \draw[corNorma,thick](qd)--(bep);
-\draw[corNorma,thick](bep.south)--(5.0,1.35)node[ground]{};
-\node[font=\tiny,corNorma,anchor=west] at (5.15,1.35){eletrodo(s)};
+\draw[corNorma,thick](bep.south)--(5.0,1.70)node[ground]{};
+\node[font=\tiny,corNorma,anchor=west] at (5.15,1.70){eletrodo(s)};
 \end{tikzpicture}
 \vspace{1mm}
 \scriptsize O PE não é um ``terra isolado'' por circuito; todos os circuitos retornam ao barramento PE, ligado ao BEP e ao sistema comum de aterramento/equipotencialização.
