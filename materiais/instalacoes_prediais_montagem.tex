@@ -73,18 +73,11 @@
 \input{teoria/montagem/01_seguranca_ferramentas.tex}
 \input{teoria/montagem/02_infraestrutura_condutores.tex}
 
-% A nova sequencia substitui integralmente os dois capitulos antigos.
-% Garante que nos TikZ com texto multilinha tenham alinhamento valido,
-% inclusive quando o proprio desenho redefine apenas a fonte dos nos.
 \tikzset{execute at begin picture={\tikzset{every node/.append style={align=center}}}}
 \input{teoria/montagem/03b_esquemas_iluminacao.tex}
 \input{teoria/montagem/03c_tomadas_base.tex}
 \input{teoria/montagem/03d_componentes_reais.tex}
 \input{teoria/montagem/03e_comandos_especiais.tex}
-\input{teoria/montagem/03f_leitura_diagnostico.tex}
-\input{teoria/montagem/03g_aplicacoes_especificas.tex}
-\input{teoria/montagem/03h_luminarias_led.tex}
-\input{teoria/montagem/03i_cargas_dedicadas.tex}
 
 \input{teoria/montagem/04_quadros_protecao.tex}
 \input{teoria/montagem/05_ensaios_comissionamento.tex}
