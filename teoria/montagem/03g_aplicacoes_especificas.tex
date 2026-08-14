@@ -8,7 +8,7 @@
 \begin{columns}[T,onlytextwidth]
 \column{.60\textwidth}
 \centering
-\begin{tikzpicture}[scale=.75,every node/.style={font=\scriptsize}]
+\begin{tikzpicture}[scale=.75,every node/.style={font=\scriptsize,align=center}]
 \node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2cm,minimum height=.8cm](o)at(-4.1,1.0){origem};
 \node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.3cm,minimum height=1.3cm](c)at(-.8,-1.0){controle\\luz \quad ventilador};
 \node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2.2cm,minimum height=1.0cm](t)at(1.6,1.0){caixa de teto};
@@ -30,7 +30,7 @@ O desenho mostra duas saídas de comando chegando ao mesmo conjunto físico. Mot
 
 \begin{frame}{Exaustor temporizado — distinguir alimentação e gatilho}
 \centering
-\begin{tikzpicture}[scale=.80,every node/.style={font=\scriptsize}]
+\begin{tikzpicture}[scale=.80,every node/.style={font=\scriptsize,align=center}]
 \node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.0cm,minimum height=.85cm](s)at(-4.2,1.35){comando luz};
 \node[draw=corAccent!85!black,fill=corAccent!7,circle,minimum size=.9cm](l)at(0,1.35){L1};
 \node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.7cm,minimum height=1.3cm](e)at(2.8,-1.05){exaustor temporizado\\L \quad N \quad T};
@@ -49,7 +49,7 @@ O temporizador continua sendo uma função própria. A representação revisada 
 \begin{columns}[T,onlytextwidth]
 \column{.60\textwidth}
 \centering
-\begin{tikzpicture}[scale=.74,every node/.style={font=\scriptsize}]
+\begin{tikzpicture}[scale=.74,every node/.style={font=\scriptsize,align=center}]
 \node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=1.9cm,minimum height=.8cm](q)at(-4.5,1.1){origem};
 \node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.1cm,minimum height=.8cm](sec)at(-2.0,1.1){seccionamento};
 \node[draw=corAccent!85!black,fill=corAccent!7,rounded corners,minimum width=2.2cm,minimum height=1.1cm](ue)at(.8,1.1){unidade\\externa};
@@ -68,7 +68,7 @@ O cabo entre unidades deve aparecer como interface própria, com referência ao 
 
 \begin{frame}{Campainha, interfone e fechadura — separar rede e sistema de sinal}
 \centering
-\begin{tikzpicture}[scale=.79,every node/.style={font=\scriptsize}]
+\begin{tikzpicture}[scale=.79,every node/.style={font=\scriptsize,align=center}]
 \node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2cm,minimum height=.8cm](r)at(-5.0,1.2){rede};
 \node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.2cm,minimum height=.8cm](f)at(-2.2,1.2){fonte/interface};
 \node[draw=corDef,fill=corDef!6,rounded corners,minimum width=2.2cm,minimum height=.8cm](p)at(.8,2.0){painel / botoeira};
@@ -77,7 +77,7 @@ O cabo entre unidades deve aparecer como interface própria, com referência ao 
 \draw[thick,corPrim,-{Stealth}](r)--(f);
 \draw[thick,corNorma,-{Stealth}](f)--(p)--(i);
 \draw[thick,corNorma,-{Stealth}](p)--(fe);
-\draw[dashed,very thick,corAccent]( -0.7,-1.0)--(-0.7,3.1);
+\draw[dashed,very thick,corAccent](-0.7,-1.0)--(-0.7,3.1);
 \node[font=\tiny,rotate=90,corAccent]at(-.45,.9){fronteira funcional};
 \end{tikzpicture}
 \begin{caixaObs}
@@ -87,7 +87,7 @@ O esquema deixa visível a fronteira entre alimentação e comunicação/acionam
 
 \begin{frame}{Iluminação de emergência — alimentação e função de teste separadas}
 \centering
-\begin{tikzpicture}[scale=.82,every node/.style={font=\scriptsize}]
+\begin{tikzpicture}[scale=.82,every node/.style={font=\scriptsize,align=center}]
 \node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2.1cm,minimum height=.8cm](o)at(-4.2,1.1){alimentação};
 \node[draw=corAccent!85!black,fill=corAccent!7,rounded corners,minimum width=2.8cm,minimum height=1.25cm](b)at(0,1.1){bloco autônomo\\rede + bateria};
 \node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.1cm,minimum height=.8cm](l)at(4.2,1.1){luz emergência};
