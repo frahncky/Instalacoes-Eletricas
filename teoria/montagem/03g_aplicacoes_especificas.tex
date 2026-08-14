@@ -1,0 +1,102 @@
+%=====================================================================
+% APLICACOES ESPECIFICAS - REPRESENTACAO REVISADA
+%=====================================================================
+\section{Aplicações específicas — leitura por interfaces}
+
+\begin{frame}{Ventilador de teto com luminária — separar duas funções}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.60\textwidth}
+\centering
+\begin{tikzpicture}[scale=.75,every node/.style={font=\scriptsize,align=center}]
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2cm,minimum height=.8cm](o)at(-4.1,1.0){origem};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.3cm,minimum height=1.3cm](c)at(-.8,-1.0){controle\\luz \quad ventilador};
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2.2cm,minimum height=1.0cm](t)at(1.6,1.0){caixa de teto};
+\node[draw=corAccent!85!black,fill=corAccent!7,circle,minimum size=1.25cm](v)at(5.0,1.0){M +\\L};
+\draw[thick,corPrim](o)--(t);
+\draw[thick,corPrim](t.south west)--(.4,-1.0)--(c.east);
+\draw[thick,corAccent](c.east)+(0,.18)--($(t.south)+(0,-.05)$);
+\draw[thick,corNorma](c.east)+(0,-.18)--($(t.south)+(0,.05)$);
+\draw[thick,corAccent]($(t.east)+(0,.18)$)--($(v.west)+(0,.18)$);
+\draw[thick,corNorma]($(t.east)+(0,-.18)$)--($(v.west)+(0,-.18)$);
+\draw[thick,corDef](-4.1,2.25)--(5.0,2.25)--(v.north);
+\end{tikzpicture}
+\column{.38\textwidth}
+\begin{caixaProjeto}[title=Leitura]
+O desenho mostra duas saídas de comando chegando ao mesmo conjunto físico. Motor e iluminação não devem aparecer fundidos em uma única seta.
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Exaustor temporizado — distinguir alimentação e gatilho}
+\centering
+\begin{tikzpicture}[scale=.80,every node/.style={font=\scriptsize,align=center}]
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.0cm,minimum height=.85cm](s)at(-4.2,1.35){comando luz};
+\node[draw=corAccent!85!black,fill=corAccent!7,circle,minimum size=.9cm](l)at(0,1.35){L1};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.7cm,minimum height=1.3cm](e)at(2.8,-1.05){exaustor temporizado\\L \quad N \quad T};
+\draw[thick,corAccent](s)--(l);
+\draw[thick,corAccent](s.south)--(-4.2,-1.05)--(e.west)node[midway,below]{gatilho T};
+\draw[thick,corPrim](-5.4,-2.2)--(2.8,-2.2)--(e.south west)node[pos=.15,below]{alimentação};
+\draw[thick,corDef](-5.4,-2.65)--(3.35,-2.65)--(e.south east)node[pos=.15,below]{referência};
+\end{tikzpicture}
+\begin{caixaObs}
+O temporizador continua sendo uma função própria. A representação revisada separa o sinal de comando da alimentação permanente necessária ao equipamento.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Ar-condicionado split — força e interligação não são a mesma coisa}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.60\textwidth}
+\centering
+\begin{tikzpicture}[scale=.74,every node/.style={font=\scriptsize,align=center}]
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=1.9cm,minimum height=.8cm](q)at(-4.5,1.1){origem};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.1cm,minimum height=.8cm](sec)at(-2.0,1.1){seccionamento};
+\node[draw=corAccent!85!black,fill=corAccent!7,rounded corners,minimum width=2.2cm,minimum height=1.1cm](ue)at(.8,1.1){unidade\\externa};
+\node[draw=corDef,fill=corDef!6,rounded corners,minimum width=2.2cm,minimum height=1.1cm](ui)at(4.3,1.1){unidade\\interna};
+\draw[thick,corPrim,-{Stealth}](q)--(sec)--(ue);
+\draw[thick,corNorma,<->](ue)--(ui)node[midway,above]{interligação};
+\draw[thick,corPrim!45,dashed](-4.5,-.25)--(4.3,-.25);
+\node[font=\tiny]at(0,-.55){documentar separadamente origem da força e cabo entre unidades};
+\end{tikzpicture}
+\column{.38\textwidth}
+\begin{caixaProjeto}[title=Representação]
+O cabo entre unidades deve aparecer como interface própria, com referência ao diagrama do equipamento, e não como simples prolongamento da alimentação.
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Campainha, interfone e fechadura — separar rede e sistema de sinal}
+\centering
+\begin{tikzpicture}[scale=.79,every node/.style={font=\scriptsize,align=center}]
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2cm,minimum height=.8cm](r)at(-5.0,1.2){rede};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.2cm,minimum height=.8cm](f)at(-2.2,1.2){fonte/interface};
+\node[draw=corDef,fill=corDef!6,rounded corners,minimum width=2.2cm,minimum height=.8cm](p)at(.8,2.0){painel / botoeira};
+\node[draw=corDef,fill=corDef!6,rounded corners,minimum width=2.2cm,minimum height=.8cm](i)at(4.2,1.2){interfone};
+\node[draw=corDef,fill=corDef!6,rounded corners,minimum width=2.2cm,minimum height=.8cm](fe)at(.8,.1){fechadura};
+\draw[thick,corPrim,-{Stealth}](r)--(f);
+\draw[thick,corNorma,-{Stealth}](f)--(p)--(i);
+\draw[thick,corNorma,-{Stealth}](p)--(fe);
+\draw[dashed,very thick,corAccent](-0.7,-1.0)--(-0.7,3.1);
+\node[font=\tiny,rotate=90,corAccent]at(-.45,.9){fronteira funcional};
+\end{tikzpicture}
+\begin{caixaObs}
+O esquema deixa visível a fronteira entre alimentação e comunicação/acionamento, evitando representar todo o sistema como um único circuito genérico.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Iluminação de emergência — alimentação e função de teste separadas}
+\centering
+\begin{tikzpicture}[scale=.82,every node/.style={font=\scriptsize,align=center}]
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2.1cm,minimum height=.8cm](o)at(-4.2,1.1){alimentação};
+\node[draw=corAccent!85!black,fill=corAccent!7,rounded corners,minimum width=2.8cm,minimum height=1.25cm](b)at(0,1.1){bloco autônomo\\rede + bateria};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.1cm,minimum height=.8cm](l)at(4.2,1.1){luz emergência};
+\draw[thick,corPrim,-{Stealth}](o)--(b);
+\draw[thick,corAccent,-{Stealth}](b)--(l);
+\node[draw=corDef,fill=corDef!6,rounded corners,minimum width=2.2cm,minimum height=.75cm](t)at(0,-1.35){teste / supervisão};
+\draw[dashed,thick,corNorma,<->](t)--(b);
+\end{tikzpicture}
+\begin{caixaProjeto}[title=Leitura]
+A função de teste/supervisão aparece separada do caminho de energia. Isso facilita relacionar o esquema ao procedimento de verificação do sistema.
+\end{caixaProjeto}
+\end{frame}

@@ -1,0 +1,49 @@
+%=====================================================================
+% REPRESENTACAO GRAFICA REVISADA - TOMADAS
+%=====================================================================
+\section{Leitura gráfica de tomadas}
+
+\begin{frame}{Tomada 2P+T — representação por bornes}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.52\textwidth}
+\centering
+\begin{tikzpicture}[scale=.88,every node/.style={font=\scriptsize,align=center}]
+\draw[corNorma,fill=corNorma!5,rounded corners](-2.2,-1.6) rectangle (2.2,1.6);
+\node at(0,1.18){T1 — 2P+T};
+\node[circle,draw=corPrim,minimum size=5pt,inner sep=0pt](a)at(-1.05,.2){};
+\node[circle,draw=corPrim,minimum size=5pt,inner sep=0pt](b)at(1.05,.2){};
+\node[circle,draw=corPrim,minimum size=5pt,inner sep=0pt](c)at(0,-.85){};
+\node[anchor=north]at(-1.05,.04){L};
+\node[anchor=north]at(1.05,.04){N};
+\node[anchor=north]at(0,-1.04){PE};
+\draw[thick](-3.4,.2)--(a);
+\draw[thick](b)--(3.4,.2);
+\draw[thick](0,-2.45)--(c);
+\end{tikzpicture}
+\column{.46\textwidth}
+\begin{caixaProjeto}[title=O que o aluno deve enxergar]
+A figura deixa separados os três bornes do mecanismo e evita a ambiguidade criada por um único retângulo representando toda a tomada.
+\end{caixaProjeto}
+\end{columns}
+\begin{caixaObs}
+Frente e traseira do mecanismo são vistas diferentes; a identificação impressa no componente deve aparecer no desenho didático.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Várias tomadas — mostrar cada ponto como derivação}
+\centering
+\begin{tikzpicture}[scale=.79,every node/.style={font=\scriptsize,align=center}]
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=1.9cm,minimum height=.85cm](q)at(-5.4,0){origem};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.1cm,minimum height=1.15cm](t1)at(-2.6,0){T1\\L \quad N \quad PE};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.1cm,minimum height=1.15cm](t2)at(.6,0){T2\\L \quad N \quad PE};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.1cm,minimum height=1.15cm](t3)at(3.8,0){T3\\L \quad N \quad PE};
+\draw[very thick,corPrim!25](q)--(t1)--(t2)--(t3);
+\draw[corPrim,thick]($(q.east)+(0,.28)$)--($(t1.west)+(0,.28)$)--($(t1.east)+(0,.28)$)--($(t2.west)+(0,.28)$)--($(t2.east)+(0,.28)$)--($(t3.west)+(0,.28)$);
+\draw[corDef,thick](q.east)--(t1.west)--(t1.east)--(t2.west)--(t2.east)--(t3.west);
+\draw[corNorma,thick]($(q.east)+(0,-.28)$)--($(t1.west)+(0,-.28)$)--($(t1.east)+(0,-.28)$)--($(t2.west)+(0,-.28)$)--($(t2.east)+(0,-.28)$)--($(t3.west)+(0,-.28)$);
+\end{tikzpicture}
+\begin{caixaObs}
+O objetivo gráfico é mostrar três caminhos contínuos e três pontos de utilização independentes, em vez de caixas ligadas por uma seta genérica.
+\end{caixaObs}
+\end{frame}

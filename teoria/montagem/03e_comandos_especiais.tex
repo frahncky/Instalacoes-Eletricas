@@ -1,0 +1,102 @@
+%=====================================================================
+% ESQUEMAS REVISADOS - COMANDOS ESPECIAIS
+%=====================================================================
+\section{Comandos especiais de iluminação}
+
+\begin{frame}{Relé de impulso — separar circuito de comando e circuito da carga}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.57\textwidth}
+\centering
+\begin{tikzpicture}[scale=.76,every node/.style={font=\scriptsize,align=center}]
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2cm,minimum height=.8cm](p)at(-3.8,1.55){proteção};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.2cm,minimum height=1.2cm](k)at(0,1.55){contato do relé};
+\node[draw=corAccent!85!black,fill=corAccent!7,circle,minimum size=.9cm](l)at(3.8,1.55){L1};
+\draw[thick,corPrim](p)--(k)--(l);
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.2cm,minimum height=1.2cm](b)at(0,-1.35){bobina\\A1 \quad A2};
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=1.5cm,minimum height=.65cm](s1)at(-3.6,-1.35){B1};
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=1.5cm,minimum height=.65cm](s2)at(3.6,-1.35){B2};
+\draw[thick,corPrim](s1)--(b)--(s2);
+\draw[dashed,thick,corAccent,-{Stealth}](b)--(k);
+\node[font=\tiny]at(0,.05){acoplamento funcional};
+\end{tikzpicture}
+\column{.41\textwidth}
+\begin{caixaProjeto}[title=Leitura]
+As botoeiras pertencem ao comando; o contato do relé pertence ao caminho da carga. O desenho deixa visível que são partes distintas do mesmo dispositivo.
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Sensor de presença — alimentação e saída comutada separadas}
+\centering
+\begin{tikzpicture}[scale=.84,every node/.style={font=\scriptsize,align=center}]
+\draw[corNorma,fill=corNorma!5,rounded corners](-1.8,-1.35)rectangle(1.8,1.35);
+\node at(0,.88){SENSOR};
+\node[circle,draw=corPrim,minimum size=5pt,inner sep=0pt](li)at(-1.2,.15){};
+\node[circle,draw=corPrim,minimum size=5pt,inner sep=0pt](ni)at(0,-.55){};
+\node[circle,draw=corPrim,minimum size=5pt,inner sep=0pt](lo)at(1.2,.15){};
+\node[anchor=north]at(-1.2,0){L};\node[anchor=north]at(0,-.70){N};\node[anchor=north]at(1.2,0){L$'$};
+\draw[thick,corPrim](-4,.15)--(li);
+\draw[thick,corDef](0,-2.4)--(ni);
+\draw[thick,corAccent](lo)--(4,.15);
+\node[draw=corAccent!85!black,fill=corAccent!7,circle,minimum size=.9cm](lamp)at(5.0,.15){L1};
+\draw[thick,corAccent](4,.15)--(lamp);
+\draw[thick,corDef](0,-2.4)--(5,-2.4)--(lamp.south);
+\node[font=\tiny,corPrim]at(-3.5,.45){alimentação};
+\node[font=\tiny,corAccent]at(3.1,.45){saída comutada};
+\end{tikzpicture}
+\begin{caixaObs}
+A disposição real dos terminais varia; o desenho didático deve separar claramente entrada, referência e saída, em vez de resumir o sensor a uma caixa com uma seta.
+\end{caixaObs}
+\end{frame}
+
+\begin{frame}{Fotocélula — mesma lógica de leitura por bornes}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.58\textwidth}
+\centering
+\begin{tikzpicture}[scale=.78,every node/.style={font=\scriptsize,align=center}]
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.4cm,minimum height=1.45cm](f)at(0,0){FOTOCÉLULA\\L \quad N \quad L$'$};
+\node[draw=corAccent!85!black,fill=corAccent!7,circle,minimum size=.9cm](l)at(4.2,0){L1};
+\draw[thick,corPrim](-4,.35)--(f.west |- 0,.35);
+\draw[thick,corDef](-4,-.35)--(f.west |- 0,-.35);
+\draw[thick,corAccent](f.east)--(l.west);
+\draw[thick,corDef](-4,-1.6)--(4.2,-1.6)--(l.south);
+\node[font=\tiny]at(-3.4,.65){L};\node[font=\tiny]at(-3.4,-.65){N};\node[font=\tiny]at(2.3,.30){L$'$};
+\end{tikzpicture}
+\column{.40\textwidth}
+\begin{caixaProjeto}[title=Diferença para o sensor]
+A função de decisão é luminosa, mas a leitura elétrica continua baseada em alimentação permanente e saída comandada identificada.
+\end{caixaProjeto}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Dimmer e driver LED — mostrar as duas camadas}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.56\textwidth}
+\centering
+\begin{tikzpicture}[scale=.74,every node/.style={font=\scriptsize,align=center}]
+\node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2.1cm,minimum height=.9cm](rede)at(-4.2,1.1){rede};
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.1cm,minimum height=.9cm](drv)at(0,1.1){driver};
+\node[draw=corAccent!85!black,fill=corAccent!7,rounded corners,minimum width=2.1cm,minimum height=.9cm](led)at(4.2,1.1){módulo LED};
+\draw[thick,corPrim,-{Stealth}](rede)--(drv)--(led);
+\node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.1cm,minimum height=.9cm](ctrl)at(0,-1.4){controle};
+\draw[dashed,thick,corAccent,<->](ctrl)--(drv);
+\node[font=\tiny]at(-2.1,1.45){potência de entrada};
+\node[font=\tiny]at(2.1,1.45){saída do driver};
+\node[font=\tiny]at(.7,-.25){interface de controle};
+\end{tikzpicture}
+\column{.42\textwidth}
+\begin{itemize}
+\item corte de fase;
+\item 0--10 V;
+\item DALI;
+\item PWM/baixa tensão;
+\item liga/desliga por relé.
+\end{itemize}
+\begin{caixaObs}
+Um esquema bom não mistura o caminho da potência com a interface de controle. Ambos devem aparecer identificados.
+\end{caixaObs}
+\end{columns}
+\end{frame}
