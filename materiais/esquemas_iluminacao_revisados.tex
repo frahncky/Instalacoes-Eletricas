@@ -12,14 +12,15 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,positioning,calc}
 \newcommand{\Disciplina}{}
-\newcommand{\TituloCurto}{Esquemas prediais}
+\newcommand{\TituloCurto}{Diagnóstico de esquemas}
 \input{estilo/beamer_estilo_casa.tex}
 \title{Instalações Elétricas Prediais}
-\subtitle{Esquemas de iluminação revisados}
+\subtitle{Diagnóstico dos esquemas revisados}
 \author{Francisco}
 \date{}
 \begin{document}
 {\setbeamercolor{background canvas}{bg=corPrim}\setbeamertemplate{footline}{}
 \begin{frame}[plain,noframenumbering]\titlepage\end{frame}}
-\input{teoria/montagem/03b_esquemas_iluminacao.tex}
+\tikzset{execute at begin picture={\tikzset{every node/.append style={align=center}}}}
+\input{teoria/montagem/03c_tomadas_base.tex}
 \end{document}
