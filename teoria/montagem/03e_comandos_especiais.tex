@@ -8,7 +8,7 @@
 \begin{columns}[T,onlytextwidth]
 \column{.57\textwidth}
 \centering
-\begin{tikzpicture}[scale=.76,every node/.style={font=\scriptsize}]
+\begin{tikzpicture}[scale=.76,every node/.style={font=\scriptsize,align=center}]
 \node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2cm,minimum height=.8cm](p)at(-3.8,1.55){proteção};
 \node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.2cm,minimum height=1.2cm](k)at(0,1.55){contato do relé};
 \node[draw=corAccent!85!black,fill=corAccent!7,circle,minimum size=.9cm](l)at(3.8,1.55){L1};
@@ -29,7 +29,7 @@ As botoeiras pertencem ao comando; o contato do relé pertence ao caminho da car
 
 \begin{frame}{Sensor de presença — alimentação e saída comutada separadas}
 \centering
-\begin{tikzpicture}[scale=.84,every node/.style={font=\scriptsize}]
+\begin{tikzpicture}[scale=.84,every node/.style={font=\scriptsize,align=center}]
 \draw[corNorma,fill=corNorma!5,rounded corners](-1.8,-1.35)rectangle(1.8,1.35);
 \node at(0,.88){SENSOR};
 \node[circle,draw=corPrim,minimum size=5pt,inner sep=0pt](li)at(-1.2,.15){};
@@ -55,7 +55,7 @@ A disposição real dos terminais varia; o desenho didático deve separar claram
 \begin{columns}[T,onlytextwidth]
 \column{.58\textwidth}
 \centering
-\begin{tikzpicture}[scale=.78,every node/.style={font=\scriptsize}]
+\begin{tikzpicture}[scale=.78,every node/.style={font=\scriptsize,align=center}]
 \node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.4cm,minimum height=1.45cm](f)at(0,0){FOTOCÉLULA\\L \quad N \quad L$'$};
 \node[draw=corAccent!85!black,fill=corAccent!7,circle,minimum size=.9cm](l)at(4.2,0){L1};
 \draw[thick,corPrim](-4,.35)--(f.west |- 0,.35);
@@ -76,7 +76,7 @@ A função de decisão é luminosa, mas a leitura elétrica continua baseada em 
 \begin{columns}[T,onlytextwidth]
 \column{.56\textwidth}
 \centering
-\begin{tikzpicture}[scale=.74,every node/.style={font=\scriptsize}]
+\begin{tikzpicture}[scale=.74,every node/.style={font=\scriptsize,align=center}]
 \node[draw=corPrim,fill=corDef!5,rounded corners,minimum width=2.1cm,minimum height=.9cm](rede)at(-4.2,1.1){rede};
 \node[draw=corNorma,fill=corNorma!5,rounded corners,minimum width=2.1cm,minimum height=.9cm](drv)at(0,1.1){driver};
 \node[draw=corAccent!85!black,fill=corAccent!7,rounded corners,minimum width=2.1cm,minimum height=.9cm](led)at(4.2,1.1){módulo LED};
